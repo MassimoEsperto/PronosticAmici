@@ -1,0 +1,35 @@
+<div class="card text-center">
+    <div class="card-header">
+        AGGIUNGI SQUADRE
+    </div>
+    <div class="card-body">
+
+        <form #teamForm="ngForm" (ngSubmit)="loading_btn=true;setSquadra(teamForm.form.value)">
+
+            <div class="pt-16 pb-16">
+
+                <input name="squadra" type="text" class="form-control" placeholder="Squadra"
+                    ngModel required>
+            </div>
+
+            <div class="pt-16 pb-16">
+
+                <input name="sigla" type="text" class="form-control" placeholder="Sigla" maxlength="3"
+                minlength="3" style="text-transform:uppercase" ngModel required>
+            </div>
+
+            <div class="pt-16 pb-16">
+                <my-button [disabled]="!teamForm.form.valid" [block]="true" [color]="'btn-danger'"
+                    [loading]="loading_btn" [submit]="true" [label]="'CONFERMA'">
+                </my-button>
+            </div>
+
+        </form>
+
+
+    </div>
+    <div class="card-footer text-muted">
+        2 days ago
+
+    </div>
+</div>

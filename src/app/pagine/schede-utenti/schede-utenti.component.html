@@ -1,0 +1,20 @@
+<div class="opzioni" *ngIf="view==VIEW_PLAYER.OPZIONI">
+
+    <div class="pt-16 pb-16">
+        <my-button [block]="true" [disabled]="loading_btn" [color]="'btn-primary'" [label]="'NUOVA SCHEDA'" (myClick)="onNewScheda()">
+        </my-button>
+    </div>
+    <div class="pt-16 pb-16">
+        <my-button [block]="true" [color]="'btn-danger'" [loading]="loading_btn" [label]="'COPIA SCHEDA'" (myClick)="onCopyScheda()">
+        </my-button>
+    </div>
+    <div class="pt-16 pb-16">
+        <my-button [block]="true" [color]="'btn-success'" [loading]="loading_btn" [label]="'GENERA RANDOM'" (myClick)="onRandomScheda()">
+        </my-button>
+    </div>
+
+</div>
+
+
+
+<nuova-scheda *ngIf="view==VIEW_PLAYER.NEW_SCHEDA"></nuova-scheda>

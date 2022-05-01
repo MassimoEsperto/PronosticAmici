@@ -1,0 +1,106 @@
+<ul class="nav nav-tabs sticky-top justify-content-center" id="myTab" role="tablist">
+  <li class="nav-item active dropdown" role="presentation">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">DATI</a>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#competizioni" type="button" role="tab" aria-controls="competizioni"
+          aria-selected="false">COMPETIZIONI</a></li>
+          <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#utenti" type="button" role="tab" aria-controls="utenti"
+            aria-selected="false">GEST UTENTI</a></li>
+      <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#squadre" type="button" role="tab"
+          aria-controls="squadre" aria-selected="false">CREA SQUADRE</a></li>
+      <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#cannonieri" type="button" role="tab"
+          aria-controls="cannonieri" aria-selected="true">CREA CANNONIERI</a></li>
+      <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#gestione-schede" type="button" role="tab"
+          aria-controls="gestione-schede" aria-selected="true">GEST SCHEDE</a></li>
+    </ul>
+  </li>
+  <li *ngIf="!competizione||competizione==0" class="nav-item" role="presentation">
+    <a class="nav-link  disabled" role="button">EVENTI</a>
+  </li>
+  <li *ngIf="competizione&&competizione!=0" class="nav-item dropdown" role="presentation">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+      aria-expanded="false">EVENTI</a>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#eventi" type="button" role="tab"
+          aria-controls="eventi" aria-selected="false">ASS EVENTI</a></li>
+      <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#ass-cannonieri-comp" type="button" role="tab"
+          aria-controls="ass-cannonieri-comp" aria-selected="true">ASS BOMBER</a></li>
+      <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#ass-squadre-comp" type="button" role="tab"
+          aria-controls="ass-squadre-comp" aria-selected="false">ASS SQUADRE</a></li>
+      <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#scheda-master" type="button" role="tab"
+          aria-controls="scheda-master" aria-selected="false">CREA SCHEDA</a></li>
+    </ul>
+  </li>
+  <li *ngIf="!competizione||competizione==0" class="nav-item" role="presentation">
+    <a class="nav-link  disabled" role="button">RIS</a>
+  </li>
+  <li *ngIf="competizione&&competizione!=0" class="nav-item dropdown" role="presentation">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">RIS</a>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#ris-partite" role="tab" type="button"
+          aria-controls="ris-partite" aria-selected="false">PARTITE</a></li>
+      <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#ris-gironi" type="button" role="tab"
+          aria-controls="ris-gironi" aria-selected="false">GIRONI</a></li>
+      <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#ris-antepost" type="button" role="tab"
+          aria-controls="ris-antepost" aria-selected="true">ANTEPOST</a></li>
+    </ul>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent" style="padding-top: 34px;">
+
+  <div class="tab-pane active" id="pre-cannonieri" role="tabpanel" aria-labelledby="pre-cannonieri-tab">
+    IN QUESTA SESSIO L'ADMIN PUO BLA BLA...
+    POI SI SELEZIONA LA COMPETIZIONE O NE UNSERISCI UNA NUOVA
+    !IMPORTANTE SOLO UNA VOLTA COMPLETATO I PRIMI DUE TAB SI PUO' DARE IL VIA ALL'INIZIO DELLE OSTILITA
+    UNA VOLTA BLOCCATE LE SCHEDE SI PUO PROCEDERE AL TERZO STEP CHE È QUELLO DELL'INSERIMENTO DEI RISULTATI MANO MANO
+    <br>
+    CAMBIO DI PROGRAMMA QUA ESCE DIRETTAMENTE LA LISTA DELLE COMPETIZIONI.. MODIFICABILI IDENTICHE AL VECCHIO... bisogna
+    selezionare la competizione per bloccare le altre due
+    
+  </div>
+
+  <!-- PAGINE TAB-->
+
+  <!-- DATI-->
+  <div class="tab-pane fade" id="utenti" role="tabpanel" aria-labelledby="utenti-tab">
+    <utenti></utenti>
+  </div>
+  <div class="tab-pane fade" id="competizioni" role="tabpanel" aria-labelledby="competizioni-tab">
+    <competizioni></competizioni>
+  </div>
+  <div class="tab-pane fade" id="squadre" role="tabpanel" aria-labelledby="squadre-tab">
+    <squadre></squadre>
+  </div>
+  <div class="tab-pane fade" id="cannonieri" role="tabpanel" aria-labelledby="cannonieri-tab">
+    <cannonieri></cannonieri>
+  </div>
+  <div class="tab-pane fade" id="gestione-schede" role="tabpanel" aria-labelledby="gestione-schede-tab">
+    <gestione-schede></gestione-schede>
+  </div>
+
+  <!-- EVENTI-->
+  <div class="tab-pane fade" id="eventi" role="tabpanel" aria-labelledby="eventi-tab">
+    <eventi [id_comp]="competizione" [combo]="combo"></eventi>
+  </div>
+  <div class="tab-pane fade" id="ass-cannonieri-comp" role="tabpanel" aria-labelledby="ass-cannonieri-comp-tab">
+    <ass-cannonieri-comp [id_comp]="competizione"></ass-cannonieri-comp>
+  </div>
+  <div class="tab-pane fade" id="ass-squadre-comp" role="tabpanel" aria-labelledby="ass-squadre-comp-tab">
+    <ass-squadre-comp [id_comp]="competizione"></ass-squadre-comp>
+  </div>
+  <div class="tab-pane fade" id="scheda-master" role="tabpanel" aria-labelledby="scheda-master-tab">
+    <scheda-master [id_comp]="competizione" [combo]="combo"></scheda-master>
+  </div>
+
+  <!-- RISULTATI-->
+  <div class="tab-pane fade" id="ris-partite" role="tabpanel" aria-labelledby="ris-partite-tab">
+    <ris-partite></ris-partite>
+  </div>
+  <div class="tab-pane fade" id="ris-gironi" role="tabpanel" aria-labelledby="ris-gironi-tab">
+    <ris-gironi></ris-gironi>
+  </div>
+  <div class="tab-pane fade" id="ris-antepost" role="tabpanel" aria-labelledby="ris-antepost-tab">
+    <ris-antepost></ris-antepost>
+  </div>
+
+</div>

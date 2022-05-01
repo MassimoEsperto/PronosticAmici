@@ -1,0 +1,29 @@
+
+
+<my-button [confirm]="true" [block]="true"  [loading]="loading_btn" [label]="'modale'" (myClick)="conferma()">
+</my-button>
+
+
+<samp>This text is meant GHGIYN GIUGGHGHJG JHF6REZEAKOKto be treated as sample output from a computer program.</samp>
+
+<button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
+
+<button type="button" class="btn-close" data-bs-dismiss="toast" data-bs-target="#my-toast" aria-label="Close"></button>
+
+<button type="button" class="btn btn-primary"  data-bs-target="#liveToast">
+    Launch demo modal
+  </button>
+
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+  <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <img src="../../../assets/img/info.png" class="rounded me-2" alt="info">
+      <strong class="me-auto">Bootstrap</strong>
+      <small>11 mins ago</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      Hello, world! This is a toast message.
+    </div>
+  </div>
+</div>

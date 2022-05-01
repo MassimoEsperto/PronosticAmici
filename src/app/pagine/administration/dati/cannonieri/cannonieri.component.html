@@ -1,0 +1,29 @@
+<div class="card text-center">
+    <div class="card-header">
+        AGGIUNGI CANNONIERE
+    </div>
+    <div class="card-body">
+
+        <form #bomberForm="ngForm" (ngSubmit)="loading_btn=true;setCannoniere(bomberForm.form.value)">
+
+            <div class="pt-16 pb-16">
+
+                <input name="cannoniere" type="text" class="form-control" placeholder="Cannoniere"
+                    ngModel required>
+            </div>
+
+            <div class="pt-16 pb-16">
+                <my-button [disabled]="!bomberForm.form.valid" [block]="true" [color]="'btn-danger'"
+                    [loading]="loading_btn" [submit]="true" [label]="'CONFERMA'">
+                </my-button>
+            </div>
+
+        </form>
+
+
+    </div>
+    <div class="card-footer text-muted">
+        2 days ago
+
+    </div>
+</div>

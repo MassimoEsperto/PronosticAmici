@@ -1,10 +1,30 @@
 import { Component } from '@angular/core';
+import { ActivationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  template: ` <div class="page">
+              <router-outlet></router-outlet>
+              </div>
+              <my-confirm-dialog></my-confirm-dialog>
+              <my-alert></my-alert>
+              <my-navbar *ngIf="isViewNav"></my-navbar>`
+
 })
 export class AppComponent {
-  title = 'PronosticAmici';
+
+  isViewNav: boolean = false //show hide della nav
+
+  constructor(private router: Router) {
+    router.events.subscribe((val) => {
+      if (val instanceof ActivationEnd) {
+        this.isViewNav = val['snapshot']['data']['nav']
+      }
+    })
+  }
+
+
+
+
 }
+

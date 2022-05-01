@@ -1,0 +1,80 @@
+<div *ngIf="scheda_master" class="pt-32 pb-64">
+
+
+    <form  #schedaForm="ngForm" (ngSubmit)="loading_btn=true;onPlayScheda(schedaForm.form.value)">
+
+
+    <div class="card-table">
+
+        <div class="table-responsive">
+            <table class="table table-striped ">
+                <thead>
+                    <tr>
+                        <th scope="col">EVENTO</th>
+                        <th scope="col">RISULTATO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of scheda_master.master">
+                        <td *ngIf="item.girone&&item.tipo!=TIPO_EVENTO.GIRONE">{{item.girone}}) {{item.view}}</td>
+                        <td *ngIf="!item.girone||item.tipo==TIPO_EVENTO.GIRONE">{{item.view}}</td>
+
+                        <!-- OPZIONI RISULTATI SCHEDA-->
+                        <td *ngIf="item.tipo==TIPO_EVENTO.PARTITA">
+                            <select [disabled]="loading_btn" class="form-select" aria-label="select" name="{{item.id_evento}}" ngModel required>
+                                <option *ngFor="let opzione of scheda_master.partite" [ngValue]="{risultato:opzione,evento:item}">{{opzione.descrizione}}
+                                </option>
+                            </select>
+                        </td>
+                        <td *ngIf="item.tipo==TIPO_EVENTO.ANTEPOST&&item.gruppo!=GRUPPO_PUNTI.CAPOCANNONIERE">
+                            <select [disabled]="loading_btn" class="form-select" aria-label="select" name="{{item.id_evento}}" ngModel required>
+                                <option *ngFor="let opzione of scheda_master.squadre" [ngValue]="{risultato:opzione,evento:item}">{{opzione.descrizione}}
+                                </option>
+                            </select>
+                        </td>
+                        <td *ngIf="item.tipo==TIPO_EVENTO.ANTEPOST&&item.gruppo==GRUPPO_PUNTI.CAPOCANNONIERE">
+                            <select [disabled]="loading_btn" class="form-select" aria-label="select" name="{{item.id_evento}}" ngModel required>
+                                <option *ngFor="let opzione of scheda_master.cannonieri" [ngValue]="{risultato:opzione,evento:item}">{{opzione.descrizione}}
+                                </option>
+                            </select>
+                        </td>
+                        <td *ngIf="item.tipo==TIPO_EVENTO.GIRONE&&item.gruppo!=GRUPPO_PUNTI.GIRONE_COMPLETO">
+                            <select [disabled]="loading_btn" class="form-select" aria-label="select" name="{{item.id_evento}}"  (change)="onChangeGruppo($event,item)" ngModel required>
+                                <option *ngFor="let opzione of scheda_master.squadre_girone[item.girone]"  [ngValue]="{risultato:opzione,evento:item}">{{opzione.descrizione}}
+                                </option>
+                            </select>     
+                        </td>
+                         <!--
+                        <td *ngIf="item.tipo==TIPO_EVENTO.GIRONE&&item.gruppo==GRUPPO_PUNTI.GIRONE_COMPLETO">
+                            <select  [disabled]="loading_btn" class="form-select" aria-label="select" name="evento_{{item.id_evento}}"  ngModel required>
+                                <option [ngValue]="{risultato:completo[item.girone],evento:item}">{{completo[item.girone]}}
+                                </option>
+                            </select>
+                            <br>
+                            
+                        </td>
+                          -->
+                      
+                        <td *ngIf="item.tipo==TIPO_EVENTO.GIRONE&&item.gruppo==GRUPPO_PUNTI.GIRONE_COMPLETO">
+                            <input name="{{item.id_evento}}"  type="text" class="form-control" 
+                            [ngModel]="completo[item.girone]" [value]="{risultato:completo[item.girone],evento:item}" required readonly>
+                        </td>
+                        
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="pt-16 pb-16">
+        <my-button [disabled]="!schedaForm.form.valid" [block]="true" [color]="'btn-danger'"
+            [loading]="loading_btn" [submit]="true" [label]="'CONFERMA'">
+        </my-button>
+    </div>
+
+</form>
+
+
+</div>

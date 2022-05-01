@@ -1,0 +1,42 @@
+<div class="forms">
+    <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+
+        <div class="card text-center">
+            <div class="card-header">
+                LOGIN
+            </div>
+            <div class="card-body">
+
+                <form #loginForm="ngForm" (ngSubmit)="loading_btn=true;onLogin(loginForm.form.value)">
+
+                    <div class="pt-16 pb-16">
+
+                        <input id="username" name="username" type="text" class="form-control" placeholder="Username"
+                            ngModel required>
+                    </div>
+
+                    <div class="pt-16 pb-16">
+
+                        <input id="password" name="password" type="password" class="form-control" placeholder="Password"
+                            ngModel required>
+                    </div>
+
+                    <div class="pt-16 pb-16">
+                        <my-button [disabled]="!loginForm.form.valid" [block]="true" [color]="'btn-danger'"
+                            [loading]="loading_btn" [submit]="true" [label]="'CONFERMA'">
+                        </my-button>
+                    </div>
+
+                </form>
+
+
+            </div>
+            <div class="card-footer text-muted">
+                2 days ago
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
