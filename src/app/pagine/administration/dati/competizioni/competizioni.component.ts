@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 import { vrs } from 'src/app/classi/global-variables';
+import { Competizione } from 'src/app/model/Competizione';
 import { AdminDatiService } from 'src/app/servizi/admin/admin-dati.service';
 
 @Component({
@@ -11,6 +12,7 @@ import { AdminDatiService } from 'src/app/servizi/admin/admin-dati.service';
 export class CompetizioniComponent extends vrs implements OnInit {
 
   competizioni: any = []
+  competizione = new Competizione();
 
   constructor(private adminDati: AdminDatiService) {
     super();
@@ -24,8 +26,13 @@ export class CompetizioniComponent extends vrs implements OnInit {
     return item == this.SI_NO.SI_V ? this.SI_NO.SI_S : this.SI_NO.NO_S
   }
 
-  onUpdate(item: any) {
-    console.log("item selected", item)
+  onUpdate(item: Competizione) {
+    this.competizione.set(item);
+    console.log("this.competizione",this.competizione)
+  }
+
+  onAdd() {
+    this.competizione.reset();
   }
 
 
@@ -84,5 +91,7 @@ export class CompetizioniComponent extends vrs implements OnInit {
       })
 
   }
+
+
 
 }

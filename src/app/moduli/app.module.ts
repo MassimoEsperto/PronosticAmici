@@ -31,6 +31,7 @@ import { RisGironiComponent } from '../pagine/administration/risultati/ris-giron
 import { RisPartiteComponent } from '../pagine/administration/risultati/ris-partite/ris-partite.component';
 import { NuovaSchedaComponent } from '../pagine/schede-utenti/nuova-scheda/nuova-scheda.component';
 import { ModificaSchedaComponent } from '../pagine/schede-utenti/modifica-scheda/modifica-scheda.component';
+import { FormCompetizioni } from '../componenti/my-form-modal/form-competizioni/form-competizioni.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { ModificaSchedaComponent } from '../pagine/schede-utenti/modifica-scheda
     RisGironiComponent,
     RisPartiteComponent,
     NuovaSchedaComponent,
-    ModificaSchedaComponent
+    ModificaSchedaComponent,
+    FormCompetizioni
   ],
   imports: [
     BrowserModule,

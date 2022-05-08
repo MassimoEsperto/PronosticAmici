@@ -5,6 +5,7 @@ import { HttpSenderService } from '../autenticazione/http-sender.service';
 import { map, catchError } from 'rxjs/operators';
 import { RETURN_OK, SERVICE_TYPE } from 'src/app/classi/costanti';
 import { Observable } from 'rxjs';
+import { Competizione } from 'src/app/model/Competizione';
 
 @Injectable({
   providedIn: 'root'
@@ -59,7 +60,7 @@ export class AdminDatiService extends HttpSenderService {
 
    /*COMPETIZIONI */
 
-   getCompetizioni(): Observable<any> {
+   getCompetizioni(): Observable<Competizione> {
     return this.http.get(`${this.buildURL("get_competizioni")}`).pipe(
       map((res: any) => {
 
