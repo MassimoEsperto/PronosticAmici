@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 import { vrs } from 'src/app/classi/global-variables';
+import { Competizione } from 'src/app/model/Competizione';
 import { AdminEventiService } from 'src/app/servizi/admin/admin-eventi.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { AdminEventiService } from 'src/app/servizi/admin/admin-eventi.service';
 })
 export class SchedaMasterComponent extends vrs implements OnInit {
 
-  @Input() id_comp: number = 0;
+  @Input() comp!: Competizione;
   @Input() combo: any;
   eventi_antepost: any
   eventi_girone: any
@@ -28,8 +29,8 @@ export class SchedaMasterComponent extends vrs implements OnInit {
 
   ngOnChanges() {
 
-    if (this.id_comp > 0) {
-      this.getSquadreComp(this.id_comp.toString())
+    if (this.comp&&this.comp.id) {
+      this.getSquadreComp(this.comp.id)
       this.getSchedaMaster()
       this.getTipiPronostici()
     }
@@ -53,7 +54,7 @@ export class SchedaMasterComponent extends vrs implements OnInit {
       return;
     }
     let payload = {
-      id_comp: this.id_comp,
+      id_comp: this.comp.id,
       tipo_evento: this.step_view,
       view: e.antepost.descrizione,
       gruppo_evento: e.antepost.id_gruppo_punti,
@@ -70,7 +71,7 @@ export class SchedaMasterComponent extends vrs implements OnInit {
     let partita = e.squadra_casa.descrizione + "-" + e.squadra_trasferta.descrizione;
 
     let payload = {
-      id_comp: this.id_comp,
+      id_comp: this.comp.id,
       tipo_evento: this.step_view,
       view: partita,
       gruppo_evento: 0,
@@ -95,7 +96,7 @@ console.log(e)
       return;
     }
     let payload = {
-      id_comp: this.id_comp,
+      id_comp: this.comp.id,
       tipo_evento: this.step_view,
       view: e.evento_girone.descrizione+" "+ e.girone,
       gruppo_evento: e.evento_girone.id_gruppo_punti,
@@ -128,7 +129,7 @@ console.log("this.gironi_disponibili",this.gironi_disponibili)
 
   getSchedaMaster() {
 
-    this.adminEventi.getSchedaMaster(this.id_comp.toString())
+    this.adminEventi.getSchedaMaster(this.comp.id||"0")
       .pipe(finalize(() =>
         this.loading_btn = false
       ))
@@ -164,7 +165,7 @@ console.log("this.gironi_disponibili",this.gironi_disponibili)
 
   getTipiPronostici() {
 
-    this.adminEventi.getTipiPronostici(this.id_comp.toString())
+    this.adminEventi.getTipiPronostici(this.comp.id||"0")
       .subscribe({
 
         next: (result: any) => {

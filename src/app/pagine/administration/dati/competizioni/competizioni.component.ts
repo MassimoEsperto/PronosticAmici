@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 import { vrs } from 'src/app/classi/global-variables';
 import { Competizione } from 'src/app/model/Competizione';
@@ -13,6 +13,8 @@ export class CompetizioniComponent extends vrs implements OnInit {
 
   competizioni: any = []
   competizione = new Competizione();
+  @Output() submit = new EventEmitter();
+  sigla : string="";
 
   constructor(private adminDati: AdminDatiService) {
     super();
@@ -33,6 +35,11 @@ export class CompetizioniComponent extends vrs implements OnInit {
 
   onAdd() {
     this.competizione.reset();
+  }
+
+  onSeleziona(item: Competizione) {
+    this.sigla=item.sigla||"";
+   this.submit.emit(item);
   }
 
 

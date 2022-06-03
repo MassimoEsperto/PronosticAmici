@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 import { vrs } from 'src/app/classi/global-variables';
+import { Competizione } from 'src/app/model/Competizione';
 import { AdminEventiService } from 'src/app/servizi/admin/admin-eventi.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { AdminEventiService } from 'src/app/servizi/admin/admin-eventi.service';
 })
 export class EventiComponent extends vrs implements OnInit {
 
-  @Input() id_comp: number = 0;
+  @Input() comp!: Competizione;
   @Input() combo: any;
   eventi: any
 
@@ -22,8 +23,8 @@ export class EventiComponent extends vrs implements OnInit {
 
   ngOnChanges() {
 
-    if (this.id_comp > 0) {
-      this.getTipiPronostici(this.id_comp.toString())
+    if (this.comp&&this.comp.id) {
+      this.getTipiPronostici(this.comp.id)
     }
   }
 
@@ -50,7 +51,7 @@ export class EventiComponent extends vrs implements OnInit {
       this.loading_btn = false
       return;
     } else {
-      payload.id_comp = this.id_comp
+      payload.id_comp = this.comp.id
       this.setEventoPronostico(payload)
     }
   }
@@ -64,7 +65,7 @@ export class EventiComponent extends vrs implements OnInit {
       .subscribe({
 
         next: (result: any) => {
-          this.getTipiPronostici(this.id_comp.toString())
+          this.getTipiPronostici(this.comp.id||"0")
         },
         error: (error: any) => {
           // this.alert.error(error);

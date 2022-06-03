@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Competizione } from 'src/app/model/Competizione';
 import { AdminEventiService } from 'src/app/servizi/admin/admin-eventi.service';
 import { AlertService } from 'src/app/servizi/applicazione/alert.service';
 
@@ -9,17 +10,21 @@ import { AlertService } from 'src/app/servizi/applicazione/alert.service';
 })
 export class AdministrationComponent implements OnInit {
 
-  competizione:number=0;
+  competizione!: Competizione;
   combo:any;
   
   constructor(
     private adminEventi: AdminEventiService,
     private alert: AlertService) {
-    setTimeout(() => {
-    this.competizione=1
-  }, 5000); }
+   }
 
-  ngOnInit(){this.getCombo()
+  ngOnInit(){
+    this.getCombo()
+  }
+
+  selected(item: Competizione){
+    console.log("selezionato ",item)
+    this.competizione= item;
   }
 
   getCombo() {
