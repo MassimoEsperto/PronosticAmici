@@ -2,7 +2,7 @@ import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { WS_BASE_URL } from 'src/app/classi/costanti';
-import { Utente } from 'src/app/classi/utente';
+import { UtenteToken } from 'src/app/classi/utente';
 
 const compStorage: string = "comp-now";
 const tokenStorage: string = "tk-pro-mar";
@@ -65,7 +65,7 @@ export class HttpSenderService {
 
   getLoggato() {
     let element = this.getLocalStorageParse()
-    let utente: Utente = new Utente()
+    let utente: UtenteToken = new UtenteToken()
     
     if (element) {
       utente.username = element.username

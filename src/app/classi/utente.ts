@@ -1,4 +1,4 @@
-export class Utente {
+export class UtenteToken {
   id?:string;
   username?: string;
   nome?: string;

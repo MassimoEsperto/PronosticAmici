@@ -15,6 +15,8 @@ export const MAX_IMG = 40000
 
 export const RETURN_OK = "OK"
 
+export const SUCCESS_OK = "Incredibile ha funzionato!"
+
 export const SERVICE_TYPE = {
     ADMIN: { DATI: "/admin/dati/", EVENTI: "/admin/eventi/" },
     PLAYER: "/player/",

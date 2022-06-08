@@ -11,27 +11,25 @@
       <table class="table table-striped ">
         <thead>
           <tr>
+            <th scope="col">SEL</th>
             <th scope="col">ID</th>
             <th scope="col">NOME</th>
             <th scope="col">SIGLA</th>
-            <th scope="col">DESC</th>
             <th scope="col">SCADENZA</th>
             <th scope="col">ATTIVA</th>
             <th scope="col">OPEN</th>
-            <th scope="col">SEL</th>
             <th scope="col">MOD</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of competizioni">
+            <td><i class="bi bi-check2-circle cursore" (click)="onSeleziona(item)"></i></td>
             <td>{{item.id}}</td>
             <td>{{item.nome}}</td>
             <td>{{item.sigla}}</td>
-            <td>{{item.descrizione}}</td>
             <td>{{item.scadenza}}</td>
             <td>{{viewSiNo(item.is_attiva)}}</td>
             <td>{{viewSiNo(item.is_open)}}</td>
-            <td><i class="bi bi-bricks cursore" (click)="onSeleziona(item)"></i></td>
             <td><i class="bi bi-pencil cursore" (click)="onUpdate(item)" data-bs-toggle="modal"
                 data-bs-target="#formCompetizioni"></i></td>
           </tr>

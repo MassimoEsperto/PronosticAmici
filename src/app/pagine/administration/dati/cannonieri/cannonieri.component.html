@@ -13,7 +13,7 @@
             </div>
 
             <div class="pt-16 pb-16">
-                <my-button [disabled]="!bomberForm.form.valid" [block]="true" [color]="'btn-danger'"
+                <my-button [disabled]="!bomberForm.form.valid" [block]="true" [color]="'btn-primary'"
                     [loading]="loading_btn" [submit]="true" [label]="'CONFERMA'">
                 </my-button>
             </div>
@@ -22,8 +22,32 @@
 
 
     </div>
-    <div class="card-footer text-muted">
-        2 days ago
+  
+</div>
 
-    </div>
+<div class="pt-32 pb-64">
+    <div class="card-table">
+
+        <div class="table-responsive">
+            <table class="table table-striped ">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">VIEW</th>
+                    <th scope="col">XX</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of cannonieri">
+                    <td>{{item.id}}</td>
+                    <td>{{item.descrizione}}</td>
+                    <td><i class="bi bi-trash cursore" (click)="onDeleteItem(item)" data-bs-toggle="modal"
+                        data-bs-target="#confirmModal"></i></td>
+                  </tr>
+                
+                </tbody>
+              </table>
+          </div>
+        </div>
+
 </div>

@@ -1,3 +1,5 @@
+<div *ngIf="combo">
+
 <ul class="nav nav-tabs sticky-top justify-content-center" id="myTab" role="tablist">
   <li class="nav-item active dropdown" role="presentation">
     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">DATI</a>
@@ -63,7 +65,7 @@
 
   <!-- DATI-->
   <div class="tab-pane fade" id="utenti" role="tabpanel" aria-labelledby="utenti-tab">
-    <utenti></utenti>
+    <utenti [combo]="combo"></utenti>
   </div>
   <div class="tab-pane fade" id="competizioni" role="tabpanel" aria-labelledby="competizioni-tab">
     <competizioni (submit)="selected($event)"></competizioni>
@@ -103,5 +105,7 @@
   <div class="tab-pane fade" id="ris-antepost" role="tabpanel" aria-labelledby="ris-antepost-tab">
     <ris-antepost></ris-antepost>
   </div>
+
+</div>
 
 </div>

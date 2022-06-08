@@ -12,6 +12,10 @@ export class ConfirmDialogService {
       this.setConfirmation(message, confermato);  
   }  
 
+  confirmGeneric(confermato: () => void): any {  
+    this.setConfirmation("Sei sicuro di voler effettuare l'operazione?", confermato);  
+}
+
   setConfirmation(message: string, confermato: () => void): any {  
       const that = this;  
       this.subject.next({   

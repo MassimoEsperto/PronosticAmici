@@ -1,4 +1,4 @@
-<div >
+<div *ngIf="comp">
     <div class="card text-center">
         <div class="card-header">
             ASSOCIA SQUADRE {{comp.sigla}}
@@ -18,7 +18,7 @@
                 <div style="padding-top: 16px;">
                     <select class="form-select" aria-label="select"
                         name="girone"  ngModel>
-                        <option selected value="">NESSUNO</option>
+                        <option selected value="">NESSUN GIRONE</option>
                         <option value="A">A</option>
                         <option value="B">B</option>
                         <option value="C">C</option>

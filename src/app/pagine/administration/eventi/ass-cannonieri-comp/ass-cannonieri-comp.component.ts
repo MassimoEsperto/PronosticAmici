@@ -3,6 +3,7 @@ import { finalize } from 'rxjs/operators';
 import { vrs } from 'src/app/classi/global-variables';
 import { Competizione } from 'src/app/model/Competizione';
 import { AdminEventiService } from 'src/app/servizi/admin/admin-eventi.service';
+import { ConfirmDialogService } from 'src/app/servizi/applicazione/confirm-dialog.service';
 
 @Component({
   selector: 'ass-cannonieri-comp',
@@ -15,7 +16,7 @@ export class AssCannonieriCompComponent extends vrs implements OnInit {
   disponibili: any =[]
   compresi: any=[]
 
-  constructor(private adminEventi: AdminEventiService) {
+  constructor(private adminEventi: AdminEventiService,private confirmDialogService: ConfirmDialogService) {
     super();
   }
 
@@ -23,7 +24,7 @@ export class AssCannonieriCompComponent extends vrs implements OnInit {
 
   ngOnChanges() {
 
-    if (this.comp.id) {
+    if (this.comp&&this.comp.id) {
       this.getCannonieriComp(this.comp.id)
     }
   }
@@ -69,6 +70,13 @@ export class AssCannonieriCompComponent extends vrs implements OnInit {
         }
       })
 
+  }
+
+  showDialog() {
+
+    this.confirmDialogService.confirmThis("Sei sicuro di voler effettuare l'operazione?", () => {
+      console.log("confermato")
+    })
   }
 
 }

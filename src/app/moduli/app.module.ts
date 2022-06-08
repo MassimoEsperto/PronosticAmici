@@ -32,6 +32,7 @@ import { RisPartiteComponent } from '../pagine/administration/risultati/ris-part
 import { NuovaSchedaComponent } from '../pagine/schede-utenti/nuova-scheda/nuova-scheda.component';
 import { ModificaSchedaComponent } from '../pagine/schede-utenti/modifica-scheda/modifica-scheda.component';
 import { FormCompetizioni } from '../componenti/my-form-modal/form-competizioni/form-competizioni.component';
+import { FormUtente } from '../componenti/my-form-modal/form-utente/form-utente.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { FormCompetizioni } from '../componenti/my-form-modal/form-competizioni/
     RisPartiteComponent,
     NuovaSchedaComponent,
     ModificaSchedaComponent,
-    FormCompetizioni
+    FormCompetizioni,
+    FormUtente
   ],
   imports: [
     BrowserModule,

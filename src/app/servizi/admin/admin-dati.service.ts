@@ -6,6 +6,7 @@ import { map, catchError } from 'rxjs/operators';
 import { RETURN_OK, SERVICE_TYPE } from 'src/app/classi/costanti';
 import { Observable } from 'rxjs';
 import { Competizione } from 'src/app/model/Competizione';
+import { Utente } from 'src/app/model/Utente';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,24 @@ export class AdminDatiService extends HttpSenderService {
     super(SERVICE_TYPE.ADMIN.DATI);
   }
 
+  /*UTENTI */
+  getUtenti(): Observable<Utente> {
+    return this.http.get(`${this.buildURL("get_utenti")}`).pipe(
+      map((res: any) => {
+
+        return res['data'];
+      }),
+      catchError(this.handleError));
+  }
+
+  updUtente(payload: any) {
+
+    return this.http.post(`${this.buildURL("upd_utente")}`, { data: payload })
+      .pipe(map((res: any) => {
+        return RETURN_OK;
+      }),
+        catchError(this.handleError));
+  }
 
   /*SUADRE */
 
@@ -38,6 +57,15 @@ export class AdminDatiService extends HttpSenderService {
   }
 
 
+  delSquadra(payload: any) {
+
+    return this.http.post(`${this.buildURL("del_squadra")}`, { data: payload })
+      .pipe(map((res: any) => {
+        return RETURN_OK;
+      }),
+        catchError(this.handleError));
+  }
+
   /*CANNONIERI */
 
   getCannonieri(): Observable<any> {
@@ -52,6 +80,15 @@ export class AdminDatiService extends HttpSenderService {
   setCannoniere(payload: any) {
 
     return this.http.post(`${this.buildURL("set_cannoniere")}`, { data: payload })
+      .pipe(map((res: any) => {
+        return RETURN_OK;
+      }),
+        catchError(this.handleError));
+  }
+
+  delCannoniere(payload: any) {
+
+    return this.http.post(`${this.buildURL("del_cannoniere")}`, { data: payload })
       .pipe(map((res: any) => {
         return RETURN_OK;
       }),
