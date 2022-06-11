@@ -20,7 +20,6 @@ import { SquadreComponent } from '../pagine/administration/dati/squadre/squadre.
 import { CannonieriComponent } from '../pagine/administration/dati/cannonieri/cannonieri.component';
 import { CompetizioniComponent } from '../pagine/administration/dati/competizioni/competizioni.component';
 import { SchedaMasterComponent } from '../pagine/administration/eventi/scheda-master/scheda-master.component';
-import { EventiComponent } from '../pagine/administration/eventi/eventi/eventi.component';
 import { AssCannonieriCompComponent } from '../pagine/administration/eventi/ass-cannonieri-comp/ass-cannonieri-comp.component';
 import { AssSquadreCompComponent } from '../pagine/administration/eventi/ass-squadre-comp/ass-squadre-comp.component';
 import { SchedeUtentiComponent } from '../pagine/schede-utenti/schede-utenti.component';
@@ -33,6 +32,7 @@ import { NuovaSchedaComponent } from '../pagine/schede-utenti/nuova-scheda/nuova
 import { ModificaSchedaComponent } from '../pagine/schede-utenti/modifica-scheda/modifica-scheda.component';
 import { FormCompetizioni } from '../componenti/my-form-modal/form-competizioni/form-competizioni.component';
 import { FormUtente } from '../componenti/my-form-modal/form-utente/form-utente.component';
+import { AssTipiPronosticiComponent } from '../pagine/administration/eventi/ass-tipi-pronostici/ass-tipi-pronostici.component';
 
 
 @NgModule({
@@ -48,7 +48,6 @@ import { FormUtente } from '../componenti/my-form-modal/form-utente/form-utente.
     CannonieriComponent,
     CompetizioniComponent,
     SchedaMasterComponent,
-    EventiComponent,
     AssCannonieriCompComponent,
     AssSquadreCompComponent,
     SchedeUtentiComponent,
@@ -60,7 +59,8 @@ import { FormUtente } from '../componenti/my-form-modal/form-utente/form-utente.
     NuovaSchedaComponent,
     ModificaSchedaComponent,
     FormCompetizioni,
-    FormUtente
+    FormUtente,
+    AssTipiPronosticiComponent
   ],
   imports: [
     BrowserModule,

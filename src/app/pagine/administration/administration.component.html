@@ -24,7 +24,7 @@
       aria-expanded="false">EVENTI</a>
     <ul class="dropdown-menu">
       <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#eventi" type="button" role="tab"
-          aria-controls="eventi" aria-selected="false">ASS EVENTI</a></li>
+          aria-controls="eventi" aria-selected="false">ASS PRONOSTICI</a></li>
       <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#ass-cannonieri-comp" type="button" role="tab"
           aria-controls="ass-cannonieri-comp" aria-selected="true">ASS BOMBER</a></li>
       <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#ass-squadre-comp" type="button" role="tab"
@@ -33,10 +33,10 @@
           aria-controls="scheda-master" aria-selected="false">CREA SCHEDA</a></li>
     </ul>
   </li>
-  <li *ngIf="!competizione" class="nav-item" role="presentation">
+  <li *ngIf="!competizione||competizione.is_open=='0'" class="nav-item" role="presentation">
     <a class="nav-link  disabled" role="button">RIS</a>
   </li>
-  <li *ngIf="competizione" class="nav-item dropdown" role="presentation">
+  <li *ngIf="competizione&&competizione.is_open=='1'" class="nav-item dropdown" role="presentation">
     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">RIS</a>
     <ul class="dropdown-menu">
       <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#ris-partite" role="tab" type="button"
@@ -68,7 +68,7 @@
     <utenti [combo]="combo"></utenti>
   </div>
   <div class="tab-pane fade" id="competizioni" role="tabpanel" aria-labelledby="competizioni-tab">
-    <competizioni (submit)="selected($event)"></competizioni>
+    <competizioni (selected)="selected($event)"></competizioni>
   </div>
   <div class="tab-pane fade" id="squadre" role="tabpanel" aria-labelledby="squadre-tab">
     <squadre></squadre>
@@ -82,7 +82,7 @@
 
   <!-- EVENTI-->
   <div class="tab-pane fade" id="eventi" role="tabpanel" aria-labelledby="eventi-tab">
-    <eventi [comp]="competizione" [combo]="combo"></eventi>
+    <ass-tipi-pronostici [comp]="competizione" [combo]="combo"></ass-tipi-pronostici>
   </div>
   <div class="tab-pane fade" id="ass-cannonieri-comp" role="tabpanel" aria-labelledby="ass-cannonieri-comp-tab">
     <ass-cannonieri-comp [comp]="competizione"></ass-cannonieri-comp>

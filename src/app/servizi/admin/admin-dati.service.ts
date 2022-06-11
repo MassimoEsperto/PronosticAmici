@@ -124,5 +124,25 @@ export class AdminDatiService extends HttpSenderService {
         catchError(this.handleError));
   }
 
+  /*SCHEDE */
+
+  getSchede(): Observable<any> {
+    return this.http.get(`${this.buildURL("get_schede")}`).pipe(
+      map((res: any) => {
+
+        return res['data'];
+      }),
+      catchError(this.handleError));
+  }
+
+  delScheda(payload: any) {
+
+    return this.http.post(`${this.buildURL("del_scheda")}`, { data: payload })
+      .pipe(map((res: any) => {
+        return RETURN_OK;
+      }),
+        catchError(this.handleError));
+  }
+
 }
 

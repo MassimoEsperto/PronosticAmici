@@ -9,13 +9,13 @@
       </div>
       <div class="modal-body">
 
-        <form #compForm="ngForm" (ngSubmit)="addCompetizione(competizione)">
+        <form #compForm="ngForm" (ngSubmit)="onCompetizione(competizione)">
 
           <div class="pb-16">
 
             <div class="mb-3">
               <label>Sigla(max 10 caratteri)</label>
-              <input name="sigla" type="text" class="form-control" placeholder="Sigla" maxlength="8" minlength="3"
+              <input name="sigla" type="text" class="form-control" placeholder="Sigla" maxlength="10" minlength="3"
                 style="text-transform:uppercase" [(ngModel)]="competizione.sigla" required>
             </div>
 
@@ -50,7 +50,7 @@
             <br>
           </div>
           <div class="pt-16">
-            <my-button [disabled]="!compForm.form.valid" [block]="true" [color]="'btn-danger'" [loading]="loading_btn"
+            <my-button [disabled]="!compForm.form.valid" [block]="true" [color]="'btn-success'" [loading]="loading_btn"
               [submit]="true" [label]="'CONFERMA'">
             </my-button>
           </div>
@@ -58,7 +58,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+        <button type="button"  #closeModal class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
       </div>
     </div>
   </div>

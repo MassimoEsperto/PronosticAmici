@@ -1,8 +1,11 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { finalize } from 'rxjs/operators';
+import { SUCCESS_OK } from 'src/app/classi/costanti';
 import { vrs } from 'src/app/classi/global-variables';
 import { Competizione } from 'src/app/model/Competizione';
 import { AdminDatiService } from 'src/app/servizi/admin/admin-dati.service';
+import { AlertService } from 'src/app/servizi/applicazione/alert.service';
+import { ConfirmDialogService } from 'src/app/servizi/applicazione/confirm-dialog.service';
 
 @Component({
   selector: 'competizioni',
@@ -13,10 +16,13 @@ export class CompetizioniComponent extends vrs implements OnInit {
 
   competizioni: any = []
   competizione = new Competizione();
-  @Output() submit = new EventEmitter();
-  sigla : string="";
+  @Output() selected = new EventEmitter();
+  sigla: string = "";
 
-  constructor(private adminDati: AdminDatiService) {
+  constructor(
+    private adminDati: AdminDatiService,
+    private confirmDialogService: ConfirmDialogService,
+    private alert: AlertService) {
     super();
   }
 
@@ -30,7 +36,7 @@ export class CompetizioniComponent extends vrs implements OnInit {
 
   onUpdate(item: Competizione) {
     this.competizione.set(item);
-    console.log("this.competizione",this.competizione)
+    console.log("this.competizione", this.competizione)
   }
 
   onAdd() {
@@ -38,8 +44,19 @@ export class CompetizioniComponent extends vrs implements OnInit {
   }
 
   onSeleziona(item: Competizione) {
-    this.sigla=item.sigla||"";
-   this.submit.emit(item);
+    if (item && item.sigla) {
+      this.sigla = item.sigla;
+      this.selected.emit(item);
+      this.alert.success("Selezionata comp: " + item.nome)
+    }
+
+  }
+
+  reloadComp(item: Competizione) {
+    this.getCompetizioni()
+    this.alert.success(SUCCESS_OK);
+    if (item.id == this.competizione.id)
+      this.selected.emit(item);
   }
 
 
@@ -53,52 +70,13 @@ export class CompetizioniComponent extends vrs implements OnInit {
 
         next: (result: any) => {
           this.competizioni = result
-          console.log("teams", this.competizioni)
         },
         error: (error: any) => {
-          // this.alert.error(error);
+          this.alert.error(error);
         }
       })
 
   }
-
-
-  setCompetizione(payload: any) {
-
-    this.adminDati.setCompetizione(payload)
-      .pipe(finalize(() =>
-        this.getCompetizioni()
-      ))
-      .subscribe({
-
-        next: (result: any) => {
-          //alert ok
-        },
-        error: (error: any) => {
-          // this.alert.error(error);
-        }
-      })
-
-  }
-
-  updCompetizione(payload: any) {
-
-    this.adminDati.updCompetizione(payload)
-      .pipe(finalize(() =>
-        this.getCompetizioni()
-      ))
-      .subscribe({
-
-        next: (result: any) => {
-          //alert ok
-        },
-        error: (error: any) => {
-          // this.alert.error(error);
-        }
-      })
-
-  }
-
 
 
 }

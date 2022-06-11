@@ -7,16 +7,17 @@ import { AdminEventiService } from 'src/app/servizi/admin/admin-eventi.service';
 import { AlertService } from 'src/app/servizi/applicazione/alert.service';
 import { ConfirmDialogService } from 'src/app/servizi/applicazione/confirm-dialog.service';
 
+
 @Component({
-  selector: 'ass-squadre-comp',
-  templateUrl: './ass-squadre-comp.component.html',
-  styleUrls: ['./ass-squadre-comp.component.scss']
+  selector: 'ass-tipi-pronostici',
+  templateUrl: './ass-tipi-pronostici.component.html',
+  styleUrls: ['./ass-tipi-pronostici.component.scss']
 })
-export class AssSquadreCompComponent extends vrs implements OnInit {
+export class AssTipiPronosticiComponent extends vrs implements OnInit {
 
   @Input() comp!: Competizione;
-  disponibili: any =[]
-  compresi: any=[]
+  @Input() combo: any;
+  eventi: any
 
   constructor(
     private adminEventi: AdminEventiService,
@@ -29,72 +30,69 @@ export class AssSquadreCompComponent extends vrs implements OnInit {
 
   ngOnChanges() {
 
-    if (this.comp&&this.comp.id) {
-      this.getSquadreComp()
+    if (this.comp && this.comp.id) {
+      this.getTipiPronostici()
     }
   }
 
-  getSquadreComp() {
+  getTipiPronostici() {
 
-    this.adminEventi.getSquadreComp(this.comp.id||"")
+    this.adminEventi.getTipiPronostici(this.comp.id || "0")
+      .subscribe({
+
+        next: (result: any) => {
+          this.eventi = result
+        },
+        error: (error: any) => {
+          this.alert.error(error);
+        }
+      })
+
+  }
+
+  onSetEventoPronostico(payload: any) {
+
+    payload.id_comp = this.comp.id
+    this.setEventoPronostico(payload)
+    
+  }
+
+  setEventoPronostico(payload: any) {
+
+    this.adminEventi.setTipiPronosticiComp(payload)
       .pipe(finalize(() =>
         this.loading_btn = false
       ))
       .subscribe({
 
-        next: (result: any) => {
-          this.disponibili = result.disponibili
-          this.compresi = result.compresi
-
-        },
-        error: (error: any) => {
-          this.alert.error(error);
-        }
-      })
-
-  }
-
-  submitForm(payload: any) {
-    payload.id_comp = this.comp.id
-    this.setSquadraComp(payload)
-  }
-
-
-  setSquadraComp(payload: any) {
-
-    this.loading_btn = true
-
-    this.adminEventi.setSquadraComp(payload)
-      .subscribe({
-
-        next: (result: any) => {
+        next: () => {
           this.alert.success(SUCCESS_OK);
-          this.getSquadreComp()
+          this.getTipiPronostici()
         },
         error: (error: any) => {
-          this.loading_btn = false
           this.alert.error(error);
         }
       })
 
   }
+
 
   onDeleteItem(item: any) {
 
     this.confirmDialogService.confirmGeneric(() => {
-      this.delSquadraComp(item)
+      this.delTipiPronosticiComp(item)
     })
   }
 
 
-  delSquadraComp(payload: any) {
+  delTipiPronosticiComp(payload: any) {
 
-    this.adminEventi.delSquadraComp(payload)
+    this.adminEventi.delTipiPronosticiComp(payload)
       .subscribe({
 
         next: (result: any) => {
           this.alert.success(SUCCESS_OK);
-          this.getSquadreComp()
+          this.getTipiPronostici()
         },
         error: (error: any) => {
           this.alert.error(error);
@@ -102,5 +100,4 @@ export class AssSquadreCompComponent extends vrs implements OnInit {
       })
 
   }
-
 }

@@ -17,7 +17,7 @@
     
     
                 <div class="pt-16 pb-16">
-                    <my-button [disabled]="!datiForm.form.valid||disponibili.length==0" [block]="true" [color]="'btn-danger'"
+                    <my-button [disabled]="!datiForm.form.valid||disponibili.length==0" [block]="true" [color]="'btn-primary'"
                         [loading]="loading_btn" [submit]="true" [label]="'CONFERMA'">
                     </my-button>
                 </div>
@@ -26,10 +26,7 @@
     
     
         </div>
-        <div class="card-footer text-muted">
-            2 days ago
-    
-        </div>
+      
     </div>
     
     </div>
@@ -42,12 +39,15 @@
                       <tr>
                         <th scope="col">ID</th>
                         <th scope="col">VIEW</th>
+                        <th scope="col">XX</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr *ngFor="let item of compresi">
                         <td>{{item.id}}</td>
                         <td>{{item.descrizione}}</td>
+                        <td><i class="bi bi-trash cursore" (click)="onDeleteItem(item)" data-bs-toggle="modal"
+                            data-bs-target="#confirmModal"></i></td>
                       </tr>
                     
                     </tbody>

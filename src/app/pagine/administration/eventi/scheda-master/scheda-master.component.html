@@ -5,20 +5,23 @@
         </div>
         <div class="card-body">
 
-            <div  style="padding-top: 16px;">
+            <div style="padding-top: 16px;">
                 <label for="selection">TIPO EVENTO DA AGGIUGERE</label>
-                <select [disabled]="loading_btn" id="selection" class="form-select" (change)="onChangeTipo($event)" ngModel>
+                <select [disabled]="loading_btn" id="selection" class="form-select" (change)="onChangeTipo($event)"
+                    ngModel>
                     <option *ngFor="let item of combo.tipo_eventi" value="{{item.id}}">{{item.descrizione}}
                     </option>
                 </select>
             </div>
 
 
-            <form *ngIf="step_view==TIPO_EVENTO.PARTITA" #partitaForm="ngForm" (ngSubmit)="loading_btn=true;onSetEventoPartita(partitaForm.form.value)">
+            <form *ngIf="step_view==TIPO_EVENTO.PARTITA" #partitaForm="ngForm"
+                (ngSubmit)="loading_btn=true;onSetEventoPartita(partitaForm.form.value)">
 
                 <div style="padding-top: 16px;">
                     <label for="selection">SQUADRA DI CASA</label>
-                    <select class="form-select" aria-label="Default select example" name="squadra_casa" ngModel required>
+                    <select class="form-select" aria-label="Default select example" name="squadra_casa" ngModel
+                        required>
                         <option *ngFor="let item of squadre" [ngValue]="item">{{item.descrizione}}
                         </option>
                     </select>
@@ -33,14 +36,15 @@
                 </div>
 
                 <div class="pt-16 pb-16">
-                    <my-button [disabled]="!partitaForm.form.valid" [block]="true" [color]="'btn-danger'"
+                    <my-button [disabled]="!partitaForm.form.valid" [block]="true" [color]="'btn-primary'"
                         [loading]="loading_btn" [submit]="true" [label]="'CONFERMA'">
                     </my-button>
                 </div>
 
             </form>
 
-            <form *ngIf="step_view==TIPO_EVENTO.ANTEPOST" #antepostForm="ngForm" (ngSubmit)="loading_btn=true;onSetEventoAntepost(antepostForm.form.value)">
+            <form *ngIf="step_view==TIPO_EVENTO.ANTEPOST" #antepostForm="ngForm"
+                (ngSubmit)="loading_btn=true;onSetEventoAntepost(antepostForm.form.value)">
 
                 <div style="padding-top: 16px;">
                     <label for="selection3">EVENTO ANTEPOST</label>
@@ -52,14 +56,15 @@
 
 
                 <div class="pt-16 pb-16">
-                    <my-button [disabled]="!antepostForm.form.valid" [block]="true" [color]="'btn-danger'"
+                    <my-button [disabled]="!antepostForm.form.valid" [block]="true" [color]="'btn-primary'"
                         [loading]="loading_btn" [submit]="true" [label]="'CONFERMA'">
                     </my-button>
                 </div>
 
             </form>
 
-            <form *ngIf="step_view==TIPO_EVENTO.GIRONE" #gironeForm="ngForm" (ngSubmit)="loading_btn=true;onSetEventoGirone(gironeForm.form.value)">
+            <form *ngIf="step_view==TIPO_EVENTO.GIRONE" #gironeForm="ngForm"
+                (ngSubmit)="loading_btn=true;onSetEventoGirone(gironeForm.form.value)">
 
                 <div style="padding-top: 16px;">
                     <label for="selection4">AGGIUNGI GIRONE</label>
@@ -79,7 +84,7 @@
 
 
                 <div class="pt-16 pb-16">
-                    <my-button [disabled]="!gironeForm.form.valid" [block]="true" [color]="'btn-danger'"
+                    <my-button [disabled]="!gironeForm.form.valid" [block]="true" [color]="'btn-primary'"
                         [loading]="loading_btn" [submit]="true" [label]="'CONFERMA'">
                     </my-button>
                 </div>
@@ -88,13 +93,12 @@
 
 
         </div>
-        <div class="card-footer text-muted">
-            2 days ago
 
-        </div>
     </div>
 
 </div>
+
+
 <div class="pt-32 pb-64">
     <div class="card-table">
 
@@ -105,14 +109,18 @@
                         <th scope="col">ID</th>
                         <th scope="col">VIEW</th>
                         <th scope="col">TIPO</th>
+                        <th scope="col">XX</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of master">
                         <td>{{item.id}}</td>
-                        <td *ngIf="item.girone&&item.tipo_evento_id!=TIPO_EVENTO.GIRONE">{{item.girone}}) {{item.view}}</td>
+                        <td *ngIf="item.girone&&item.tipo_evento_id!=TIPO_EVENTO.GIRONE">{{item.girone}}) {{item.view}}
+                        </td>
                         <td *ngIf="!item.girone||item.tipo_evento_id==TIPO_EVENTO.GIRONE">{{item.view}}</td>
                         <td>{{item.tipo_evento}}</td>
+                        <td><i class="bi bi-trash cursore" (click)="onDeleteItem(item)" data-bs-toggle="modal"
+                                data-bs-target="#confirmModal"></i></td>
                     </tr>
 
                 </tbody>

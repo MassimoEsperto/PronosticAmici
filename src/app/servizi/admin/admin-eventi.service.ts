@@ -42,6 +42,16 @@ export class AdminEventiService  extends HttpSenderService {
         catchError(this.handleError));
   }
 
+  delTipiPronosticiComp(payload: any) {
+
+    return this.http.post(`${this.buildURL("del_tipi_pro_by_comp")}`, { data: payload })
+      .pipe(map((res: any) => {
+        return RETURN_OK;
+      }),
+        catchError(this.handleError));
+  }
+
+
   getCannonieriComp(input: string) {
     const params = new HttpParams().set('id_comp', input);
 
@@ -55,6 +65,15 @@ export class AdminEventiService  extends HttpSenderService {
   setCannonieriComp(payload: any) {
 
     return this.http.post(`${this.buildURL("set_cannoniere_comp")}`, { data: payload })
+      .pipe(map((res: any) => {
+        return RETURN_OK;
+      }),
+        catchError(this.handleError));
+  }
+
+  delCannoniereComp(payload: any) {
+
+    return this.http.post(`${this.buildURL("del_cannoniere_comp")}`, { data: payload })
       .pipe(map((res: any) => {
         return RETURN_OK;
       }),
@@ -80,6 +99,15 @@ export class AdminEventiService  extends HttpSenderService {
         catchError(this.handleError));
   }
 
+  delSquadraComp(payload: any) {
+
+    return this.http.post(`${this.buildURL("del_squadra_comp")}`, { data: payload })
+      .pipe(map((res: any) => {
+        return RETURN_OK;
+      }),
+        catchError(this.handleError));
+  }
+
   getSchedaMaster(input: string) {
     const params = new HttpParams().set('id_comp', input);
 
@@ -93,6 +121,15 @@ export class AdminEventiService  extends HttpSenderService {
   setEventMaster(payload: any) {
 
     return this.http.post(`${this.buildURL("set_event_master")}`, { data: payload })
+      .pipe(map((res: any) => {
+        return RETURN_OK;
+      }),
+        catchError(this.handleError));
+  }
+
+  delEventMaster(payload: any) {
+
+    return this.http.post(`${this.buildURL("del_event_master")}`, { data: payload })
       .pipe(map((res: any) => {
         return RETURN_OK;
       }),

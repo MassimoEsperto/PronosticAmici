@@ -11,20 +11,19 @@ import { AlertService } from 'src/app/servizi/applicazione/alert.service';
 export class AdministrationComponent implements OnInit {
 
   competizione!: Competizione;
-  combo:any;
-  
+  combo: any;
+
   constructor(
     private adminEventi: AdminEventiService,
     private alert: AlertService) {
-   }
+  }
 
-  ngOnInit(){
+  ngOnInit() {
     this.getCombo()
   }
 
-  selected(item: Competizione){
-    console.log("selezionato ",item)
-    this.competizione= item;
+  selected(item: Competizione) {
+    this.competizione = item;
   }
 
   getCombo() {

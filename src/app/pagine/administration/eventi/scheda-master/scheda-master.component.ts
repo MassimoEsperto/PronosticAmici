@@ -1,8 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
+import { SUCCESS_OK } from 'src/app/classi/costanti';
 import { vrs } from 'src/app/classi/global-variables';
 import { Competizione } from 'src/app/model/Competizione';
 import { AdminEventiService } from 'src/app/servizi/admin/admin-eventi.service';
+import { AlertService } from 'src/app/servizi/applicazione/alert.service';
+import { ConfirmDialogService } from 'src/app/servizi/applicazione/confirm-dialog.service';
 
 @Component({
   selector: 'scheda-master',
@@ -21,7 +24,10 @@ export class SchedaMasterComponent extends vrs implements OnInit {
   gironi_disponibili: any = []
 
 
-  constructor(private adminEventi: AdminEventiService) {
+  constructor(
+    private adminEventi: AdminEventiService,
+    private confirmDialogService: ConfirmDialogService,
+    private alert: AlertService) {
     super();
   }
 
@@ -29,7 +35,8 @@ export class SchedaMasterComponent extends vrs implements OnInit {
 
   ngOnChanges() {
 
-    if (this.comp&&this.comp.id) {
+    if (this.comp && this.comp.id) {
+      console.log("bug non si aggiorna")
       this.getSquadreComp(this.comp.id)
       this.getSchedaMaster()
       this.getTipiPronostici()
@@ -84,11 +91,11 @@ export class SchedaMasterComponent extends vrs implements OnInit {
 
   onSetEventoGirone(e: any) {
 
-console.log(e)
+    console.log(e)
     let esiste: boolean = this.master.some(
-      (i: { gruppo_punti_id: string; girone: string;}) =>
-        i.gruppo_punti_id == e.evento_girone.id_gruppo_punti  
-        && i.girone==e.girone);
+      (i: { gruppo_punti_id: string; girone: string; }) =>
+        i.gruppo_punti_id == e.evento_girone.id_gruppo_punti
+        && i.girone == e.girone);
 
     if (esiste) {
       console.log("già esiste")
@@ -98,7 +105,7 @@ console.log(e)
     let payload = {
       id_comp: this.comp.id,
       tipo_evento: this.step_view,
-      view: e.evento_girone.descrizione+" "+ e.girone,
+      view: e.evento_girone.descrizione + " " + e.girone,
       gruppo_evento: e.evento_girone.id_gruppo_punti,
       girone: e.girone
     }
@@ -117,10 +124,10 @@ console.log(e)
         next: (result: any) => {
           this.squadre = result.compresi
           this.gironi_disponibili = [...new Set(this.squadre.map((i: { girone: any; }) => i.girone))];
-console.log("this.gironi_disponibili",this.gironi_disponibili)
+          console.log("this.gironi_disponibili", this.gironi_disponibili)
         },
         error: (error: any) => {
-          // this.alert.error(error);
+          this.alert.error(error);
         }
       })
 
@@ -129,7 +136,7 @@ console.log("this.gironi_disponibili",this.gironi_disponibili)
 
   getSchedaMaster() {
 
-    this.adminEventi.getSchedaMaster(this.comp.id||"0")
+    this.adminEventi.getSchedaMaster(this.comp.id || "0")
       .pipe(finalize(() =>
         this.loading_btn = false
       ))
@@ -141,7 +148,7 @@ console.log("this.gironi_disponibili",this.gironi_disponibili)
 
         },
         error: (error: any) => {
-          // this.alert.error(error);
+          this.alert.error(error);
         }
       })
 
@@ -157,7 +164,7 @@ console.log("this.gironi_disponibili",this.gironi_disponibili)
 
         },
         error: (error: any) => {
-          // this.alert.error(error);
+          this.alert.error(error);
         }
       })
 
@@ -165,15 +172,40 @@ console.log("this.gironi_disponibili",this.gironi_disponibili)
 
   getTipiPronostici() {
 
-    this.adminEventi.getTipiPronostici(this.comp.id||"0")
+    this.adminEventi.getTipiPronostici(this.comp.id || "0")
       .subscribe({
 
         next: (result: any) => {
-          this.eventi_antepost = result.filter((i: { id_tipo: any; }) => i.id_tipo == this.TIPO_EVENTO.ANTEPOST)||[];
-          this.eventi_girone = result.filter((i: { id_tipo: any; }) => i.id_tipo == this.TIPO_EVENTO.GIRONE)||[];
+          this.eventi_antepost = result.filter((i: { id_tipo: any; }) => i.id_tipo == this.TIPO_EVENTO.ANTEPOST) || [];
+          this.eventi_girone = result.filter((i: { id_tipo: any; }) => i.id_tipo == this.TIPO_EVENTO.GIRONE) || [];
         },
         error: (error: any) => {
-          // this.alert.error(error);
+          this.alert.error(error);
+        }
+      })
+
+  }
+
+
+  onDeleteItem(item: any) {
+
+    this.confirmDialogService.confirmGeneric(() => {
+      this.delEventMaster(item)
+    })
+  }
+
+
+  delEventMaster(payload: any) {
+
+    this.adminEventi.delEventMaster(payload)
+      .subscribe({
+
+        next: (result: any) => {
+          this.alert.success(SUCCESS_OK);
+          this.getSchedaMaster()
+        },
+        error: (error: any) => {
+          this.alert.error(error);
         }
       })
 
