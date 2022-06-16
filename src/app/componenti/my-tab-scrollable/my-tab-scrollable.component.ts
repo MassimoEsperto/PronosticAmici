@@ -8,7 +8,8 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChildren,
 })
 export class MyTabScrollable implements OnInit {
   @Input() tabs:any;
-  selectedIndex = 0;
+  @Input() first:boolean=false;
+  selectedIndex!: number;
   abc: string="";
   leftTabIdx = 0;
   atStart = true;
@@ -17,8 +18,10 @@ export class MyTabScrollable implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    if(this.first){
     this.emitSelectedTab.emit(this.tabs[0])
     this.abc = `translateX(0px)`
+    }
   }
 
   selectTab(index:any) {

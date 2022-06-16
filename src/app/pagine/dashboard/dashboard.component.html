@@ -1,4 +1,42 @@
-<h1>NESSUNA COMPETIIONE SELEZIONATA</h1>
+<div *ngIf="play_comp">
+  <h1>{{play_comp.sigla}}</h1>
+</div>
+<div *ngIf="!play_comp">
+  <h1>NESSUNA COMPETIIONE SELEZIONATA</h1>
+</div>
+
+
+<div class="d-grid gap-2">
+    <button class="btn btn-primary btn-lg" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
+        <i class="bi bi-hand-index-fill"></i> Seleziona competizione</button>
+  </div>
+
+<div class="offcanvas offcanvas-top bg-primary" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+
+  <div class="offcanvas-body">
+    <my-tab-scrollable *ngIf="tabs" [tabs]="tabs" (emitSelectedTab)="selectedTab($event)">
+    </my-tab-scrollable>
+    
+    
+    <div *ngFor="let num of tabs">
+        <div *ngIf="tab&&num.id==tab.id">
+            <div class="pt-8" style="color: white;">
+                <p>Selezionata: {{tab.titolo}}</p>
+            </div>
+            
+        </div>
+        
+    </div>
+  </div>
+  <div class="offcanvas-footer pa-16">
+    <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-info" data-bs-dismiss="offcanvas" aria-label="Close" (click)="selezionaCompetizione()">Esegui</button>
+        <button type="button" class="btn btn-danger ml-16" data-bs-dismiss="offcanvas" aria-label="Close">Annulla</button>
+      </div>
+
+  </div>
+  
+</div>
 <p>quan va il bottone che apre il modale per la selezioe</p>
 
 <p>qua va la card dell'utente con le sue info: username emaim numero quanto pagato quante competizini ecc</p>

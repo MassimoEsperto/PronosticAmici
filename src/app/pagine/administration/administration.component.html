@@ -1,111 +1,134 @@
 <div *ngIf="combo">
 
-<ul class="nav nav-tabs sticky-top justify-content-center" id="myTab" role="tablist">
-  <li class="nav-item active dropdown" role="presentation">
-    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">DATI</a>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#utenti" type="button" role="tab"
-          aria-controls="utenti" aria-selected="false">GEST UTENTI</a></li>
-      <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#squadre" type="button" role="tab"
-          aria-controls="squadre" aria-selected="false">CREA SQUADRE</a></li>
-      <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#cannonieri" type="button" role="tab"
-          aria-controls="cannonieri" aria-selected="true">CREA CANNONIERI</a></li>
-      <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#gestione-schede" type="button" role="tab"
-          aria-controls="gestione-schede" aria-selected="true">GEST SCHEDE</a></li>
-      <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#competizioni" type="button" role="tab"
-          aria-controls="competizioni" aria-selected="false">COMPETIZIONI</a></li>
+  <nav class="navbar navbar-expand bg-dark navbar-dark sticky-top" style="border-radius: 8px;">
+
+    <ul class="navbar-nav pl-8">
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle bg-dark" role="button"  data-bs-toggle="dropdown">DATI</a>
+          <ul class="dropdown-menu">
+            <li (click)="tabSelected(TAB_ASS.DATI_UTENTI)"><a class="dropdown-item cursore">GEST UTENTI</a></li>
+            <li (click)="tabSelected(TAB_ASS.DATI_SQUADRE)"><a class="dropdown-item cursore">CREA SQUADRE</a></li>
+            <li (click)="tabSelected(TAB_ASS.DATI_CANNONIERI)"><a class="dropdown-item cursore">CREA CANNONIERI</a></li>
+            <li (click)="tabSelected(TAB_ASS.DATI_SCHEDE)"><a class="dropdown-item cursore">GEST SCHEDE</a></li>
+            <li (click)="tabSelected(TAB_ASS.DATI_COMPETIZIONI)"><a class="dropdown-item cursore">COMPETIZIONI</a></li>
+          </ul>
+        </li>
+       <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle bg-dark" [ngClass]="{'disabled': !competizione}" role="button" data-bs-toggle="dropdown">EVENTI</a>
+          <ul class="dropdown-menu">
+            <li (click)="tabSelected(TAB_ASS.EVENTI_SQUADRE)"><a class="dropdown-item cursore">ASS SQUADRE</a></li>
+            <li (click)="tabSelected(TAB_ASS.EVENTI_CANNONIERI)"><a class="dropdown-item cursore">ASS CANNONIERI</a></li>
+            <li (click)="tabSelected(TAB_ASS.EVENTI_PRONOSTICI)"><a class="dropdown-item cursore">ASS PRONOSTICI</a></li>
+            <li (click)="tabSelected(TAB_ASS.EVENTI_SCHEDE)"><a class="dropdown-item cursore">CREA SCHEDE</a></li>
+          </ul>
+        </li>  
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle bg-dark" [ngClass]="{'disabled': !competizione||competizione.is_open=='0'}" role="button" data-bs-toggle="dropdown">RIS</a>
+          <ul class="dropdown-menu">
+            <li (click)="tabSelected(TAB_ASS.RIS_PARTITE)"><a class="dropdown-item cursore">PARTITE</a></li>
+        <li (click)="tabSelected(TAB_ASS.RIS_GIRONI)"><a class="dropdown-item cursore">GIRONI</a></li>
+        <li (click)="tabSelected(TAB_ASS.RIS_ANTEPOST)"><a class="dropdown-item cursore">ANTEPOST</a></li>
+          </ul>
+        </li>
     </ul>
-  </li>
-  <li *ngIf="!competizione" class="nav-item" role="presentation">
-    <a class="nav-link  disabled" role="button">EVENTI</a>
-  </li>
-  <li *ngIf="competizione" class="nav-item dropdown" role="presentation">
-    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-      aria-expanded="false">EVENTI</a>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#eventi" type="button" role="tab"
-          aria-controls="eventi" aria-selected="false">ASS PRONOSTICI</a></li>
-      <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#ass-cannonieri-comp" type="button" role="tab"
-          aria-controls="ass-cannonieri-comp" aria-selected="true">ASS BOMBER</a></li>
-      <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#ass-squadre-comp" type="button" role="tab"
-          aria-controls="ass-squadre-comp" aria-selected="false">ASS SQUADRE</a></li>
-      <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#scheda-master" type="button" role="tab"
-          aria-controls="scheda-master" aria-selected="false">CREA SCHEDA</a></li>
-    </ul>
-  </li>
-  <li *ngIf="!competizione||competizione.is_open=='0'" class="nav-item" role="presentation">
-    <a class="nav-link  disabled" role="button">RIS</a>
-  </li>
-  <li *ngIf="competizione&&competizione.is_open=='1'" class="nav-item dropdown" role="presentation">
-    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">RIS</a>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#ris-partite" role="tab" type="button"
-          aria-controls="ris-partite" aria-selected="false">PARTITE</a></li>
-      <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#ris-gironi" type="button" role="tab"
-          aria-controls="ris-gironi" aria-selected="false">GIRONI</a></li>
-      <li><a class="dropdown-item" data-bs-toggle="tab" data-bs-target="#ris-antepost" type="button" role="tab"
-          aria-controls="ris-antepost" aria-selected="true">ANTEPOST</a></li>
-    </ul>
-  </li>
-</ul>
-<div class="tab-content" id="myTabContent" style="padding-top: 34px;">
-
-  <div class="tab-pane active" id="pre-cannonieri" role="tabpanel" aria-labelledby="pre-cannonieri-tab">
-    IN QUESTA SESSIO L'ADMIN PUO BLA BLA...
-    POI SI SELEZIONA LA COMPETIZIONE O NE UNSERISCI UNA NUOVA
-    !IMPORTANTE SOLO UNA VOLTA COMPLETATO I PRIMI DUE TAB SI PUO' DARE IL VIA ALL'INIZIO DELLE OSTILITA
-    UNA VOLTA BLOCCATE LE SCHEDE SI PUO PROCEDERE AL TERZO STEP CHE È QUELLO DELL'INSERIMENTO DEI RISULTATI MANO MANO
-    <br>
-    CAMBIO DI PROGRAMMA QUA ESCE DIRETTAMENTE LA LISTA DELLE COMPETIZIONI.. MODIFICABILI IDENTICHE AL VECCHIO... bisogna
-    selezionare la competizione per bloccare le altre due
-
-  </div>
-
-  <!-- PAGINE TAB-->
-
-  <!-- DATI-->
-  <div class="tab-pane fade" id="utenti" role="tabpanel" aria-labelledby="utenti-tab">
-    <utenti [combo]="combo"></utenti>
-  </div>
-  <div class="tab-pane fade" id="competizioni" role="tabpanel" aria-labelledby="competizioni-tab">
-    <competizioni (selected)="selected($event)"></competizioni>
-  </div>
-  <div class="tab-pane fade" id="squadre" role="tabpanel" aria-labelledby="squadre-tab">
-    <squadre></squadre>
-  </div>
-  <div class="tab-pane fade" id="cannonieri" role="tabpanel" aria-labelledby="cannonieri-tab">
-    <cannonieri></cannonieri>
-  </div>
-  <div class="tab-pane fade" id="gestione-schede" role="tabpanel" aria-labelledby="gestione-schede-tab">
-    <gestione-schede></gestione-schede>
-  </div>
-
-  <!-- EVENTI-->
-  <div class="tab-pane fade" id="eventi" role="tabpanel" aria-labelledby="eventi-tab">
-    <ass-tipi-pronostici [comp]="competizione" [combo]="combo"></ass-tipi-pronostici>
-  </div>
-  <div class="tab-pane fade" id="ass-cannonieri-comp" role="tabpanel" aria-labelledby="ass-cannonieri-comp-tab">
-    <ass-cannonieri-comp [comp]="competizione"></ass-cannonieri-comp>
-  </div>
-  <div class="tab-pane fade" id="ass-squadre-comp" role="tabpanel" aria-labelledby="ass-squadre-comp-tab">
-    <ass-squadre-comp [comp]="competizione"></ass-squadre-comp>
-  </div>
-  <div class="tab-pane fade" id="scheda-master" role="tabpanel" aria-labelledby="scheda-master-tab">
-    <scheda-master [comp]="competizione" [combo]="combo"></scheda-master>
-  </div>
+ 
+</nav>
 
 
-  <!-- RISULTATI-->
-  <div class="tab-pane fade" id="ris-partite" role="tabpanel" aria-labelledby="ris-partite-tab">
-    <ris-partite></ris-partite>
-  </div>
-  <div class="tab-pane fade" id="ris-gironi" role="tabpanel" aria-labelledby="ris-gironi-tab">
-    <ris-gironi></ris-gironi>
-  </div>
-  <div class="tab-pane fade" id="ris-antepost" role="tabpanel" aria-labelledby="ris-antepost-tab">
-    <ris-antepost></ris-antepost>
+
+<!-- 
+  <nav class="navbar navbar-dark bg-secondary sticky-top">
+    
+ 
+
+    <div class="btn-group" role="group">
+      <button id="btn-dati" type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        DATI
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="btn-dati">
+        <li (click)="tabSelected(TAB_ASS.DATI_UTENTI)"><a class="dropdown-item cursore">GEST UTENTI</a></li>
+        <li (click)="tabSelected(TAB_ASS.DATI_SQUADRE)"><a class="dropdown-item cursore">CREA SQUADRE</a></li>
+        <li (click)="tabSelected(TAB_ASS.DATI_CANNONIERI)"><a class="dropdown-item cursore">CREA CANNONIERI</a></li>
+        <li (click)="tabSelected(TAB_ASS.DATI_SCHEDE)"><a class="dropdown-item cursore">GEST SCHEDE</a></li>
+        <li (click)="tabSelected(TAB_ASS.DATI_COMPETIZIONI)"><a class="dropdown-item cursore">COMPETIZIONI</a></li>
+      </ul>
+    </div>
+
+    <div class="btn-group" role="group">
+      <button id="btn-eventi" type="button" class="btn btn-secondary  dropdown-toggle"
+        [ngClass]="{'disabled': !competizione}" data-bs-toggle="dropdown" aria-expanded="false">
+        EVENTI
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="btn-eventi">
+        <li (click)="tabSelected(TAB_ASS.EVENTI_SQUADRE)"><a class="dropdown-item cursore">ASS SQUADRE</a></li>
+        <li (click)="tabSelected(TAB_ASS.EVENTI_CANNONIERI)"><a class="dropdown-item cursore">ASS CANNONIERI</a></li>
+        <li (click)="tabSelected(TAB_ASS.EVENTI_PRONOSTICI)"><a class="dropdown-item cursore">ASS PRONOSTICI</a></li>
+        <li (click)="tabSelected(TAB_ASS.EVENTI_SCHEDE)"><a class="dropdown-item cursore">CREA SCHEDE</a></li>
+      </ul>
+    </div>
+
+    <div class="btn-group" role="group">
+      <button id="btn-ris" type="button" class="btn btn-secondary btn-lg dropdown-toggle"
+        [ngClass]="{'disabled': !competizione||competizione.is_open=='0'}" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        RIS
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="btn-ris">
+        <li (click)="tabSelected(TAB_ASS.RIS_PARTITE)"><a class="dropdown-item cursore">PARTITE</a></li>
+        <li (click)="tabSelected(TAB_ASS.RIS_GIRONI)"><a class="dropdown-item cursore">GIRONI</a></li>
+        <li (click)="tabSelected(TAB_ASS.RIS_ANTEPOST)"><a class="dropdown-item cursore">ANTEPOST</a></li>
+      </ul>
+    </div>
+
+</nav>
+-->
+
+  <div class="content-tabs pt-32">
+    <div [ngSwitch]="tabs">
+      <!-- DATI-->
+      <utenti *ngSwitchCase="TAB_ASS.DATI_UTENTI" [combo]="combo"></utenti>
+
+      <squadre *ngSwitchCase="TAB_ASS.DATI_SQUADRE"></squadre>
+
+      <cannonieri *ngSwitchCase="TAB_ASS.DATI_CANNONIERI"></cannonieri>
+
+      <gestione-schede *ngSwitchCase="TAB_ASS.DATI_SCHEDE"></gestione-schede>
+
+      <competizioni *ngSwitchCase="TAB_ASS.DATI_COMPETIZIONI" (selected)="selected($event)"></competizioni>
+
+
+      <!-- EVENTI-->
+      <ass-squadre-comp *ngSwitchCase="TAB_ASS.EVENTI_SQUADRE" [comp]="competizione"></ass-squadre-comp>
+
+      <ass-cannonieri-comp *ngSwitchCase="TAB_ASS.EVENTI_CANNONIERI" [comp]="competizione"></ass-cannonieri-comp>
+
+      <ass-tipi-pronostici *ngSwitchCase="TAB_ASS.EVENTI_PRONOSTICI" [comp]="competizione" [combo]="combo">
+      </ass-tipi-pronostici>
+
+      <scheda-master *ngSwitchCase="TAB_ASS.EVENTI_SCHEDE" [comp]="competizione" [combo]="combo"></scheda-master>
+
+
+      <!-- RISULTATI-->
+      <ris-partite *ngSwitchCase="TAB_ASS.RIS_PARTITE"></ris-partite>
+
+      <ris-gironi *ngSwitchCase="TAB_ASS.RIS_GIRONI"></ris-gironi>
+
+      <ris-antepost *ngSwitchCase="TAB_ASS.RIS_ANTEPOST"></ris-antepost>
+
+      <div *ngSwitchDefault>
+        IN QUESTA SESSIO L'ADMIN PUO BLA BLA...
+        POI SI SELEZIONA LA COMPETIZIONE O NE UNSERISCI UNA NUOVA
+        !IMPORTANTE SOLO UNA VOLTA COMPLETATO I PRIMI DUE TAB SI PUO' DARE IL VIA ALL'INIZIO DELLE OSTILITA
+        UNA VOLTA BLOCCATE LE SCHEDE SI PUO PROCEDERE AL TERZO STEP CHE È QUELLO DELL'INSERIMENTO DEI RISULTATI MANO
+        MANO
+        <br>
+        CAMBIO DI PROGRAMMA QUA ESCE DIRETTAMENTE LA LISTA DELLE COMPETIZIONI.. MODIFICABILI IDENTICHE AL VECCHIO...
+        bisogna
+        selezionare la competizione per bloccare le altre due
+      </div>
+    </div>
   </div>
 
-</div>
 
 </div>

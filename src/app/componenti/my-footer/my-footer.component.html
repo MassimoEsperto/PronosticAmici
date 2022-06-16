@@ -16,6 +16,7 @@
                     <br>
                     <a class="cursore pb-8" href="assets/download/regolamento.pdf">Regolamento</a>
                     <span class="cursore pb-8" (click)="onChangeCompetizione()">Cambia Lega</span>
+                    <span *ngIf="isAdmin" class="cursore pb-8" routerLink="/administration">ADMIN</span>
                 </div>
             </div>
         </div>

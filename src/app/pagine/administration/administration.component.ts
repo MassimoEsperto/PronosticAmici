@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { vrs } from 'src/app/classi/global-variables';
 import { Competizione } from 'src/app/model/Competizione';
 import { AdminEventiService } from 'src/app/servizi/admin/admin-eventi.service';
 import { AlertService } from 'src/app/servizi/applicazione/alert.service';
@@ -8,14 +9,16 @@ import { AlertService } from 'src/app/servizi/applicazione/alert.service';
   templateUrl: './administration.component.html',
   styleUrls: ['./administration.component.scss']
 })
-export class AdministrationComponent implements OnInit {
+export class AdministrationComponent extends vrs implements OnInit {
 
   competizione!: Competizione;
   combo: any;
+  tabs:number = 0;
 
   constructor(
     private adminEventi: AdminEventiService,
     private alert: AlertService) {
+    super();
   }
 
   ngOnInit() {
@@ -24,6 +27,11 @@ export class AdministrationComponent implements OnInit {
 
   selected(item: Competizione) {
     this.competizione = item;
+  }
+
+  tabSelected(item:number){
+    this.tabs=item;
+console.log(item)
   }
 
   getCombo() {

@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { PlayerService } from 'src/app/servizi/player/player.service';
 
 @Component({
   selector: 'my-navbar',
@@ -8,7 +9,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MyNavbar implements OnInit {
 
-  constructor(private route : ActivatedRoute,private elementRef: ElementRef) { }
+  play_comp = this.player.getCompetizione()
+
+  constructor(private route : ActivatedRoute,private elementRef: ElementRef,private player :PlayerService) { }
 
   ngOnInit(): void {
   }

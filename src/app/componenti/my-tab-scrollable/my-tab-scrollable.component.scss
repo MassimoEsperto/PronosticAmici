@@ -1,6 +1,6 @@
 .tabs-container{
     position: relative;
-    height: 50px;
+    height: 40px;
     padding-left: 32px;
     overflow: hidden;
     display: flex;
@@ -28,6 +28,18 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+  }
+
+  .dis {
+    min-width: 100px;
+    height: 100%;
+    flex-shrink: 0;
+    display: flex;
+    padding: 8px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: brown;
   }
 
   .tab:hover {

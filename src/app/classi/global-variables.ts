@@ -52,4 +52,20 @@ export abstract class vrs {
     NO_S: "NO",
   }
 
+  TAB_ASS={
+    START:0,
+    DATI_UTENTI:1,
+    DATI_SQUADRE:2,
+    DATI_CANNONIERI:3,
+    DATI_SCHEDE:4,
+    DATI_COMPETIZIONI:5,
+    EVENTI_SQUADRE:6,
+    EVENTI_CANNONIERI:7,
+    EVENTI_PRONOSTICI:8,
+    EVENTI_SCHEDE:9,
+    RIS_PARTITE:10,
+    RIS_GIRONI:11,
+    RIS_ANTEPOST:12
+  }
+
 }

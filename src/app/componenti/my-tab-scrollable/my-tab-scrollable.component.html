@@ -5,7 +5,8 @@
     <div class="tabs" [ngStyle]="{'transform': abc }">
 
         <ng-container *ngFor="let tab of tabs; let i=index">
-            <div class="tab" [class.active]="selectedIndex===i" (click)="selectTab(i)">{{tab.titolo}}</div>
+            <div *ngIf="tab.disable" class="dis" >{{tab.titolo}}</div>
+            <div *ngIf="!tab.disable" class="tab" [class.active]="selectedIndex===i" (click)="selectTab(i)">{{tab.titolo}}</div>
         </ng-container>
     </div>
     <span class="change-btn next" [class.hide]="atEnd" (click)="scrollTab(1)"><i

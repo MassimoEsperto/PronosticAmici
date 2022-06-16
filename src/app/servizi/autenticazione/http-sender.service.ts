@@ -10,7 +10,7 @@ const tokenStorage: string = "tk-pro-mar";
 export class HttpSenderService {
 
   typeServices: string;
- 
+
   constructor(type: string) {
     this.typeServices = type
   }
@@ -47,26 +47,27 @@ export class HttpSenderService {
     localStorage.setItem(tokenStorage, input);
   }
 
-  setCompetizione(comp: string) { //dovra essere un oggetto con id e desc
-    localStorage.setItem(compStorage, comp);
+
+  setCompetizione(comp: any) {
+    let input = JSON.stringify(comp)
+    localStorage.setItem(compStorage, input);
+    this.refreshPage()
+  }
+
+  delCompetizione(comp: any) {
+    localStorage.removeItem(compStorage);
   }
 
   getCompetizione() {
-    let comp = localStorage.getItem(compStorage)
-    return comp
+    let element = localStorage.getItem(compStorage)
+    return element ? JSON.parse(element) : null
   }
 
-  assegnaCompetizione() {
-    let comp = localStorage.getItem(compStorage)
-    if (!comp) {
-      localStorage.setItem(compStorage, '1'); //da rifare con la prima della lista comp
-    }
-  }
 
   getLoggato() {
     let element = this.getLocalStorageParse()
     let utente: UtenteToken = new UtenteToken()
-    
+
     if (element) {
       utente.username = element.username
       utente.email = element.email
@@ -102,6 +103,10 @@ export class HttpSenderService {
     if (errorToken) {
       throw new Error('Token Non Valido')
     }
+  }
+
+  refreshPage() {
+    window.location.reload();
   }
 
 

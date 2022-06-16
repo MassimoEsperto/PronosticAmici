@@ -31,5 +31,19 @@ export class PlayerService extends HttpSenderService {
         catchError(this.handleError));
   }
 
+  getCompetizioniAttive(): Observable<any> {
+
+    return this.http.get<any>(`${this.buildURL("get_competizioni_attive")}`,
+      { headers: this.myheaders.headers })
+      .pipe(map((res) => {
+
+        this.tokenError(res);//controllo token
+
+        return res['data']
+
+      }),
+        catchError(this.handleError));
+  }
+
 
 }
