@@ -33,6 +33,7 @@ import { ModificaSchedaComponent } from '../pagine/schede-utenti/modifica-scheda
 import { FormCompetizioni } from '../componenti/my-form-modal/form-competizioni/form-competizioni.component';
 import { FormUtente } from '../componenti/my-form-modal/form-utente/form-utente.component';
 import { AssTipiPronosticiComponent } from '../pagine/administration/eventi/ass-tipi-pronostici/ass-tipi-pronostici.component';
+import { FormScheda } from '../componenti/my-form-modal/form-scheda/form-scheda.component';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import { AssTipiPronosticiComponent } from '../pagine/administration/eventi/ass-
     ModificaSchedaComponent,
     FormCompetizioni,
     FormUtente,
-    AssTipiPronosticiComponent
+    AssTipiPronosticiComponent,
+    FormScheda
   ],
   imports: [
     BrowserModule,

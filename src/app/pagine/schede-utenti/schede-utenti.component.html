@@ -1,7 +1,7 @@
 <div class="opzioni" *ngIf="view==VIEW_PLAYER.OPZIONI">
 
     <div class="pt-16 pb-16">
-        <my-button [block]="true" [disabled]="loading_btn" [color]="'btn-primary'" [label]="'NUOVA SCHEDA'" (myClick)="onNewScheda()">
+        <my-button [block]="true" [disabled]="loading_btn" [color]="'btn-primary'" [label]="'NUOVA SCHEDA'" data-bs-toggle="modal" data-bs-target="#formScheda">
         </my-button>
     </div>
     <div class="pt-16 pb-16">
@@ -12,8 +12,13 @@
         <my-button [block]="true" [color]="'btn-success'" [loading]="loading_btn" [label]="'GENERA RANDOM'" (myClick)="onRandomScheda()">
         </my-button>
     </div>
+    <button type="button" class="btn btn-dark"  data-bs-toggle="modal" data-bs-target="#formScheda">
+    NUOVA scheda
+  </button>
 
 </div>
+
+<form-scheda></form-scheda>
 
 
 

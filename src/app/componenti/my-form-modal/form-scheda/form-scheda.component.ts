@@ -5,11 +5,11 @@ import { AlertService } from 'src/app/servizi/applicazione/alert.service';
 import { PlayerService } from 'src/app/servizi/player/player.service';
 
 @Component({
-  selector: 'nuova-scheda',
-  templateUrl: './nuova-scheda.component.html',
-  styleUrls: ['./nuova-scheda.component.scss']
+  selector: 'form-scheda',
+  templateUrl: './form-scheda.component.html',
+  styleUrls: ['./form-scheda.component.scss']
 })
-export class NuovaSchedaComponent extends vrs implements OnInit {
+export class FormScheda extends vrs implements OnInit {
 
   scheda_master: any = []
   id_comp: number = 1;
