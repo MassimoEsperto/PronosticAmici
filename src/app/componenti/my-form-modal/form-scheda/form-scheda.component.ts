@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 import { vrs } from 'src/app/classi/global-variables';
+import { EventoScheda } from 'src/app/model/EventoScheda';
+import { ValoreEvento } from 'src/app/model/ValoreEvento';
 import { AlertService } from 'src/app/servizi/applicazione/alert.service';
 import { PlayerService } from 'src/app/servizi/player/player.service';
 
@@ -11,13 +13,10 @@ import { PlayerService } from 'src/app/servizi/player/player.service';
 })
 export class FormScheda extends vrs implements OnInit {
 
-  scheda_master: any = []
-  id_comp: number = 1;
-  completo: any = []
-  prima: any = []
-  seconda: any = []
-  terza: any = []
-  quarta: any = []
+  combo: any = []
+  scheda_master: Array<EventoScheda> = [];
+  play_comp = this.player.getCompetizione()
+
 
   constructor(
     private player: PlayerService,
@@ -31,60 +30,50 @@ export class FormScheda extends vrs implements OnInit {
 
 
   onChangeGruppo(event: any, record: any) {
+
     let ele = event.target.value['0']
 
-    let lista = this.scheda_master.squadre_girone[record.girone]
+    let singolo = this.scheda_master.find((i: { tipo: number, girone: string, gruppo: number }) => i.tipo == this.TIPO_EVENTO.GIRONE && i.girone == record.girone && i.gruppo == this.GRUPPO_PUNTI.GIRONE_COMPLETO)
+    if (!singolo) return
 
+    singolo.valore.descrizione = ''
 
-    switch (Number(record.gruppo)) {
-      case this.GRUPPO_PUNTI.PRIMA_GIRONE:
-        this.prima[record.girone] = lista[ele].sigla
-        break;
+    let lista = this.scheda_master.filter((i: { tipo: number, girone: string, gruppo: number }) => i.tipo == this.TIPO_EVENTO.GIRONE && i.girone == record.girone && i.gruppo != this.GRUPPO_PUNTI.GIRONE_COMPLETO)
 
-      case this.GRUPPO_PUNTI.SECONDA_GIRONE:
-        this.seconda[record.girone] = lista[ele].sigla
-        break;
+    let is_da_valorizzare = lista.some((i: { valore: ValoreEvento }) => !i.valore)
 
-      case this.GRUPPO_PUNTI.TERZA_GIRONE:
-        this.terza[record.girone] = lista[ele].sigla
-        break;
+    if (!is_da_valorizzare) {
+      let tmp: any[] = []
+      let sigle = "";
+      let sep = "";
+      for (let ele of lista) {
+        if (ele.valore.sigla && !tmp.some((i) => i == ele.valore.sigla)) {
+          tmp.push(ele.valore.sigla)
+          sigle = sigle + sep + ele.valore.sigla
+          sep = "-"
+        }
+      }
 
-      case this.GRUPPO_PUNTI.ULTIMA_GIRONE:
-        this.quarta[record.girone] = lista[ele].sigla
-        break;
-
-      default:
-        break;
+      //nel caso tutto sia andato a buon fine
+      if (lista.length == tmp.length) {
+        singolo.valore = { id: 0, descrizione: sigle, punti: record.punti }
+      }
     }
-
-    this.completo[record.girone] =
-      this.prima[record.girone] && this.seconda[record.girone] && this.terza[record.girone] && this.quarta[record.girone] &&
-        this.prima[record.girone] != this.seconda[record.girone] &&
-        this.prima[record.girone] != this.terza[record.girone] &&
-        this.prima[record.girone] != this.quarta[record.girone] &&
-        this.seconda[record.girone] != this.terza[record.girone] &&
-        this.seconda[record.girone] != this.quarta[record.girone] &&
-        this.terza[record.girone] != this.quarta[record.girone]
-
-        ? this.prima[record.girone] + "-" + this.seconda[record.girone] + "-" + this.terza[record.girone] + "-" + this.quarta[record.girone] : ""
-
   }
+
 
 
   getSchedaMaster() {
 
-    this.player.getSchedaMaster(this.id_comp.toString())
+    this.player.getSchedaMaster(this.play_comp.id)
       .pipe(finalize(() =>
         this.loading_btn = false
       ))
       .subscribe({
 
         next: (result: any) => {
-          this.scheda_master = result
-          console.log("scheda_master totale", this.scheda_master)
-          let ttt = result['squadre_girone']
-
-          console.log("scheda_master UTENTE", this.scheda_master.master)
+          this.combo = result.combo
+          this.scheda_master = result.master
         },
         error: (error: any) => {
           this.alert.error(error);
@@ -93,24 +82,9 @@ export class FormScheda extends vrs implements OnInit {
 
   }
 
-  onPlayScheda(forms: any) {
 
-    let master = this.scheda_master.master
-    for (let record of master) {
-      console.log("singolo", forms[record.id_evento])
-      let fm = forms[record.id_evento]
-
-      if (record.gruppo != this.GRUPPO_PUNTI.GIRONE_COMPLETO) {
-        fm.risultato.punti = record.punti ? record.punti : fm.risultato.punti
-
-        record['risultato'] = fm.risultato
-      } else {
-        record['risultato'] = { id: 0, descrizione: fm, punti: record.punti }
-      }
-    }
-    this.loading_btn = false
-    console.log("onPlayScheda", forms)
-    console.log("master", master)
+  onPlayScheda(input: Array<EventoScheda>) {
+    console.log("onPlayScheda2 ", input)
 
   }
 

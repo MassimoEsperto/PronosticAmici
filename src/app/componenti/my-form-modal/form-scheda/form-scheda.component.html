@@ -4,18 +4,14 @@
     <div class="modal-dialog modal-fullscreen">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="formSchedaLabel">Inserisci scheda</h5>
+                <h5 class="modal-title" id="formSchedaLabel">Scheda {{play_comp.sigla}}</h5>
             </div>
-            <div class="modal-body bg-info">
+            <div class="modal-body pa-0">
 
-                <div *ngIf="scheda_master" class="pt-32 pb-64">
+                <div *ngIf="combo&&scheda_master.length>0" class="pt-8 pb-8">
 
+                    <form #schedaForm="ngForm" (ngSubmit)="loading_btn=true;onPlayScheda(scheda_master)">
 
-                    <form  #schedaForm="ngForm" (ngSubmit)="loading_btn=true;onPlayScheda(schedaForm.form.value)">
-                
-                
-                    <div class="card-table">
-                
                         <div class="table-responsive">
                             <table class="table table-striped ">
                                 <thead>
@@ -25,70 +21,72 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let item of scheda_master.master">
-                                        <td *ngIf="item.girone&&item.tipo!=TIPO_EVENTO.GIRONE">{{item.girone}}) {{item.view}}</td>
+                                    <tr *ngFor="let item of scheda_master">
+                                        <td *ngIf="item.girone&&item.tipo!=TIPO_EVENTO.GIRONE">{{item.girone}})
+                                            {{item.view}}</td>
                                         <td *ngIf="!item.girone||item.tipo==TIPO_EVENTO.GIRONE">{{item.view}}</td>
-                
+
                                         <!-- OPZIONI RISULTATI SCHEDA-->
-                                        <td *ngIf="item.tipo==TIPO_EVENTO.PARTITA">
-                                            <select [disabled]="loading_btn" class="form-select" aria-label="select" name="{{item.id_evento}}" ngModel required>
-                                                <option *ngFor="let opzione of scheda_master.partite" [ngValue]="{risultato:opzione,evento:item}">{{opzione.descrizione}}
+                                        <td *ngIf="item.tipo&&item.tipo==TIPO_EVENTO.PARTITA">
+                                            <select [disabled]="loading_btn" class="form-select" aria-label="select"
+                                                name="{{item.id}}" [(ngModel)]="item.valore" required>
+                                                <option *ngFor="let opzione of combo.partite" [ngValue]="opzione">
+                                                    {{opzione.descrizione}}
                                                 </option>
                                             </select>
                                         </td>
-                                        <td *ngIf="item.tipo==TIPO_EVENTO.ANTEPOST&&item.gruppo!=GRUPPO_PUNTI.CAPOCANNONIERE">
-                                            <select [disabled]="loading_btn" class="form-select" aria-label="select" name="{{item.id_evento}}" ngModel required>
-                                                <option *ngFor="let opzione of scheda_master.squadre" [ngValue]="{risultato:opzione,evento:item}">{{opzione.descrizione}}
+
+                                        <td
+                                            *ngIf="item.tipo==TIPO_EVENTO.ANTEPOST&&item.gruppo!=GRUPPO_PUNTI.CAPOCANNONIERE">
+                                            <select [disabled]="loading_btn" class="form-select" aria-label="select"
+                                                name="{{item.id}}" [(ngModel)]="item.valore" required>
+                                                <option *ngFor="let opzione of combo.squadre" [ngValue]="opzione">
+                                                    {{opzione.descrizione}}
                                                 </option>
                                             </select>
                                         </td>
-                                        <td *ngIf="item.tipo==TIPO_EVENTO.ANTEPOST&&item.gruppo==GRUPPO_PUNTI.CAPOCANNONIERE">
-                                            <select [disabled]="loading_btn" class="form-select" aria-label="select" name="{{item.id_evento}}" ngModel required>
-                                                <option *ngFor="let opzione of scheda_master.cannonieri" [ngValue]="{risultato:opzione,evento:item}">{{opzione.descrizione}}
+                                        <td
+                                            *ngIf="item.tipo==TIPO_EVENTO.ANTEPOST&&item.gruppo==GRUPPO_PUNTI.CAPOCANNONIERE">
+                                            <select [disabled]="loading_btn" class="form-select" aria-label="select"
+                                                name="{{item.id}}" [(ngModel)]="item.valore" required>
+                                                <option *ngFor="let opzione of combo.cannonieri" [ngValue]="opzione">
+                                                    {{opzione.descrizione}}
                                                 </option>
                                             </select>
                                         </td>
-                                        <td *ngIf="item.tipo==TIPO_EVENTO.GIRONE&&item.gruppo!=GRUPPO_PUNTI.GIRONE_COMPLETO">
-                                            <select [disabled]="loading_btn" class="form-select" aria-label="select" name="{{item.id_evento}}"  (change)="onChangeGruppo($event,item)" ngModel required>
-                                                <option *ngFor="let opzione of scheda_master.squadre_girone[item.girone]"  [ngValue]="{risultato:opzione,evento:item}">{{opzione.descrizione}}
-                                                </option>
-                                            </select>     
-                                        </td>
-                                         <!--
-                                        <td *ngIf="item.tipo==TIPO_EVENTO.GIRONE&&item.gruppo==GRUPPO_PUNTI.GIRONE_COMPLETO">
-                                            <select  [disabled]="loading_btn" class="form-select" aria-label="select" name="evento_{{item.id_evento}}"  ngModel required>
-                                                <option [ngValue]="{risultato:completo[item.girone],evento:item}">{{completo[item.girone]}}
+                                        <td
+                                            *ngIf="item.tipo==TIPO_EVENTO.GIRONE&&item.gruppo!=GRUPPO_PUNTI.GIRONE_COMPLETO">
+                                            <select [disabled]="loading_btn" class="form-select" aria-label="select"
+                                                name="{{item.id}}" [(ngModel)]="item.valore"
+                                                (change)="onChangeGruppo($event,item)" required>
+                                                <option *ngFor="let opzione of combo.squadre_girone[item.girone]"
+                                                    [ngValue]="opzione">{{opzione.descrizione}}
                                                 </option>
                                             </select>
-                                            <br>
-                                            
                                         </td>
-                                          -->
-                                      
-                                        <td *ngIf="item.tipo==TIPO_EVENTO.GIRONE&&item.gruppo==GRUPPO_PUNTI.GIRONE_COMPLETO">
-                                            <input name="{{item.id_evento}}"  type="text" class="form-control" 
-                                            [ngModel]="completo[item.girone]" [value]="{risultato:completo[item.girone],evento:item}" required readonly>
+
+                                        <td
+                                            *ngIf="item.tipo==TIPO_EVENTO.GIRONE&&item.gruppo==GRUPPO_PUNTI.GIRONE_COMPLETO">
+                                            <input name="{{item.id}}" type="text" class="form-control"
+                                            [(ngModel)]="item.valore.descrizione" required readonly>
                                         </td>
-                                        
+
                                     </tr>
-                
-                
+
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-                
-                    <div class="pt-16 pb-16">
-                        <my-button [disabled]="!schedaForm.form.valid" [block]="true" [color]="'btn-primary'"
-                            [loading]="loading_btn" [submit]="true" [label]="'CONFERMA'">
-                        </my-button>
-                    </div>
-                
-                </form>
-                
-                
+
+
+                        <div class="pt-16 pb-16 pl-8 pr-8">
+                            <my-button [disabled]="!schedaForm.form.valid" [block]="true" [color]="'btn-primary'"
+                                [loading]="loading_btn" [submit]="true" [label]="'CONFERMA'">
+                            </my-button>
+                        </div>
+
+                    </form>
+
                 </div>
-                
 
             </div>
             <div class="modal-footer">
