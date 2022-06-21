@@ -28,7 +28,6 @@ import { GestioneSchedeComponent } from '../pagine/administration/dati/gestione-
 import { RisAntepostComponent } from '../pagine/administration/risultati/ris-antepost/ris-antepost.component';
 import { RisGironiComponent } from '../pagine/administration/risultati/ris-gironi/ris-gironi.component';
 import { RisPartiteComponent } from '../pagine/administration/risultati/ris-partite/ris-partite.component';
-import { NuovaSchedaComponent } from '../pagine/schede-utenti/nuova-scheda/nuova-scheda.component';
 import { ModificaSchedaComponent } from '../pagine/schede-utenti/modifica-scheda/modifica-scheda.component';
 import { FormCompetizioni } from '../componenti/my-form-modal/form-competizioni/form-competizioni.component';
 import { FormUtente } from '../componenti/my-form-modal/form-utente/form-utente.component';
@@ -57,7 +56,6 @@ import { FormScheda } from '../componenti/my-form-modal/form-scheda/form-scheda.
     RisAntepostComponent,
     RisGironiComponent,
     RisPartiteComponent,
-    NuovaSchedaComponent,
     ModificaSchedaComponent,
     FormCompetizioni,
     FormUtente,

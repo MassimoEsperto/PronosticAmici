@@ -1,25 +1,63 @@
-<div class="opzioni" *ngIf="view==VIEW_PLAYER.OPZIONI">
+<div class="opzioni" *ngIf="!loading_page">
 
     <div class="pt-16 pb-16">
-        <my-button [block]="true" [disabled]="loading_btn" [color]="'btn-primary'" [label]="'NUOVA SCHEDA'" data-bs-toggle="modal" data-bs-target="#formScheda">
+        <my-button [block]="true" [disabled]="loading_btn" [color]="'btn-primary'" [label]="'NUOVA SCHEDA'"
+            data-bs-toggle="modal" data-bs-target="#formScheda">
         </my-button>
     </div>
     <div class="pt-16 pb-16">
-        <my-button [block]="true" [color]="'btn-danger'" [loading]="loading_btn" [label]="'COPIA SCHEDA'" (myClick)="onCopyScheda()">
+        <my-button [block]="true" [color]="'btn-danger'" [loading]="loading_btn" [label]="'COPIA SCHEDA'"
+            (myClick)="onCopyScheda()">
         </my-button>
     </div>
     <div class="pt-16 pb-16">
-        <my-button [block]="true" [color]="'btn-success'" [loading]="loading_btn" [label]="'GENERA RANDOM'" (myClick)="onRandomScheda()">
+        <my-button [block]="true" [color]="'btn-success'" [loading]="loading_btn" [label]="'GENERA RANDOM'"
+            (myClick)="onRandomScheda()">
         </my-button>
     </div>
-    <button type="button" class="btn btn-dark"  data-bs-toggle="modal" data-bs-target="#formScheda">
-    NUOVA scheda
-  </button>
+    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#formScheda">
+        NUOVA scheda
+    </button>
 
+    <form-scheda [combo]="comboScheda" [scheda_master]="scheda_master"></form-scheda>
 </div>
 
-<form-scheda></form-scheda>
+<div class="pt-32 pb-64">
+    <div class="card-table">
 
+        <div class="table-responsive">
+            <table class="table table-striped ">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">STATO</th>
+                        <th scope="col">TEMPO</th>
+                        <th scope="col">PUNTI</th>
+                        <th scope="col">MOD</th>
+                        <th scope="col">XX</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of schede">
+                        <td>{{item.id}}</td>
+                        <td>{{item.stato}}</td>
+                        <td>{{item.tempo}}</td>
+                        <td>{{item.punti}}</td>
+                        <td><i class="bi bi-pencil cursore" (click)="onUpdate(item)" data-bs-toggle="modal"
+                                data-bs-target="#formScheda"></i></td>
+                        <td><i class="bi bi-trash cursore" (click)="onDeleteItem(item)" data-bs-toggle="modal"
+                                data-bs-target="#confirmModal"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="pl-16 pb-8 pt-8" style="text-align:right;">
+            <button type="button" class="btn btn-dark" (click)="getSchedaMaster()" data-bs-toggle="modal"
+              data-bs-target="#formScheda">
+              NUOVA SCHEDA
+            </button>
+          </div>
 
+    </div>
 
-<nuova-scheda *ngIf="view==VIEW_PLAYER.NEW_SCHEDA"></nuova-scheda>
+</div>

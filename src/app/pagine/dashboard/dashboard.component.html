@@ -1,7 +1,7 @@
-<div *ngIf="play_comp">
+<div *ngIf="play_comp" class="titolo">
   <h1>{{play_comp.sigla}}</h1>
 </div>
-<div *ngIf="!play_comp">
+<div *ngIf="!play_comp" class="titolo">
   <h1>NESSUNA COMPETIIONE SELEZIONATA</h1>
 </div>
 
@@ -13,6 +13,10 @@
 
 <div class="offcanvas offcanvas-top bg-primary" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
 
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasTopLabel" style="color:white ;">COMPETIZIONI</h5>
+    </div>
+
   <div class="offcanvas-body">
     <my-tab-scrollable *ngIf="tabs" [tabs]="tabs" (emitSelectedTab)="selectedTab($event)">
     </my-tab-scrollable>
@@ -20,21 +24,25 @@
     
     <div *ngFor="let num of tabs">
         <div *ngIf="tab&&num.id==tab.id">
-            <div class="pt-8" style="color: white;">
+            <div class="pt-8 pl-8" style="color: white;">
                 <p>Selezionata: {{tab.titolo}}</p>
             </div>
-            
         </div>
         
     </div>
-  </div>
-  <div class="offcanvas-footer pa-16">
-    <div class="d-flex justify-content-end">
-        <button type="button" class="btn btn-info" data-bs-dismiss="offcanvas" aria-label="Close" (click)="selezionaCompetizione()">Esegui</button>
-        <button type="button" class="btn btn-danger ml-16" data-bs-dismiss="offcanvas" aria-label="Close">Annulla</button>
+    <div *ngIf="!tab">
+      <div class="pt-8 pl-8" style="color: white;">
+        <p>Selezionata: NESSUNA</p>
       </div>
+  </div>
+  <div class="pt-16 pb-8">
+  <div class="offcanvas-footer">
+    <button type="button" class="btn btn-danger" data-bs-dismiss="offcanvas" aria-label="Close">Annulla</button>
+      <button type="button" class="btn btn-info ml-16" data-bs-dismiss="offcanvas" aria-label="Close" (click)="selezionaCompetizione()">Esegui</button>
+    </div>
 
   </div>
+</div>
   
 </div>
 <p>quan va il bottone che apre il modale per la selezioe</p>

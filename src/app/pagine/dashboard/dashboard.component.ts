@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Competizione } from 'src/app/model/Competizione';
 import { AlertService } from 'src/app/servizi/applicazione/alert.service';
 import { PlayerService } from 'src/app/servizi/player/player.service';
 import { vrs } from './../../classi/global-variables';
@@ -41,7 +42,9 @@ export class DashboardComponent extends vrs implements OnInit {
   selezionaCompetizione() {
     if (this.tab) {
       console.log("comp: " + this.tab.id)
-      this.player.setCompetizione(this.tab)
+      let comp = new Competizione()
+      comp.set(this.tab)
+      this.player.setCompetizione(comp)
     }
 
   }

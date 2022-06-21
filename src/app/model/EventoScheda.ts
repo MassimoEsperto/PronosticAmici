@@ -8,11 +8,11 @@ export class EventoScheda {
     view: string="";
     girone: string =""; //da verificare se serve
     punti?: string; //da verificare se serve qua o nel valore.. secondo me nel valore
-    valore: ValoreEvento=new ValoreEvento(0,'')
+    valore: string ="";//ValoreEvento=new ValoreEvento(0,'')
 
-
+/*
     setValore(input:ValoreEvento){
         this.valore=input
-    }
+    }*/
     
 }

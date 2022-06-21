@@ -45,5 +45,67 @@ export class PlayerService extends HttpSenderService {
         catchError(this.handleError));
   }
 
+  getComboScheda(input: string): Observable<any> {
+
+    const params = new HttpParams().set('id_comp', input);
+
+    return this.http.get<any>(`${this.buildURL("get_combo_scheda")}`,
+      { params: params, headers: this.myheaders.headers })
+      .pipe(map((res) => {
+
+        this.tokenError(res);//controllo token
+
+        return res['data']
+
+      }),
+        catchError(this.handleError));
+  }
+
+  setDettaglioScheda(id_comp: string, scheda: any):Observable<any> {
+
+    let payload = { id_comp: id_comp, scheda: scheda }
+
+    return this.http.post(`${this.buildURL("set_dettaglio_scheda")}`,
+      { data: payload }, this.myheaders)
+      .pipe(map((res:any) => {
+
+        this.tokenError(res);//controllo token
+
+        return res['data']
+      }),
+        catchError(this.handleError));
+  }
+
+  getDettaglioScheda(input: string): Observable<any> {
+
+    const params = new HttpParams().set('id_scheda', input);
+
+    return this.http.get<any>(`${this.buildURL("get_dettaglio_scheda")}`,
+      { params: params, headers: this.myheaders.headers })
+      .pipe(map((res) => {
+
+        this.tokenError(res);//controllo token
+
+        return res['data']
+
+      }),
+        catchError(this.handleError));
+  }
+
+  getSchedeUtente(input: string): Observable<any> {
+
+    const params = new HttpParams().set('id_comp', input);
+
+    return this.http.get<any>(`${this.buildURL("get_schede_utente")}`,
+      { params: params, headers: this.myheaders.headers })
+      .pipe(map((res) => {
+
+        this.tokenError(res);//controllo token
+
+        return res['data']
+
+      }),
+        catchError(this.handleError));
+  }
 
 }
