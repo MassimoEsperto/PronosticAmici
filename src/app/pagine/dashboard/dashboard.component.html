@@ -1,3 +1,11 @@
+<div *ngIf="loading_page">
+  <my-spinner></my-spinner>
+</div>
+
+<div *ngIf="!loading_page">
+
+
+
 <div *ngIf="play_comp" class="titolo">
   <h1>{{play_comp.sigla}}</h1>
 </div>
@@ -7,7 +15,7 @@
 
 
 <div class="d-grid gap-2">
-    <button class="btn btn-primary btn-lg" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
+    <button class="btn btn-danger btn-lg" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
         <i class="bi bi-hand-index-fill"></i> Seleziona competizione</button>
   </div>
 
@@ -45,8 +53,73 @@
 </div>
   
 </div>
-<p>quan va il bottone che apre il modale per la selezioe</p>
+<div class="pt-16 pb-16">
+<div class="card-trasparent">
+  <div class="card-header">{{info.dettaglio_utente.username}}</div>
+  <div class="card-body pa-8">
+    <ul>
+      <li>
+        <span class="testo-bold">Nome:</span>
+        <span class="pl-8">{{info.dettaglio_utente.nome}}</span>
+      </li>
+      <li>
+        <span class="testo-bold">Cognome:</span>
+        <span class="pl-8">{{info.dettaglio_utente.cognome}}</span>
+      </li>
+      <li>
+        <span class="testo-bold">Cellulare:</span>
+        <span class="pl-8">{{info.dettaglio_utente.cellulare}}</span>
+      </li>
+      <li>
+        <span class="testo-bold">Email:</span>
+        <span class="pl-8">{{info.dettaglio_utente.email.substring(0, 20)}}..</span>
+      </li>
+      <li>
+        <span class="testo-bold">Versato:</span>
+        <span class="pl-8">{{info.dettaglio_utente.versato}}</span>
+      </li>
+      <li>
+        <span class="testo-bold">Schede Giocate:</span>
+        <ul>
+          <li *ngFor="let item of info.dettaglio_utente.competizioni">
+            <span class="pl-8">{{item.numero}}</span>
+            <span class="pl-8">{{item.descrizione}}</span>
+          </li>
+         
+        </ul>
+      </li>
+      
+    </ul>
+  </div>
+ 
 
-<p>qua va la card dell'utente con le sue info: username emaim numero quanto pagato quante competizini ecc</p>
+</div>
+</div>
 
-<p>qua vannpo le caratteristiche della competizione selezionata</p>
+
+<div *ngIf="play_comp" class="card text-white bg-secondary">
+  <div class="card-header">DETTAGLIO COMPETIZIONE</div>
+  <div class="card-body">
+    <h5 class="card-title">{{play_comp.nome}}</h5>
+    <div>
+      <table class="table table-borderless" style="color: white;">
+        <thead>
+          <tr>
+            <th scope="col">Pronostico</th>
+            <th scope="col">Valore</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of info.dettaglio_comp">
+            <td>{{item.view}}</td>
+            <td>{{item.punti}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+   </div>
+</div>
+
+
+
+</div>

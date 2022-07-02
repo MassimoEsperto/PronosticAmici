@@ -4,6 +4,9 @@ export abstract class vrs {
 
   loading_btn: boolean = false;
   loading_page: boolean = false;
+  loading_table: boolean = false;
+
+  idxTable:number=0;
 
   //enums
   RUOLO = {
@@ -66,6 +69,12 @@ export abstract class vrs {
     RIS_PARTITE:10,
     RIS_GIRONI:11,
     RIS_ANTEPOST:12
+  }
+
+  LOGIN = {
+    SIGN_IN: 1,
+    REGISTER: 2,
+    REC_PASS: 3
   }
 
 }

@@ -28,11 +28,15 @@ import { GestioneSchedeComponent } from '../pagine/administration/dati/gestione-
 import { RisAntepostComponent } from '../pagine/administration/risultati/ris-antepost/ris-antepost.component';
 import { RisGironiComponent } from '../pagine/administration/risultati/ris-gironi/ris-gironi.component';
 import { RisPartiteComponent } from '../pagine/administration/risultati/ris-partite/ris-partite.component';
-import { ModificaSchedaComponent } from '../pagine/schede-utenti/modifica-scheda/modifica-scheda.component';
 import { FormCompetizioni } from '../componenti/my-form-modal/form-competizioni/form-competizioni.component';
 import { FormUtente } from '../componenti/my-form-modal/form-utente/form-utente.component';
 import { AssTipiPronosticiComponent } from '../pagine/administration/eventi/ass-tipi-pronostici/ass-tipi-pronostici.component';
 import { FormScheda } from '../componenti/my-form-modal/form-scheda/form-scheda.component';
+import { SchedeBloccateComponent } from '../pagine/schede-utenti/schede-bloccate/schede-bloccate.component';
+import { SchedeSbloccateComponent } from '../pagine/schede-utenti/schede-sbloccate/schede-sbloccate.component';
+import { SignInComponent } from '../pagine/login/sign-in/sign-in.component';
+import { RegisterComponent } from '../pagine/login/register/register.component';
+import { RecPassComponent } from '../pagine/login/rec-pass/rec-pass.component';
 
 
 @NgModule({
@@ -51,16 +55,20 @@ import { FormScheda } from '../componenti/my-form-modal/form-scheda/form-scheda.
     AssCannonieriCompComponent,
     AssSquadreCompComponent,
     SchedeUtentiComponent,
+    SchedeBloccateComponent,
+    SchedeSbloccateComponent,
     ClassificheComponent,
     GestioneSchedeComponent,
     RisAntepostComponent,
     RisGironiComponent,
     RisPartiteComponent,
-    ModificaSchedaComponent,
     FormCompetizioni,
     FormUtente,
     AssTipiPronosticiComponent,
-    FormScheda
+    FormScheda,
+    SignInComponent,
+    RegisterComponent,
+    RecPassComponent
   ],
   imports: [
     BrowserModule,

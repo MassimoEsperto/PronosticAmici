@@ -17,12 +17,37 @@
     box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
 }
 
+.input-group-text {
+    border-radius: 0.60rem;
+}
+
 .forms{
      height: 100vh;
      display: flex;
      align-items: center;
      justify-content: center;
  }
+
+.display-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.display-around{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+ .sub-page{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 64px;
+}
 
  .card{
     border-radius: 0.25rem;
@@ -36,6 +61,22 @@
     box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%);
  
  }
+
+ .card-trasparent{
+    border: 0;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+    font-weight: 400;
+    background-color: initial!important;
+    color: aliceblue;
+    border-radius: 0.25rem;
+ }
+
+ .card-trasparent.card-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0,0,0,.03);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
 
 .form-control {
     border-radius: 0.60rem;
@@ -55,6 +96,20 @@
 
 .annuncio{
     color: antiquewhite;
+}
+
+.testo-bold{
+    font-weight: bold;
+}
+
+.testo-ligth{
+    color: aliceblue !important;
+}
+
+.page-link {
+    background-color: #6c757d;
+    border-color: #565e64;
+    color: aliceblue;
 }
 
 //scrollbar

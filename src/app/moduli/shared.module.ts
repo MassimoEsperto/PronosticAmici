@@ -8,6 +8,8 @@ import { MyButton } from '../componenti/my-button/my-button.component';
 import { MyConfirmDialog } from '../componenti/my-confirm-dialog/my-confirm-dialog.component';
 import { MyFooter } from '../componenti/my-footer/my-footer.component';
 import { MyNavbar } from '../componenti/my-navbar/my-navbar.component';
+import { MyPagination } from '../componenti/my-pagination/my-pagination.component';
+import { MySpinner } from '../componenti/my-spinner/my-spinner.component';
 import { MyTabScrollable } from '../componenti/my-tab-scrollable/my-tab-scrollable.component';
 
 
@@ -25,7 +27,9 @@ import { MyTabScrollable } from '../componenti/my-tab-scrollable/my-tab-scrollab
     MyTabScrollable,
     MyConfirmDialog,
     MyAlert,
-    MyFooter
+    MyFooter,
+    MyPagination,
+    MySpinner
   ],
   exports: [
     MyButton,
@@ -33,7 +37,9 @@ import { MyTabScrollable } from '../componenti/my-tab-scrollable/my-tab-scrollab
     MyTabScrollable,
     MyConfirmDialog,
     MyAlert,
-    MyFooter
+    MyFooter,
+    MyPagination,
+    MySpinner
   ],
   providers: [
   ],

@@ -3,6 +3,7 @@ import { Competizione } from 'src/app/model/Competizione';
 import { AlertService } from 'src/app/servizi/applicazione/alert.service';
 import { PlayerService } from 'src/app/servizi/player/player.service';
 import { vrs } from './../../classi/global-variables';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'dashboard',
@@ -14,6 +15,7 @@ export class DashboardComponent extends vrs implements OnInit {
   tabs: any;
   tab: any;
   play_comp = this.player.getCompetizione()
+  info: any;
 
   constructor(private player: PlayerService,
     private alert: AlertService) {
@@ -22,18 +24,9 @@ export class DashboardComponent extends vrs implements OnInit {
 
 
   ngOnInit() {
-    this.getCompetizioniAttive()
+    this.getInfo()
   }
 
-  conferma() {
-    console.log(this.player.getLoggato())
-    let pl: any = this.player.getLoggato()
-    console.log(pl.comp[0])
-  }
-
-  onSubmit(ele: any) {
-    console.log("element: ", ele)
-  }
 
   selectedTab(e: any) {
     this.tab = e
@@ -41,7 +34,6 @@ export class DashboardComponent extends vrs implements OnInit {
 
   selezionaCompetizione() {
     if (this.tab) {
-      console.log("comp: " + this.tab.id)
       let comp = new Competizione()
       comp.set(this.tab)
       this.player.setCompetizione(comp)
@@ -49,15 +41,24 @@ export class DashboardComponent extends vrs implements OnInit {
 
   }
 
-  getCompetizioniAttive() {
+ 
 
-    this.player.getCompetizioniAttive()
+  getInfo() {
+
+    this.loading_page = true
+
+    this.player.getInfo()
+    .pipe(finalize(() =>
+    this.loading_page = false
+  ))
       .subscribe({
-
+       
         next: (result: any) => {
-          this.tabs = result
-
-          console.log("getCompetizioniAttive", result)
+          this.tabs = result.competizioni
+          this.info = result
+          console.log("getInfo", result)
+          console.log(this.play_comp);
+          
         },
         error: (error: any) => {
           this.alert.error(error);

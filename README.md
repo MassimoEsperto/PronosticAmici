@@ -34,7 +34,7 @@ Password: S5dWaPRfw89r
 Tipo di connessione: PASV (modalità passiva)
 
 ## Nuovo componente
-ng g component component-name --skip-import
+ng g component schede-utenti --skip-import
 
 ## deploy
 ng build --base-href "/pronostici/"

@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 import { vrs } from 'src/app/classi/global-variables';
 import { EventoScheda } from 'src/app/model/EventoScheda';
@@ -15,8 +15,10 @@ export class FormScheda extends vrs implements OnInit {
 
 
   @Input() combo!: any;
+  @Input() scheda_selezionata: number=0;
   @ViewChild('closeModal') closeModal!: ElementRef;
   @Input() scheda_master: Array<EventoScheda> = [];
+  @Output() submit = new EventEmitter();
   play_comp = this.player.getCompetizione()
 
 
@@ -27,6 +29,10 @@ export class FormScheda extends vrs implements OnInit {
   }
 
   ngOnInit() {}
+
+  ngOnChanges() {
+    console.log(this.scheda_selezionata)
+  }
 
 
   onChangeGruppo(event: any, record: any) {
@@ -73,7 +79,20 @@ export class FormScheda extends vrs implements OnInit {
 
     this.loading_btn = true
 
-    this.player.setDettaglioScheda(this.play_comp.id, input)
+    if(this.scheda_selezionata>0){
+      this.updDettaglioScheda(input)
+    }else{
+      this.setDettaglioScheda(input)
+    }
+
+  }
+
+
+
+  updDettaglioScheda(input: Array<EventoScheda>) {
+
+
+    this.player.updDettaglioScheda(this.play_comp.id, input)
       .pipe(finalize(() =>
         this.loading_btn = false
       ))
@@ -89,6 +108,25 @@ export class FormScheda extends vrs implements OnInit {
 
   }
 
+
+  setDettaglioScheda(input: Array<EventoScheda>) {
+
+    this.player.setDettaglioScheda(this.play_comp.id, input)
+      .pipe(finalize(() =>
+        this.loading_btn = false
+      ))
+      .subscribe({
+
+        next: (result: any) => {
+          this.closeModal.nativeElement.click()
+          this.submit.emit()
+        },
+        error: (error: any) => {
+          this.alert.error(error);
+        }
+      })
+
+  }
 
 
 

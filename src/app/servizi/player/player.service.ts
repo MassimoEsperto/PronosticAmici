@@ -31,19 +31,7 @@ export class PlayerService extends HttpSenderService {
         catchError(this.handleError));
   }
 
-  getCompetizioniAttive(): Observable<any> {
-
-    return this.http.get<any>(`${this.buildURL("get_competizioni_attive")}`,
-      { headers: this.myheaders.headers })
-      .pipe(map((res) => {
-
-        this.tokenError(res);//controllo token
-
-        return res['data']
-
-      }),
-        catchError(this.handleError));
-  }
+  
 
   getComboScheda(input: string): Observable<any> {
 
@@ -61,13 +49,57 @@ export class PlayerService extends HttpSenderService {
         catchError(this.handleError));
   }
 
-  setDettaglioScheda(id_comp: string, scheda: any):Observable<any> {
+  getInfo(): Observable<any> {
+
+    return this.http.get<any>(`${this.buildURL("get_info_home")}`,
+      { headers: this.myheaders.headers })
+      .pipe(map((res) => {
+
+        this.tokenError(res);//controllo token
+
+        return res['data']
+
+      }),
+        catchError(this.handleError));
+  }
+
+  setDettaglioScheda(id_comp: string, scheda: any): Observable<any> {
 
     let payload = { id_comp: id_comp, scheda: scheda }
 
     return this.http.post(`${this.buildURL("set_dettaglio_scheda")}`,
       { data: payload }, this.myheaders)
-      .pipe(map((res:any) => {
+      .pipe(map((res: any) => {
+
+        this.tokenError(res);//controllo token
+
+        return res['data']
+      }),
+        catchError(this.handleError));
+  }
+
+  updDettaglioScheda(id_comp: string, scheda: any): Observable<any> {
+
+    let payload = { id_comp: id_comp, scheda: scheda }
+
+    return this.http.post(`${this.buildURL("upd_dettaglio_scheda")}`,
+      { data: payload }, this.myheaders)
+      .pipe(map((res: any) => {
+
+        this.tokenError(res);//controllo token
+
+        return res['data']
+      }),
+        catchError(this.handleError));
+  }
+
+  copyDettaglioScheda(id_comp: string, id_scheda: number): Observable<any> {
+
+    let payload = { id_comp: id_comp, id_scheda: id_scheda }
+
+    return this.http.post(`${this.buildURL("copy_dettaglio_scheda")}`,
+      { data: payload }, this.myheaders)
+      .pipe(map((res: any) => {
 
         this.tokenError(res);//controllo token
 

@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/servizi/autenticazione/auth.service';
 })
 export class LoginComponent extends vrs implements OnInit {
 
+  view:number=this.LOGIN.SIGN_IN;
 
   constructor(
     private router: Router,
@@ -20,24 +21,11 @@ export class LoginComponent extends vrs implements OnInit {
     super();
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {this.auth.delCompetizione() }
 
-  onLogin(payload: any) {
-
-    this.auth.login(payload)
-      .pipe(finalize(() =>
-        this.loading_btn = false
-      ))
-      .subscribe({
-
-        next: (result: any) => {
-          this.router.navigate(['dashboard']);
-        },
-        error: (error: any) => {
-          this.alert.error(error);
-        }
-      })
-
+  changeView(item:number){
+this.view=item
   }
+
 
 }

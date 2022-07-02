@@ -17,7 +17,9 @@ export class HttpSenderService {
 
 
   helper = new JwtHelperService();
-  myheaders = { headers: new HttpHeaders().set('Authorization', `Bearer ${this.getLoggato().token}`) }
+  myheaders = { headers: new HttpHeaders()
+    .set('Authorization', `Bearer ${this.getLoggato().token}`)
+    .set('Competizione',this.getCompetizioneHeader()) }
 
   buildURL(operation: string = ""): string {
 
@@ -54,13 +56,18 @@ export class HttpSenderService {
     this.refreshPage()
   }
 
-  delCompetizione(comp: any) {
+  delCompetizione() {
     localStorage.removeItem(compStorage);
   }
 
   getCompetizione() {
     let element = localStorage.getItem(compStorage)
     return element ? JSON.parse(element) : null
+  }
+
+  getCompetizioneHeader() {
+    let element = localStorage.getItem(compStorage)
+    return element ? JSON.parse(element).id : '0'
   }
 
 
