@@ -5,6 +5,7 @@ import { vrs } from 'src/app/classi/global-variables';
 import { AlertService } from 'src/app/servizi/applicazione/alert.service';
 import { AuthService } from 'src/app/servizi/autenticazione/auth.service';
 
+
 @Component({
   selector: 'sign-in',
   templateUrl: './sign-in.component.html',
@@ -12,7 +13,7 @@ import { AuthService } from 'src/app/servizi/autenticazione/auth.service';
 })
 export class SignInComponent extends vrs implements OnInit {
 
-  @Output() submit = new EventEmitter();
+  @Output() submitto = new EventEmitter();
   
   constructor(
     private router: Router,

@@ -48,7 +48,7 @@
                         <div class="mb-3">
                             <label>Competizioni</label>
                             <select class="form-select" multiple aria-label="multiple select example" name="competizioni"
-                                [(ngModel)]="utente.competizioni" required>
+                                [(ngModel)]="utente.competizioni" >
                                 <option *ngFor="let item of combo.competizioni" [ngValue]="item.id">{{item.sigla}}
                                 </option>
                             </select>

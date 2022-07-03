@@ -1,9 +1,13 @@
-<div class="forms">
+<div *ngIf="!loading_page" class="forms">
     <div>
 
-        <sign-in *ngIf="view==LOGIN.SIGN_IN" (submit)="changeView($event)"></sign-in>
-        <register *ngIf="view==LOGIN.REGISTER" (submit)="changeView($event)"></register>
-        <rec-pass *ngIf="view==LOGIN.REC_PASS" (submit)="changeView($event)"></rec-pass>
+        <sign-in *ngIf="view==LOGIN.SIGN_IN" (submitto)="changeView($event)"></sign-in>
+        <register *ngIf="view==LOGIN.REGISTER" (submitto)="changeView($event)"></register>
+        <rec-pass *ngIf="view==LOGIN.REC_PASS" (submitto)="changeView($event)" [combo]="utenti"></rec-pass>
 
     </div>
+</div>
+
+<div *ngIf="loading_page">
+welcome
 </div>

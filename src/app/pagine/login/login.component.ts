@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { finalize } from 'rxjs/operators';
 import { vrs } from 'src/app/classi/global-variables';
+import { AdminDatiService } from 'src/app/servizi/admin/admin-dati.service';
 import { AlertService } from 'src/app/servizi/applicazione/alert.service';
 import { AuthService } from 'src/app/servizi/autenticazione/auth.service';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'login',
@@ -13,19 +13,43 @@ import { AuthService } from 'src/app/servizi/autenticazione/auth.service';
 export class LoginComponent extends vrs implements OnInit {
 
   view:number=this.LOGIN.SIGN_IN;
+  utenti: any = []
 
   constructor(
-    private router: Router,
+    private adminDati: AdminDatiService,
     private alert: AlertService,
     private auth: AuthService) {
     super();
   }
 
-  ngOnInit(): void {this.auth.delCompetizione() }
+  ngOnInit(){
+    this.loading_page = true
+    this.auth.delCompetizione() 
+    this.getUtenti()
+  }
 
   changeView(item:number){
+    console.log("view: ",item)
 this.view=item
   }
 
+
+  getUtenti() {
+
+    this.adminDati.getUtenti()
+      .pipe(finalize(() =>
+        this.loading_page = false
+      ))
+      .subscribe({
+
+        next: (result: any) => {
+          this.utenti = result
+        },
+        error: (error: any) => {
+          this.alert.error(error);
+        }
+      })
+
+  }
 
 }

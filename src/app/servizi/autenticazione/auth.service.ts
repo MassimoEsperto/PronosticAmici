@@ -97,39 +97,25 @@ export class AuthService extends HttpSenderService {
    * @param username 
    * @param email 
    */
-  /*
-  recuperaPassword(id: string) {
 
-    const params = new HttpParams().set('id_utente', id);
+   recPass(payload: any) {
 
-    return this.http.get<any>(`${this.buildURL("recupera_password")}`, { params: params })
-      .pipe(map((res) => {
-
-        return res['data'];
-
+    return this.http.post(`${this.buildURL("recupera_password")}`, { data: payload })
+      .pipe(map((res:any) => {
+        return 'OK';
       }),
         catchError(this.handleError));
   }
+  
 
-  segnalaUtente(utente: any) {
+  register(payload: any): Observable<any[]>  {
 
-    return this.http.post(`${this.buildURL("register_mail")}`, { data: utente })
-      .pipe(map((res) => {
-        return 'ok';
-      }),
-        catchError(this.handleError));
-  }
-
-
-
-  registerNewUtente(payload: any): Observable<any[]>  {
-
-    return this.http.post(`${this.buildURL("register_new_utente")}`, { data: payload })
+    return this.http.post(`${this.buildURL("register_utente")}`, { data: payload })
       .pipe(map((res:any) => {
         return res['data'];
       }),
         catchError(this.handleError));
   }
-*/
+
 
 }

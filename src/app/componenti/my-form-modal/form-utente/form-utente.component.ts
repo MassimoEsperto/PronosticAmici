@@ -1,6 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { finalize } from 'rxjs/operators';
-import { SUCCESS_OK } from 'src/app/classi/costanti';
 import { vrs } from 'src/app/classi/global-variables';
 import { Utente } from 'src/app/model/Utente';
 import { AdminDatiService } from 'src/app/servizi/admin/admin-dati.service';
@@ -24,10 +23,9 @@ export class FormUtente extends vrs implements OnInit {
     super();
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   onUpdate(item: Utente) {
-    console.log("update", item)
 
     this.loading_btn = true
 
