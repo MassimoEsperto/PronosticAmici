@@ -17,10 +17,22 @@ export class PlayerService extends HttpSenderService {
 
   getSchedaMaster(input: string): Observable<any> {
 
-    const params = new HttpParams().set('id_comp', input);
-
     return this.http.get<any>(`${this.buildURL("get_scheda_master_utente")}`,
-      { params: params, headers: this.myheaders.headers })
+      { headers: this.myheaders.headers })
+      .pipe(map((res) => {
+
+        this.tokenError(res);//controllo token
+
+        return res['data']
+
+      }),
+        catchError(this.handleError));
+  }
+
+  getSchedaRandom(input: string): Observable<any> {
+
+    return this.http.get<any>(`${this.buildURL("get_scheda_random")}`,
+      { headers: this.myheaders.headers })
       .pipe(map((res) => {
 
         this.tokenError(res);//controllo token

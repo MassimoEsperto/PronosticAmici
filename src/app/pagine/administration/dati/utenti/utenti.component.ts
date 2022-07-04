@@ -60,7 +60,18 @@ export class UtentiComponent extends vrs implements OnInit {
   }
 
   deleteItem(item: any) {
-    console.log("ELIMINA", item)
+    this.adminDati.delUtente(item)
+   
+    .subscribe({
+
+      next: (result: any) => {
+        this.reloadUtenti()
+      },
+      error: (error: any) => {
+        this.alert.error(error);
+      }
+    })
+
   }
 
   reloadUtenti() {
@@ -85,4 +96,9 @@ export class UtentiComponent extends vrs implements OnInit {
       })
 
   }
+
+  
+
+
+
 }

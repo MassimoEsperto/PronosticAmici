@@ -36,6 +36,15 @@ export class AdminDatiService extends HttpSenderService {
         catchError(this.handleError));
   }
 
+  delUtente(payload: any) {
+
+    return this.http.post(`${this.buildURL("del_utente")}`, { data: payload })
+      .pipe(map((res: any) => {
+        return RETURN_OK;
+      }),
+        catchError(this.handleError));
+  }
+
   /*SUADRE */
 
   getSquadre(): Observable<any> {
