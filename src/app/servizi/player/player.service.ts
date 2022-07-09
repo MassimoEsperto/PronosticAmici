@@ -165,7 +165,7 @@ export class PlayerService extends HttpSenderService {
 
   delDettaglioScheda(id_scheda: number): Observable<any> {
 
-    let payload = { id_scheda: id_scheda }
+    let payload = { id: id_scheda }
 
     return this.http.post(`${this.buildURL("del_dettaglio_scheda")}`,
       { data: payload }, this.myheaders)

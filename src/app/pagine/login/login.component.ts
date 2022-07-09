@@ -12,7 +12,7 @@ import { finalize } from 'rxjs/operators';
 })
 export class LoginComponent extends vrs implements OnInit {
 
-  view:number=this.LOGIN.SIGN_IN;
+  view: number = this.LOGIN.SIGN_IN;
   utenti: any = []
 
   constructor(
@@ -22,15 +22,14 @@ export class LoginComponent extends vrs implements OnInit {
     super();
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.loading_page = true
-    this.auth.delCompetizione() 
+    this.auth.delCompetizione()
     this.getUtenti()
   }
 
-  changeView(item:number){
-    console.log("view: ",item)
-this.view=item
+  changeView(item: number) {
+    this.view = item
   }
 
 
@@ -38,10 +37,10 @@ this.view=item
 
     this.adminDati.getUtenti()
       .pipe(finalize(() =>
-      setTimeout(() => {
-        this.loading_page = false
-      }, 3000)
-       
+        setTimeout(() => {
+          this.loading_page = false
+        }, 3000)
+
       ))
       .subscribe({
 

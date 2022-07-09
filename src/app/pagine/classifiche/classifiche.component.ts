@@ -38,7 +38,6 @@ export class ClassificheComponent extends vrs implements OnInit {
       .subscribe({
 
         next: (result: any) => {
-          console.log(result)
           this.schede = result
         },
         error: (error: any) => {

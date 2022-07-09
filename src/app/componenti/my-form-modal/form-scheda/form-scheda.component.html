@@ -22,12 +22,12 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let item of scheda_master">
-                                        <td *ngIf="item.girone&&item.tipo!=TIPO_EVENTO.GIRONE">{{item.girone}})
+                                        <td *ngIf="item.girone&&item.categoria!=CATEGORIA.GIRONE">{{item.girone}})
                                             {{item.view}}</td>
-                                        <td *ngIf="!item.girone||item.tipo==TIPO_EVENTO.GIRONE">{{item.view}}</td>
+                                        <td *ngIf="!item.girone||item.categoria==CATEGORIA.GIRONE">{{item.view}}</td>
 
                                         <!-- OPZIONI RISULTATI SCHEDA-->
-                                        <td *ngIf="item.tipo&&item.tipo==TIPO_EVENTO.PARTITA">
+                                        <td *ngIf="item.categoria&&item.categoria==CATEGORIA.PARTITA">
                                             <select [disabled]="loading_btn" class="form-select" aria-label="select"
                                                 name="{{item.id}}" [(ngModel)]="item.valore" required>
                                                 <option *ngFor="let opzione of combo.partite"
@@ -38,7 +38,7 @@
                                         </td>
 
                                         <td
-                                            *ngIf="item.tipo==TIPO_EVENTO.ANTEPOST&&item.gruppo!=GRUPPO_PUNTI.CAPOCANNONIERE">
+                                            *ngIf="item.categoria==CATEGORIA.ANTEPOST&&item.gruppo!=GRUPPO_PUNTI.CAPOCANNONIERE">
                                             <select [disabled]="loading_btn" class="form-select" aria-label="select"
                                                 name="{{item.id}}" [(ngModel)]="item.valore" required>
                                                 <option *ngFor="let opzione of combo.squadre"
@@ -48,7 +48,7 @@
                                             </select>
                                         </td>
                                         <td
-                                            *ngIf="item.tipo==TIPO_EVENTO.ANTEPOST&&item.gruppo==GRUPPO_PUNTI.CAPOCANNONIERE">
+                                            *ngIf="item.categoria==CATEGORIA.ANTEPOST&&item.gruppo==GRUPPO_PUNTI.CAPOCANNONIERE">
                                             <select [disabled]="loading_btn" class="form-select" aria-label="select"
                                                 name="{{item.id}}" [(ngModel)]="item.valore" required>
                                                 <option *ngFor="let opzione of combo.cannonieri"
@@ -58,7 +58,7 @@
                                             </select>
                                         </td>
                                         <td
-                                            *ngIf="item.tipo==TIPO_EVENTO.GIRONE&&item.gruppo!=GRUPPO_PUNTI.GIRONE_COMPLETO">
+                                            *ngIf="item.categoria==CATEGORIA.GIRONE&&item.gruppo!=GRUPPO_PUNTI.GIRONE_COMPLETO">
                                             <select [disabled]="loading_btn" class="form-select" aria-label="select"
                                                 name="{{item.id}}" [(ngModel)]="item.valore"
                                                 (change)="onChangeGruppo($event,item)" required>
@@ -69,7 +69,7 @@
                                         </td>
 
                                         <td
-                                            *ngIf="item.tipo==TIPO_EVENTO.GIRONE&&item.gruppo==GRUPPO_PUNTI.GIRONE_COMPLETO">
+                                            *ngIf="item.categoria==CATEGORIA.GIRONE&&item.gruppo==GRUPPO_PUNTI.GIRONE_COMPLETO">
                                             <input name="{{item.id}}" type="text" class="form-control"
                                                 [(ngModel)]="item.valore" required readonly>
                                         </td>

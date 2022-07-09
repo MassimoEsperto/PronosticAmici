@@ -49,7 +49,6 @@ export class SchedeBloccateComponent extends vrs implements OnInit {
 
         next: (result: any) => {
           this.schede = result
-          console.log("this.schede", this.schede)
         },
         error: (error: any) => {
           this.alert.error(error);

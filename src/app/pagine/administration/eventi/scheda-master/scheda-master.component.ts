@@ -36,7 +36,6 @@ export class SchedaMasterComponent extends vrs implements OnInit {
   ngOnChanges() {
 
     if (this.comp && this.comp.id) {
-      console.log("bug non si aggiorna")
       this.getSquadreComp(this.comp.id)
       this.getSchedaMaster()
       this.getTipiPronostici()
@@ -44,7 +43,6 @@ export class SchedaMasterComponent extends vrs implements OnInit {
   }
 
   onChangeTipo(event: any) {
-    console.log("onChangeTipo", event.target.value)
     this.step_view = Number(event.target.value) || 0
 
   }
@@ -56,13 +54,12 @@ export class SchedaMasterComponent extends vrs implements OnInit {
         i.gruppo_punti_id == e.antepost.id_gruppo_punti);
 
     if (esiste) {
-      console.log("già esiste")
       this.loading_btn = false
       return;
     }
     let payload = {
       id_comp: this.comp.id,
-      tipo_evento: this.step_view,
+      categoria: this.step_view,
       view: e.antepost.descrizione,
       gruppo_evento: e.antepost.id_gruppo_punti,
       girone: ""
@@ -79,7 +76,7 @@ export class SchedaMasterComponent extends vrs implements OnInit {
 
     let payload = {
       id_comp: this.comp.id,
-      tipo_evento: this.step_view,
+      categoria: this.step_view,
       view: partita,
       gruppo_evento: 0,
       girone: girone
@@ -91,20 +88,18 @@ export class SchedaMasterComponent extends vrs implements OnInit {
 
   onSetEventoGirone(e: any) {
 
-    console.log(e)
     let esiste: boolean = this.master.some(
       (i: { gruppo_punti_id: string; girone: string; }) =>
         i.gruppo_punti_id == e.evento_girone.id_gruppo_punti
         && i.girone == e.girone);
 
     if (esiste) {
-      console.log("già esiste")
       this.loading_btn = false
       return;
     }
     let payload = {
       id_comp: this.comp.id,
-      tipo_evento: this.step_view,
+      categoria: this.step_view,
       view: e.evento_girone.descrizione + " " + e.girone,
       gruppo_evento: e.evento_girone.id_gruppo_punti,
       girone: e.girone
@@ -124,7 +119,6 @@ export class SchedaMasterComponent extends vrs implements OnInit {
         next: (result: any) => {
           this.squadre = result.compresi
           this.gironi_disponibili = [...new Set(this.squadre.map((i: { girone: any; }) => i.girone))];
-          console.log("this.gironi_disponibili", this.gironi_disponibili)
         },
         error: (error: any) => {
           this.alert.error(error);
@@ -144,8 +138,6 @@ export class SchedaMasterComponent extends vrs implements OnInit {
 
         next: (result: any) => {
           this.master = result
-          console.log("this.master", this.master)
-
         },
         error: (error: any) => {
           this.alert.error(error);
@@ -176,8 +168,8 @@ export class SchedaMasterComponent extends vrs implements OnInit {
       .subscribe({
 
         next: (result: any) => {
-          this.eventi_antepost = result.filter((i: { id_tipo: any; }) => i.id_tipo == this.TIPO_EVENTO.ANTEPOST) || [];
-          this.eventi_girone = result.filter((i: { id_tipo: any; }) => i.id_tipo == this.TIPO_EVENTO.GIRONE) || [];
+          this.eventi_antepost = result.filter((i: { id_categoria: any; }) => i.id_categoria == this.CATEGORIA.ANTEPOST) || [];
+          this.eventi_girone = result.filter((i: { id_categoria: any; }) => i.id_categoria == this.CATEGORIA.GIRONE) || [];
         },
         error: (error: any) => {
           this.alert.error(error);

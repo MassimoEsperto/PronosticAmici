@@ -9,13 +9,13 @@
                 <label for="selection">TIPO EVENTO DA AGGIUGERE</label>
                 <select [disabled]="loading_btn" id="selection" class="form-select" (change)="onChangeTipo($event)"
                     ngModel>
-                    <option *ngFor="let item of combo.tipo_eventi" value="{{item.id}}">{{item.descrizione}}
+                    <option *ngFor="let item of combo.categorie" value="{{item.id}}">{{item.descrizione}}
                     </option>
                 </select>
             </div>
 
 
-            <form *ngIf="step_view==TIPO_EVENTO.PARTITA" #partitaForm="ngForm"
+            <form *ngIf="step_view==CATEGORIA.PARTITA" #partitaForm="ngForm"
                 (ngSubmit)="loading_btn=true;onSetEventoPartita(partitaForm.form.value)">
 
                 <div style="padding-top: 16px;">
@@ -43,7 +43,7 @@
 
             </form>
 
-            <form *ngIf="step_view==TIPO_EVENTO.ANTEPOST" #antepostForm="ngForm"
+            <form *ngIf="step_view==CATEGORIA.ANTEPOST" #antepostForm="ngForm"
                 (ngSubmit)="loading_btn=true;onSetEventoAntepost(antepostForm.form.value)">
 
                 <div style="padding-top: 16px;">
@@ -63,7 +63,7 @@
 
             </form>
 
-            <form *ngIf="step_view==TIPO_EVENTO.GIRONE" #gironeForm="ngForm"
+            <form *ngIf="step_view==CATEGORIA.GIRONE" #gironeForm="ngForm"
                 (ngSubmit)="loading_btn=true;onSetEventoGirone(gironeForm.form.value)">
 
                 <div style="padding-top: 16px;">
@@ -108,17 +108,17 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">VIEW</th>
-                        <th scope="col">TIPO</th>
+                        <th scope="col">CATEGORIA</th>
                         <th scope="col">XX</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of master">
                         <td>{{item.id}}</td>
-                        <td *ngIf="item.girone&&item.tipo_evento_id!=TIPO_EVENTO.GIRONE">{{item.girone}}) {{item.view}}
+                        <td *ngIf="item.girone&&item.categoria_id!=CATEGORIA.GIRONE">{{item.girone}}) {{item.view}}
                         </td>
-                        <td *ngIf="!item.girone||item.tipo_evento_id==TIPO_EVENTO.GIRONE">{{item.view}}</td>
-                        <td>{{item.tipo_evento}}</td>
+                        <td *ngIf="!item.girone||item.categoria_id==CATEGORIA.GIRONE">{{item.view}}</td>
+                        <td>{{item.categoria}}</td>
                         <td><i class="bi bi-trash cursore" (click)="onDeleteItem(item)" data-bs-toggle="modal"
                                 data-bs-target="#confirmModal"></i></td>
                     </tr>

@@ -56,9 +56,6 @@ export class DashboardComponent extends vrs implements OnInit {
         next: (result: any) => {
           this.tabs = result.competizioni
           this.info = result
-          console.log("getInfo", result)
-          console.log(this.play_comp);
-          
         },
         error: (error: any) => {
           this.alert.error(error);

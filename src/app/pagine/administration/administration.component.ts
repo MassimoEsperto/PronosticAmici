@@ -13,7 +13,7 @@ export class AdministrationComponent extends vrs implements OnInit {
 
   competizione!: Competizione;
   combo: any;
-  tabs:number = 0;
+  tabs: number = 0;
 
   constructor(
     private adminEventi: AdminEventiService,
@@ -29,9 +29,8 @@ export class AdministrationComponent extends vrs implements OnInit {
     this.competizione = item;
   }
 
-  tabSelected(item:number){
-    this.tabs=item;
-console.log(item)
+  tabSelected(item: number) {
+    this.tabs = item;
   }
 
   getCombo() {
@@ -41,7 +40,6 @@ console.log(item)
 
         next: (result: any) => {
           this.combo = result
-          console.log("combo", this.combo)
         },
         error: (error: any) => {
           this.alert.error(error);

@@ -39,13 +39,13 @@ export class FormScheda extends vrs implements OnInit {
     let ele = event.target.value['0']
 
     //nel caso non ci sia un girone completo
-    let completo = this.scheda_master.find((i: { tipo: number, girone: string, gruppo: number }) => i.tipo == this.TIPO_EVENTO.GIRONE && i.girone == record.girone && i.gruppo == this.GRUPPO_PUNTI.GIRONE_COMPLETO)
+    let completo = this.scheda_master.find((i: { categoria: number, girone: string, gruppo: number }) => i.categoria == this.CATEGORIA.GIRONE && i.girone == record.girone && i.gruppo == this.GRUPPO_PUNTI.GIRONE_COMPLETO)
     if (!completo) return
 
     completo.valore = ''
 
     //lista di prima seconda ecc
-    let lista = this.scheda_master.filter((i: { tipo: number, girone: string, gruppo: number }) => i.tipo == this.TIPO_EVENTO.GIRONE && i.girone == record.girone && i.gruppo != this.GRUPPO_PUNTI.GIRONE_COMPLETO)
+    let lista = this.scheda_master.filter((i: { categoria: number, girone: string, gruppo: number }) => i.categoria == this.CATEGORIA.GIRONE && i.girone == record.girone && i.gruppo != this.GRUPPO_PUNTI.GIRONE_COMPLETO)
 
     //nel caso qualche campo non sia stato valorizzato tipo prima girone seconda ecc
     let is_da_valorizzare = lista.some((i: { valore: string }) => !i.valore)
@@ -73,8 +73,6 @@ export class FormScheda extends vrs implements OnInit {
 
 
   onPlayScheda(input: Array<EventoScheda>) {
-
-    console.log(input)
 
     this.loading_btn = true
 

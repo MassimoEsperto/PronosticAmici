@@ -23,7 +23,6 @@ export class ViewScheda extends vrs {
 
 
   ngOnChanges() {
-    console.log(this.record)
     this.scheda_master = []
     this.loading_page = true
     if(this.record)

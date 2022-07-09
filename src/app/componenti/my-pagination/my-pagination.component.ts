@@ -20,15 +20,6 @@ list:[]=[]
 
   ngOnInit(){
   }
-/*
-  ngOnChanges() {
-    this.records=this.input_table?this.input_table.length:0
-    this.modulo=(this.records % this.num)>0?1:0;
-    this.pages= Math.trunc(this.records/this.num) + this.modulo
 
-    console.log("numero records ",this.records)
-    console.log("numero modulo ",this.modulo)
-    console.log("numero pagina ",this.pages)
-  }*/
 
 }

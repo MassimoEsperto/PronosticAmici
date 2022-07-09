@@ -6,7 +6,7 @@ export abstract class vrs {
   loading_page: boolean = false;
   loading_table: boolean = false;
 
-  idxTable:number=0;
+  idxTable: number = 0;
 
   //enums
   RUOLO = {
@@ -15,10 +15,11 @@ export abstract class vrs {
     VISITATORE: 3
   }
 
-  TIPO_EVENTO = {
+  CATEGORIA = {
     PARTITA: 1,
     ANTEPOST: 2,
-    GIRONE: 3
+    GIRONE: 3,
+    ELIMINATORIE: 4
   }
 
   GRUPPO_PUNTI = {
@@ -60,18 +61,18 @@ export abstract class vrs {
     CHIUSA: "0"
   }
 
-  TAB_ASS={
-    START:0,
-    DATI_UTENTI:1,
-    DATI_SQUADRE:2,
-    DATI_CANNONIERI:3,
-    DATI_SCHEDE:4,
-    DATI_COMPETIZIONI:5,
-    EVENTI_SQUADRE:6,
-    EVENTI_CANNONIERI:7,
-    EVENTI_PRONOSTICI:8,
-    EVENTI_SCHEDE:9,
-    RISULTATI:10
+  TAB_ASS = {
+    START: 0,
+    DATI_UTENTI: 1,
+    DATI_SQUADRE: 2,
+    DATI_CANNONIERI: 3,
+    DATI_SCHEDE: 4,
+    DATI_COMPETIZIONI: 5,
+    EVENTI_SQUADRE: 6,
+    EVENTI_CANNONIERI: 7,
+    EVENTI_PRONOSTICI: 8,
+    EVENTI_SCHEDE: 9,
+    RISULTATI: 10
   }
 
   LOGIN = {

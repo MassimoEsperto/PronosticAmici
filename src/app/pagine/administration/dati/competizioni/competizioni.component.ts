@@ -36,7 +36,6 @@ export class CompetizioniComponent extends vrs implements OnInit {
 
   onUpdate(item: Competizione) {
     this.competizione.set(item);
-    console.log("this.competizione", this.competizione)
   }
 
   onAdd() {

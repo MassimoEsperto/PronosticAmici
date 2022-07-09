@@ -96,7 +96,6 @@ export class SchedeSbloccateComponent extends vrs implements OnInit {
 
         next: (result: any) => {
           this.scheda_master = result
-          console.log(this.scheda_master)
         },
         error: (error: any) => {
           this.alert.error(error);
@@ -138,7 +137,6 @@ export class SchedeSbloccateComponent extends vrs implements OnInit {
 
         next: (result: any) => {
           this.schede = result
-          console.log("this.schede", this.schede)
         },
         error: (error: any) => {
           this.alert.error(error);
@@ -184,7 +182,7 @@ export class SchedeSbloccateComponent extends vrs implements OnInit {
   delDettaglioScheda(scheda: any) {
 
     this.loading_table = true
-    this.player.delDettaglioScheda(scheda)
+    this.player.delDettaglioScheda(scheda.id)
       .pipe(finalize(() =>
         this.getSchedeUtente()
       ))
@@ -209,7 +207,6 @@ export class SchedeSbloccateComponent extends vrs implements OnInit {
 
         next: (result: any) => {
           this.scheda_master = result
-          console.log(this.scheda_master)
         },
         error: (error: any) => {
           this.alert.error(error);

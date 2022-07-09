@@ -31,7 +31,6 @@ export class UtentiComponent extends vrs implements OnInit {
 
   onUpdate(item: Utente) {
     this.utente.set(item);
-    console.log("this.utente", this.utente)
   }
 
   viewComp(items: any) {
