@@ -38,7 +38,10 @@ this.view=item
 
     this.adminDati.getUtenti()
       .pipe(finalize(() =>
+      setTimeout(() => {
         this.loading_page = false
+      }, 3000)
+       
       ))
       .subscribe({
 

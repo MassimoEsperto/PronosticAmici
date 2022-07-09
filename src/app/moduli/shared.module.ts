@@ -7,6 +7,7 @@ import { MyAlert } from '../componenti/my-alert/my-alert.component';
 import { MyButton } from '../componenti/my-button/my-button.component';
 import { MyConfirmDialog } from '../componenti/my-confirm-dialog/my-confirm-dialog.component';
 import { MyFooter } from '../componenti/my-footer/my-footer.component';
+import { MyLocandina } from '../componenti/my-locandina/my-locandina.component';
 import { MyNavbar } from '../componenti/my-navbar/my-navbar.component';
 import { MyPagination } from '../componenti/my-pagination/my-pagination.component';
 import { MySpinner } from '../componenti/my-spinner/my-spinner.component';
@@ -29,7 +30,8 @@ import { MyTabScrollable } from '../componenti/my-tab-scrollable/my-tab-scrollab
     MyAlert,
     MyFooter,
     MyPagination,
-    MySpinner
+    MySpinner,
+    MyLocandina
   ],
   exports: [
     MyButton,
@@ -39,7 +41,8 @@ import { MyTabScrollable } from '../componenti/my-tab-scrollable/my-tab-scrollab
     MyAlert,
     MyFooter,
     MyPagination,
-    MySpinner
+    MySpinner,
+    MyLocandina
   ],
   providers: [
   ],
