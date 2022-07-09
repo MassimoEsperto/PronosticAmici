@@ -1,3 +1,5 @@
+<div class="fadein">
+
 
 <div class="titolo-page">
     <h1>CLASSIFICA</h1>
@@ -18,8 +20,8 @@
                     </tr>
                 </thead>
                 <tbody *ngIf="!loading_table">
-                    <tr *ngFor="let item of schede.table[idxTable];let i=index">
-                        <td class="testo-light">{{i+1}}°</td>
+                    <tr *ngFor="let item of schede.table[idxTable]">
+                        <td class="testo-light">{{item.pos}}°</td>
                         <td class="testo-light testo-bold">{{item.punti}}</td>
                         <td class="testo-light">{{item.utente}}_{{item.id}}</td>
                         <td class="testo-light">{{item.tempo}}</td>
@@ -91,6 +93,6 @@
     </div>
 
 </div>
-
+</div>
 <view-scheda [record]="record"></view-scheda>
 

@@ -2,7 +2,7 @@
   <my-spinner></my-spinner>
 </div>
 
-<div *ngIf="!loading_page">
+<div *ngIf="!loading_page" class="fadein">
 
 
 
@@ -87,6 +87,10 @@
           </li>
          
         </ul>
+      </li>
+      <li>
+        <span class="testo-bold">Posizione:</span>
+        <span class="pl-8">{{info.posizione.posto}}° ({{info.posizione.punti}} pt)</span>
       </li>
       
     </ul>

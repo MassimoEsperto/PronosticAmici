@@ -2,7 +2,6 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild }
 import { finalize } from 'rxjs/operators';
 import { vrs } from 'src/app/classi/global-variables';
 import { EventoScheda } from 'src/app/model/EventoScheda';
-import { ValoreEvento } from 'src/app/model/ValoreEvento';
 import { AlertService } from 'src/app/servizi/applicazione/alert.service';
 import { PlayerService } from 'src/app/servizi/player/player.service';
 
