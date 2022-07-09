@@ -55,6 +55,11 @@ export abstract class vrs {
     NO_S: "NO",
   }
 
+  STATO_COMP = {
+    APERTA: "1",
+    CHIUSA: "0"
+  }
+
   TAB_ASS={
     START:0,
     DATI_UTENTI:1,
@@ -66,9 +71,7 @@ export abstract class vrs {
     EVENTI_CANNONIERI:7,
     EVENTI_PRONOSTICI:8,
     EVENTI_SCHEDE:9,
-    RIS_PARTITE:10,
-    RIS_GIRONI:11,
-    RIS_ANTEPOST:12
+    RISULTATI:10
   }
 
   LOGIN = {

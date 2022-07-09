@@ -25,9 +25,6 @@ import { AssSquadreCompComponent } from '../pagine/administration/eventi/ass-squ
 import { SchedeUtentiComponent } from '../pagine/schede-utenti/schede-utenti.component';
 import { ClassificheComponent } from '../pagine/classifiche/classifiche.component';
 import { GestioneSchedeComponent } from '../pagine/administration/dati/gestione-schede/gestione-schede.component';
-import { RisAntepostComponent } from '../pagine/administration/risultati/ris-antepost/ris-antepost.component';
-import { RisGironiComponent } from '../pagine/administration/risultati/ris-gironi/ris-gironi.component';
-import { RisPartiteComponent } from '../pagine/administration/risultati/ris-partite/ris-partite.component';
 import { FormCompetizioni } from '../componenti/my-form-modal/form-competizioni/form-competizioni.component';
 import { FormUtente } from '../componenti/my-form-modal/form-utente/form-utente.component';
 import { AssTipiPronosticiComponent } from '../pagine/administration/eventi/ass-tipi-pronostici/ass-tipi-pronostici.component';
@@ -37,6 +34,8 @@ import { SchedeSbloccateComponent } from '../pagine/schede-utenti/schede-sblocca
 import { SignInComponent } from '../pagine/login/sign-in/sign-in.component';
 import { RegisterComponent } from '../pagine/login/register/register.component';
 import { RecPassComponent } from '../pagine/login/rec-pass/rec-pass.component';
+import { CalendarioComponent } from '../pagine/administration/risultati/calendario/calendario.component';
+import { ViewScheda } from '../componenti/my-form-modal/view-scheda/view-scheda.component';
 
 
 @NgModule({
@@ -59,13 +58,12 @@ import { RecPassComponent } from '../pagine/login/rec-pass/rec-pass.component';
     SchedeSbloccateComponent,
     ClassificheComponent,
     GestioneSchedeComponent,
-    RisAntepostComponent,
-    RisGironiComponent,
-    RisPartiteComponent,
+    CalendarioComponent,
     FormCompetizioni,
     FormUtente,
     AssTipiPronosticiComponent,
     FormScheda,
+    ViewScheda,
     SignInComponent,
     RegisterComponent,
     RecPassComponent

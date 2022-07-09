@@ -31,7 +31,7 @@ export class FormScheda extends vrs implements OnInit {
   ngOnInit() {}
 
   ngOnChanges() {
-    console.log(this.scheda_selezionata)
+    
   }
 
 
@@ -92,7 +92,7 @@ export class FormScheda extends vrs implements OnInit {
   updDettaglioScheda(input: Array<EventoScheda>) {
 
 
-    this.player.updDettaglioScheda(this.play_comp.id, input)
+    this.player.updDettaglioScheda(input)
       .pipe(finalize(() =>
         this.loading_btn = false
       ))
@@ -111,7 +111,7 @@ export class FormScheda extends vrs implements OnInit {
 
   setDettaglioScheda(input: Array<EventoScheda>) {
 
-    this.player.setDettaglioScheda(this.play_comp.id, input)
+    this.player.setDettaglioScheda(input)
       .pipe(finalize(() =>
         this.loading_btn = false
       ))

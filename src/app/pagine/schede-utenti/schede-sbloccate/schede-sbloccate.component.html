@@ -8,7 +8,7 @@
     <div class="card-trasparent">
 
         <div class="table-responsive">
-            <table class="table table-striped testo-ligth">
+            <table class="table table-striped testo-light">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -20,14 +20,14 @@
                 </thead>
                 <tbody *ngIf="!loading_table">
                     <tr *ngFor="let item of schede.table[idxTable]">
-                        <td class="testo-ligth">{{item.id}}</td>
-                        <td class="testo-ligth">{{item.tempo}}</td>
+                        <td class="testo-light">{{item.id}}</td>
+                        <td class="testo-light">{{item.tempo}}</td>
                         
-                        <td class="testo-ligth"><i class="bi bi-clipboard-plus-fill cursore" (click)="onCopyItem(item)" data-bs-toggle="modal"
+                        <td class="testo-light"><i class="bi bi-clipboard-plus-fill cursore" (click)="onCopyItem(item)" data-bs-toggle="modal"
                             data-bs-target="#confirmModal"></i></td>
-                        <td class="testo-ligth"><i class="bi bi-pencil cursore" (click)="onUpdate(item)" data-bs-toggle="modal"
+                        <td class="testo-light"><i class="bi bi-pencil cursore" (click)="onUpdate(item)" data-bs-toggle="modal"
                                 data-bs-target="#formScheda"></i></td>
-                        <td class="testo-ligth"><i class="bi bi-trash cursore" (click)="onDeleteItem(item)" data-bs-toggle="modal"
+                        <td class="testo-light"><i class="bi bi-trash cursore" (click)="onDeleteItem(item)" data-bs-toggle="modal"
                                 data-bs-target="#confirmModal"></i></td>
                     </tr>
                 </tbody>

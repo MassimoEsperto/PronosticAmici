@@ -23,11 +23,9 @@
           </ul>
         </li>  
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle bg-dark" [ngClass]="{'disabled': !competizione||competizione.is_open=='0'}" role="button" data-bs-toggle="dropdown">RIS</a>
+          <a class="nav-link dropdown-toggle bg-dark" [ngClass]="{'disabled': !competizione||competizione.is_open==STATO_COMP.APERTA}" role="button" data-bs-toggle="dropdown">RIS</a>
           <ul class="dropdown-menu">
-            <li (click)="tabSelected(TAB_ASS.RIS_PARTITE)"><a class="dropdown-item cursore">PARTITE</a></li>
-        <li (click)="tabSelected(TAB_ASS.RIS_GIRONI)"><a class="dropdown-item cursore">GIRONI</a></li>
-        <li (click)="tabSelected(TAB_ASS.RIS_ANTEPOST)"><a class="dropdown-item cursore">ANTEPOST</a></li>
+            <li (click)="tabSelected(TAB_ASS.RISULTATI)"><a class="dropdown-item cursore">CALENDARIO</a></li>
           </ul>
         </li>
     </ul>
@@ -35,54 +33,6 @@
 </nav>
 
 
-
-<!-- 
-  <nav class="navbar navbar-dark bg-secondary sticky-top">
-    
- 
-
-    <div class="btn-group" role="group">
-      <button id="btn-dati" type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
-        aria-expanded="false">
-        DATI
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="btn-dati">
-        <li (click)="tabSelected(TAB_ASS.DATI_UTENTI)"><a class="dropdown-item cursore">GEST UTENTI</a></li>
-        <li (click)="tabSelected(TAB_ASS.DATI_SQUADRE)"><a class="dropdown-item cursore">CREA SQUADRE</a></li>
-        <li (click)="tabSelected(TAB_ASS.DATI_CANNONIERI)"><a class="dropdown-item cursore">CREA CANNONIERI</a></li>
-        <li (click)="tabSelected(TAB_ASS.DATI_SCHEDE)"><a class="dropdown-item cursore">GEST SCHEDE</a></li>
-        <li (click)="tabSelected(TAB_ASS.DATI_COMPETIZIONI)"><a class="dropdown-item cursore">COMPETIZIONI</a></li>
-      </ul>
-    </div>
-
-    <div class="btn-group" role="group">
-      <button id="btn-eventi" type="button" class="btn btn-secondary  dropdown-toggle"
-        [ngClass]="{'disabled': !competizione}" data-bs-toggle="dropdown" aria-expanded="false">
-        EVENTI
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="btn-eventi">
-        <li (click)="tabSelected(TAB_ASS.EVENTI_SQUADRE)"><a class="dropdown-item cursore">ASS SQUADRE</a></li>
-        <li (click)="tabSelected(TAB_ASS.EVENTI_CANNONIERI)"><a class="dropdown-item cursore">ASS CANNONIERI</a></li>
-        <li (click)="tabSelected(TAB_ASS.EVENTI_PRONOSTICI)"><a class="dropdown-item cursore">ASS PRONOSTICI</a></li>
-        <li (click)="tabSelected(TAB_ASS.EVENTI_SCHEDE)"><a class="dropdown-item cursore">CREA SCHEDE</a></li>
-      </ul>
-    </div>
-
-    <div class="btn-group" role="group">
-      <button id="btn-ris" type="button" class="btn btn-secondary btn-lg dropdown-toggle"
-        [ngClass]="{'disabled': !competizione||competizione.is_open=='0'}" data-bs-toggle="dropdown"
-        aria-expanded="false">
-        RIS
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="btn-ris">
-        <li (click)="tabSelected(TAB_ASS.RIS_PARTITE)"><a class="dropdown-item cursore">PARTITE</a></li>
-        <li (click)="tabSelected(TAB_ASS.RIS_GIRONI)"><a class="dropdown-item cursore">GIRONI</a></li>
-        <li (click)="tabSelected(TAB_ASS.RIS_ANTEPOST)"><a class="dropdown-item cursore">ANTEPOST</a></li>
-      </ul>
-    </div>
-
-</nav>
--->
 
   <div class="content-tabs pt-32">
     <div [ngSwitch]="tabs">
@@ -110,13 +60,11 @@
 
 
       <!-- RISULTATI-->
-      <ris-partite *ngSwitchCase="TAB_ASS.RIS_PARTITE"></ris-partite>
+      <calendario *ngSwitchCase="TAB_ASS.RISULTATI" [comp]="competizione"></calendario>
 
-      <ris-gironi *ngSwitchCase="TAB_ASS.RIS_GIRONI"></ris-gironi>
+     
 
-      <ris-antepost *ngSwitchCase="TAB_ASS.RIS_ANTEPOST"></ris-antepost>
-
-      <div *ngSwitchDefault>
+      <div *ngSwitchDefault class="testo-light">
         IN QUESTA SESSIO L'ADMIN PUO BLA BLA...
         POI SI SELEZIONA LA COMPETIZIONE O NE UNSERISCI UNA NUOVA
         !IMPORTANTE SOLO UNA VOLTA COMPLETATO I PRIMI DUE TAB SI PUO' DARE IL VIA ALL'INIZIO DELLE OSTILITA

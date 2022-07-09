@@ -55,8 +55,8 @@ export class SchedeSbloccateComponent extends vrs implements OnInit {
 
   onDeleteItem(item: any) {
 
-    this.confirmDialogService.confirmGeneric(() => {
-      this.delSchedaUtente(item)
+    this.confirmDialogService.confirmThis("Sei sicuro di eliminare la scheda ?", () => {
+      this.delDettaglioScheda(item)
     })
   }
 
@@ -67,9 +67,6 @@ export class SchedeSbloccateComponent extends vrs implements OnInit {
     })
   }
 
-  delSchedaUtente(item: any) {
-    console.log("delSchedaUtente", item)
-  }
 
   copySchedaUtente(item: any) {
     this.copyDettaglioScheda(item.id)
@@ -110,7 +107,7 @@ export class SchedeSbloccateComponent extends vrs implements OnInit {
 
   getComboScheda() {
 
-    this.player.getComboScheda(this.play_comp.id)
+    this.player.getComboScheda()
       .pipe(finalize(() =>
         this.loading_page = this.scheda_master ? false : true
       ))
@@ -133,7 +130,7 @@ export class SchedeSbloccateComponent extends vrs implements OnInit {
 
   getSchedeUtente() {
 
-    this.player.getSchedeUtente(this.play_comp.id)
+    this.player.getSchedeUtente()
       .pipe(finalize(() =>
         this.loading_table = false
       ))
@@ -168,7 +165,7 @@ export class SchedeSbloccateComponent extends vrs implements OnInit {
   copyDettaglioScheda(id_scheda: any) {
 
     this.loading_table = true
-    this.player.copyDettaglioScheda(this.play_comp.id, id_scheda)
+    this.player.copyDettaglioScheda(id_scheda)
       .pipe(finalize(() =>
         this.getSchedeUtente()
       ))
@@ -176,6 +173,26 @@ export class SchedeSbloccateComponent extends vrs implements OnInit {
 
         next: (result: any) => {
           this.alert.success(SUCCESS_OK)
+        },
+        error: (error: any) => {
+          this.alert.error(error);
+        }
+      })
+
+  }
+
+  delDettaglioScheda(scheda: any) {
+
+    this.loading_table = true
+    this.player.delDettaglioScheda(scheda)
+      .pipe(finalize(() =>
+        this.getSchedeUtente()
+      ))
+      .subscribe({
+
+        next: (result: any) => {
+          this.alert.success(SUCCESS_OK)
+          this.idxTable=this.idxTable==this.schede.table.length-1&&this.idxTable!=0?this.idxTable-1:this.idxTable
         },
         error: (error: any) => {
           this.alert.error(error);

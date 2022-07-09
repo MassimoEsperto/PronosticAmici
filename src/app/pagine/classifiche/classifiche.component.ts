@@ -1,15 +1,53 @@
 import { Component, OnInit } from '@angular/core';
+import { finalize } from 'rxjs/operators';
+import { vrs } from 'src/app/classi/global-variables';
+import { AlertService } from 'src/app/servizi/applicazione/alert.service';
+import { PlayerService } from 'src/app/servizi/player/player.service';
 
 @Component({
   selector: 'classifiche',
   templateUrl: './classifiche.component.html',
   styleUrls: ['./classifiche.component.scss']
 })
-export class ClassificheComponent implements OnInit {
+export class ClassificheComponent extends vrs implements OnInit {
 
-  constructor() { }
+  schede: any
+  record: any
 
-  ngOnInit(): void {
+  constructor(
+    private player: PlayerService,
+    private alert: AlertService) {
+    super();
   }
+  ngOnInit() {
+    this.getClassifica()
+  }
+
+  onViewItem(item: any) {
+    this.record = item
+  }
+
+  getClassifica() {
+
+    this.loading_table = true
+
+    this.player.getClassifica()
+      .pipe(finalize(() =>
+        this.loading_table = false
+      ))
+      .subscribe({
+
+        next: (result: any) => {
+          console.log(result)
+          this.schede = result
+        },
+        error: (error: any) => {
+          this.alert.error(error);
+        }
+      })
+
+  }
+
+ 
 
 }

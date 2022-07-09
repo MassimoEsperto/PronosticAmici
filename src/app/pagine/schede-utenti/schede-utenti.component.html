@@ -5,7 +5,7 @@
     </div>
 
 
-    <schede-bloccate *ngIf="play_comp.is_open==0"></schede-bloccate>
-    <schede-sbloccate *ngIf="play_comp.is_open==1"></schede-sbloccate>
+    <schede-bloccate *ngIf="play_comp.is_open==STATO_COMP.CHIUSA"></schede-bloccate>
+    <schede-sbloccate *ngIf="play_comp.is_open==STATO_COMP.APERTA"></schede-sbloccate>
 
 </div>

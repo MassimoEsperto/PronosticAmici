@@ -1,0 +1,137 @@
+<h2 class="annuncio">GESTIONE RISULTATI</h2>
+
+<div *ngIf="loading_page">
+
+</div>
+<div *ngIf="!loading_page" class="pt-32 pb-64">
+    <div class="card-table">
+
+        <div class="table-responsive">
+            <table class="table table-striped ">
+                <thead>
+                    <tr>
+                        <th scope="col">VIEW</th>
+                        <th scope="col">RISULTATO</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of scheda_risultati">
+                        <td>{{item.view}}</td>
+                        <td>{{viewRisultato(item.risultato)}}
+                            <div class="collapse" id="{{item.idHTML}}">
+                                <div *ngIf="item.tipo_evento==TIPO_EVENTO.PARTITA" class="pt-8">
+                                    <form #partitaUpdate="ngForm"
+                                        (ngSubmit)="loading_btn=true;onUpdatePartita(partitaUpdate.form.value,item.id)">
+                                        <div class="display-column">
+                                            <div style="min-width: 160px;">
+                                                <select class="form-select form-select-sm" name="risultato" ngModel
+                                                    required>
+                                                    <option *ngFor="let item of comboScheda.partite" [ngValue]="item">
+                                                        {{item.view}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="pt-8">
+                                                <my-button [disabled]="!partitaUpdate.form.valid" [block]="false"
+                                                    [color]="'btn-dark btn-sm'" [loading]="loading_btn" [submit]="true"
+                                                    [label]="'CONFERMA'">
+                                                </my-button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div *ngIf="item.tipo_evento==TIPO_EVENTO.ANTEPOST" class="pt-8">
+                                    <form #antepostUpdate="ngForm"
+                                        (ngSubmit)="loading_btn=true;onUpdateAntepost(antepostUpdate.form.value,item)">
+                                        <div class="display-column">
+                                            <div *ngIf="item.gruppo_punti==GRUPPO_PUNTI.CAPOCANNONIERE"
+                                                style="min-width: 160px;">
+                                                <select class="form-select form-select-sm" multiple name="risultato"
+                                                    ngModel required>
+                                                    <option *ngFor="let item of comboScheda.antepost.cannonieri"
+                                                        [ngValue]="item.descrizione">
+                                                        {{item.descrizione}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div *ngIf="item.gruppo_punti!=GRUPPO_PUNTI.CAPOCANNONIERE"
+                                                style="min-width: 160px;">
+                                                <select class="form-select form-select-sm" multiple name="risultato"
+                                                    ngModel required>
+                                                    <option *ngFor="let item of comboScheda.antepost.squadre"
+                                                        [ngValue]="item.descrizione">
+                                                        {{item.descrizione}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="pt-8">
+                                                <my-button [disabled]="!antepostUpdate.form.valid" [block]="false"
+                                                    [color]="'btn-dark btn-sm'" [loading]="loading_btn" [submit]="true"
+                                                    [label]="'CONFERMA'">
+                                                </my-button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div *ngIf="item.tipo_evento==TIPO_EVENTO.GIRONE&&item.gruppo_punti!=GRUPPO_PUNTI.GIRONE_COMPLETO"
+                                    class="pt-8">
+                                    <form #gironeUpdate="ngForm"
+                                        (ngSubmit)="loading_btn=true;onUpdateGirone(gironeUpdate.form.value,item)">
+                                        <div class="display-column">
+                                            <div style="min-width: 160px;">
+                                                <select class="form-select form-select-sm" name="risultato" ngModel
+                                                    required>
+                                                    <option *ngFor="let item of comboScheda.gironi[item.girone]"
+                                                        [ngValue]="item.descrizione">
+                                                        {{item.descrizione}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="pt-8">
+                                                <my-button [disabled]="!gironeUpdate.form.valid" [block]="false"
+                                                    [color]="'btn-dark btn-sm'" [loading]="loading_btn" [submit]="true"
+                                                    [label]="'CONFERMA'">
+                                                </my-button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div *ngIf="item.tipo_evento==TIPO_EVENTO.GIRONE&&item.gruppo_punti==GRUPPO_PUNTI.GIRONE_COMPLETO"
+                                    class="pt-8">
+                                    <form #gironeUpdate="ngForm"
+                                        (ngSubmit)="loading_btn=true;onUpdateGironeCompleto(gironeUpdate.form.value,item, comboScheda.gironi[item.girone].length)">
+                                        <div class="display-column">
+                                            <div style="min-width: 160px;">
+                                                <div *ngFor="let pos of comboScheda.gironi[item.girone]; let i = index"
+                                                    class="pt-8">
+                                                    <select class="form-select form-select-sm" name="{{'risultato'+i}}"
+                                                        ngModel required>
+                                                        <option *ngFor="let item of comboScheda.gironi[item.girone]"
+                                                            [ngValue]="item.sigla">
+                                                            {{item.descrizione}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="pt-8">
+                                                <my-button [disabled]="!gironeUpdate.form.valid" [block]="false"
+                                                    [color]="'btn-dark btn-sm'" [loading]="loading_btn" [submit]="true"
+                                                    [label]="'CONFERMA'">
+                                                </my-button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </td>
+                        <td><i class="bi bi-pencil cursore" data-bs-toggle="collapse"
+                                [attr.data-bs-target]="'#'+item.idHTML" aria-expanded="false"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>

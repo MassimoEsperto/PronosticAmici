@@ -1,0 +1,43 @@
+<!-- Modal -->
+<div class="modal fade" id="formScheda" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="formSchedaLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div *ngIf="!loading_page" class="modal-content">
+            <div class="modal-header">
+                <h5 *ngIf="record" class="modal-title" id="formSchedaLabel">Utente {{record.utente}}</h5>
+            </div>
+            <div class="modal-body pa-0">
+
+                <div class="table-responsive">
+                    <table class="table table-striped ">
+                        <thead>
+                            <tr>
+                                <th scope="col">EVENTO</th>
+                                <th scope="col">RISULTATO</th>
+                                <th scope="col">PUNTI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of scheda_master">
+                                <td>{{item.view}}</td>
+                                <td>{{item.valore}}</td>
+                                <td>{{item.punti}}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <div style="text-align: right;" class="pb-8">
+                        <span>Punti totali : </span>
+                        <span *ngIf="record" class="testo-bold">{{record.punti}}</span>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" #closeModal class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+            </div>
+        </div>
+    </div>
+</div>
