@@ -104,10 +104,39 @@ export class CalendarioComponent extends vrs implements OnInit {
 
   }
 
+  onUpdateTabellone(item: any, id_evento: number) {
+
+    let payload = {
+      "view": item.risultato.view,
+      "id_evento": id_evento,
+      "valore": item.risultato.valore
+    }
+
+    this.setRisultatoEliminatorie(payload)
+  }
+
 
   setRisultatoPartita(payload: any) {
 
     this.admin.setRisultatoPartita(payload)
+      .pipe(finalize(() =>
+        this.getSchedaRisultati(this.comp.id || "")
+      ))
+      .subscribe({
+
+        next: (result: any) => {
+          this.alert.success(SUCCESS_OK);
+        },
+        error: (error: any) => {
+          this.alert.error(error);
+        }
+      })
+
+  }
+
+  setRisultatoEliminatorie(payload: any) {
+
+    this.admin.setRisultatoEliminatorie(payload)
       .pipe(finalize(() =>
         this.getSchedaRisultati(this.comp.id || "")
       ))

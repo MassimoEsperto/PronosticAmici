@@ -107,6 +107,19 @@ export class SchedaMasterComponent extends vrs implements OnInit {
     this.setEventMaster(payload)
   }
 
+  onSetEventoEliminatorie(e: any) {
+
+    let payload = {
+      id_comp: this.comp.id,
+      categoria: this.step_view,
+      view: e.squadra.descrizione,
+      gruppo_evento: 0,
+      girone: ""
+    }
+
+    this.setEventMaster(payload)
+  }
+
 
   getSquadreComp(input: string) {
 
@@ -168,8 +181,8 @@ export class SchedaMasterComponent extends vrs implements OnInit {
       .subscribe({
 
         next: (result: any) => {
-          this.eventi_antepost = result.filter((i: { id_categoria: any; }) => i.id_categoria == this.CATEGORIA.ANTEPOST) || [];
-          this.eventi_girone = result.filter((i: { id_categoria: any; }) => i.id_categoria == this.CATEGORIA.GIRONE) || [];
+          this.eventi_antepost = result.filter((i: { categoria_id: any; }) => i.categoria_id == this.CATEGORIA.ANTEPOST) || [];
+          this.eventi_girone = result.filter((i: { categoria_id: any; }) => i.categoria_id == this.CATEGORIA.GIRONE) || [];
         },
         error: (error: any) => {
           this.alert.error(error);

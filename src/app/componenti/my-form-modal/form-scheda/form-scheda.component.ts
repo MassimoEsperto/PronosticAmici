@@ -30,7 +30,7 @@ export class FormScheda extends vrs implements OnInit {
   ngOnInit() {}
 
   ngOnChanges() {
-    
+    console.log(this.scheda_master)
   }
 
 
@@ -50,7 +50,9 @@ export class FormScheda extends vrs implements OnInit {
     //nel caso qualche campo non sia stato valorizzato tipo prima girone seconda ecc
     let is_da_valorizzare = lista.some((i: { valore: string }) => !i.valore)
 
-    if (!is_da_valorizzare) {
+    if(is_da_valorizzare) return
+
+  
       let tmp: any[] = []
       let sigle = "";
       let sep = "";
@@ -67,9 +69,51 @@ export class FormScheda extends vrs implements OnInit {
       if (lista.length == tmp.length) {
         completo.valore = sigle
       }
-    }
+    
   }
 
+  onChangeTabellone(event: any, record: any) {
+
+    let ele = event.target.value['0']
+
+ //lista di quarti ottavi eccc
+ let lista = this.scheda_master.filter((i: { categoria: number }) => i.categoria == this.CATEGORIA.ELIMINATORIE)
+
+ let is_da_valorizzare = lista.some((i: { valore: string }) => !i.valore)
+
+ let sigle = "";
+
+ if(is_da_valorizzare) return
+
+ let completo = this.scheda_master.find((i: { gruppo: number }) =>  i.gruppo == this.GRUPPO_PUNTI.TABELLONE_COMPLETO)
+ if (!completo) return
+
+ completo.valore = "";
+
+ for (let item of this.combo.tabellone) {
+
+   let eventi  = lista.filter((i: { valore: string }) => i.valore == item.descrizione);
+
+if(eventi&&eventi.length>item.max){
+  return
+}
+console.log("eventi",eventi)
+
+  }
+
+  for (let ele of lista) {
+      let sigla = this.combo.tabellone.find((i: { descrizione: string }) => i.descrizione==ele.valore).sigla
+      sigle += sigla
+  }
+
+  completo.valore = sigle;
+  
+  console.log("record",record)
+  console.log("combo.tabellone",this.combo.tabellone)
+  console.log("lista",lista)
+  console.log("sigle",sigle)
+
+  }
 
 
   onPlayScheda(input: Array<EventoScheda>) {

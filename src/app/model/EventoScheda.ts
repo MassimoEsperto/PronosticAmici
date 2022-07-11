@@ -1,5 +1,3 @@
-import { ValoreEvento } from "./ValoreEvento";
-
 export class EventoScheda {
 
     id?: string;

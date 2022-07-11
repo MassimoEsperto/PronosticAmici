@@ -37,7 +37,8 @@ export abstract class vrs {
     SECONDA_GIRONE: 12,
     TERZA_GIRONE: 13,
     ULTIMA_GIRONE: 14,
-    GIRONE_COMPLETO: 15
+    GIRONE_COMPLETO: 15,
+    TABELLONE_COMPLETO: 21
 
   }
 

@@ -36,7 +36,7 @@
                         <td>{{viewComp(item.competizioni)}}</td>
                         <td><i class="bi bi-pencil cursore" (click)="onUpdate(item)" data-bs-toggle="modal"
                                 data-bs-target="#formUtente"></i></td>
-                        <td><i class="bi bi-trash cursore" (click)="onDeleteItem(item)" data-bs-toggle="modal"
+                        <td><i *ngIf="item.ruolo!=RUOLO.ADMIN" class="bi bi-trash cursore" (click)="onDeleteItem(item)" data-bs-toggle="modal"
                                 data-bs-target="#confirmModal"></i></td>
                     </tr>
                 </tbody>

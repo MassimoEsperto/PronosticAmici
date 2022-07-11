@@ -27,7 +27,7 @@
                                         <td *ngIf="!item.girone||item.categoria==CATEGORIA.GIRONE">{{item.view}}</td>
 
                                         <!-- OPZIONI RISULTATI SCHEDA-->
-                                        <td *ngIf="item.categoria&&item.categoria==CATEGORIA.PARTITA">
+                                        <td *ngIf="item.categoria==CATEGORIA.PARTITA">
                                             <select [disabled]="loading_btn" class="form-select" aria-label="select"
                                                 name="{{item.id}}" [(ngModel)]="item.valore" required>
                                                 <option *ngFor="let opzione of combo.partite"
@@ -38,7 +38,7 @@
                                         </td>
 
                                         <td
-                                            *ngIf="item.categoria==CATEGORIA.ANTEPOST&&item.gruppo!=GRUPPO_PUNTI.CAPOCANNONIERE">
+                                            *ngIf="item.categoria==CATEGORIA.ANTEPOST&&item.gruppo!=GRUPPO_PUNTI.CAPOCANNONIERE&&item.gruppo!=GRUPPO_PUNTI.TABELLONE_COMPLETO">
                                             <select [disabled]="loading_btn" class="form-select" aria-label="select"
                                                 name="{{item.id}}" [(ngModel)]="item.valore" required>
                                                 <option *ngFor="let opzione of combo.squadre"
@@ -70,6 +70,21 @@
 
                                         <td
                                             *ngIf="item.categoria==CATEGORIA.GIRONE&&item.gruppo==GRUPPO_PUNTI.GIRONE_COMPLETO">
+                                            <input name="{{item.id}}" type="text" class="form-control"
+                                                [(ngModel)]="item.valore" required readonly>
+                                        </td>
+
+                                        <td *ngIf="item.categoria==CATEGORIA.ELIMINATORIE">
+                                            <select [disabled]="loading_btn" class="form-select" aria-label="select"
+                                                name="{{item.id}}" [(ngModel)]="item.valore" (change)="onChangeTabellone($event,item)" required>
+                                                <option *ngFor="let opzione of combo.tabellone"
+                                                    [ngValue]="opzione.descrizione">
+                                                    {{opzione.descrizione}}
+                                                </option>
+                                            </select>
+                                        </td>
+
+                                        <td *ngIf="item.gruppo==GRUPPO_PUNTI.TABELLONE_COMPLETO">
                                             <input name="{{item.id}}" type="text" class="form-control"
                                                 [(ngModel)]="item.valore" required readonly>
                                         </td>

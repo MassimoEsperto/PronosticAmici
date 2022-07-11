@@ -52,6 +52,19 @@ export class AdminRisultatiService extends HttpSenderService {
         catchError(this.handleError));
   }
 
+  setRisultatoEliminatorie(payload: any): Observable<any> {
+
+    return this.http.post(`${this.buildURL("set_risultato_eliminatorie")}`,
+      { data: payload }, this.myheaders)
+      .pipe(map((res: any) => {
+
+        this.tokenError(res);//controllo token
+
+        return res['data']
+      }),
+        catchError(this.handleError));
+  }
+
 
   //set risultati
   setRisultatoAntepost(payload: any): Observable<any> {

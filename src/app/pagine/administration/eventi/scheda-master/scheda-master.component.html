@@ -91,6 +91,27 @@
 
             </form>
 
+            <form *ngIf="step_view==CATEGORIA.ELIMINATORIE" #eliminatoriaForm="ngForm"
+            (ngSubmit)="loading_btn=true;onSetEventoEliminatorie(eliminatoriaForm.form.value)">
+
+            <div style="padding-top: 16px;">
+                <label for="selection6">SQUADRA DEL TABELLONE</label>
+                <select class="form-select" aria-label="Default select example" name="squadra" ngModel
+                    required>
+                    <option *ngFor="let item of squadre" [ngValue]="item">{{item.descrizione}}
+                    </option>
+                </select>
+            </div>
+
+
+            <div class="pt-16 pb-16">
+                <my-button [disabled]="!eliminatoriaForm.form.valid" [block]="true" [color]="'btn-primary'"
+                    [loading]="loading_btn" [submit]="true" [label]="'CONFERMA'">
+                </my-button>
+            </div>
+
+        </form>
+
 
         </div>
 
