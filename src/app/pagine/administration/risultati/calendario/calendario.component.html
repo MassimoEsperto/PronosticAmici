@@ -66,11 +66,14 @@
                                                 </select>
                                             </div>
                                             <div *ngIf="item.gruppo_punti==GRUPPO_PUNTI.TABELLONE_COMPLETO"
-                                            style="min-width: 160px;">
-                                            <input name="risultato" type="text" class="form-control" ngModel
-                                            ngValue="item.valore" required readonly>
-                                          
-                                        </div>
+                                                style="min-width: 160px;">
+                                                <select class="form-select form-select-sm" multiple name="risultato"
+                                                    ngModel required>
+                                                    <option [ngValue]="comboScheda.tabcompleto">
+                                                        {{comboScheda.tabcompleto}}</option>
+                                                </select>
+
+                                            </div>
                                             <div class="pt-8">
                                                 <my-button [disabled]="!antepostUpdate.form.valid" [block]="false"
                                                     [color]="'btn-dark btn-sm'" [loading]="loading_btn" [submit]="true"
@@ -136,8 +139,9 @@
                                             <div style="min-width: 160px;">
                                                 <select class="form-select form-select-sm" name="risultato" ngModel
                                                     required>
-                                                    <option *ngFor="let item of comboScheda.eliminatorie" [ngValue]="item">
-                                                        {{item.view}}
+                                                    <option *ngFor="let ele of comboScheda.eliminatorie"
+                                                        [ngValue]="ele">
+                                                        {{ele.view}}
                                                     </option>
                                                 </select>
                                             </div>

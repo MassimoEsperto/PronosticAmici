@@ -14,7 +14,7 @@ export class FormScheda extends vrs implements OnInit {
 
 
   @Input() combo!: any;
-  @Input() scheda_selezionata: number=0;
+  @Input() scheda_selezionata: number = 0;
   @ViewChild('closeModal') closeModal!: ElementRef;
   @Input() scheda_master: Array<EventoScheda> = [];
   @Output() submit = new EventEmitter();
@@ -27,10 +27,10 @@ export class FormScheda extends vrs implements OnInit {
     super();
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ngOnChanges() {
-    console.log(this.scheda_master)
+
   }
 
 
@@ -50,68 +50,64 @@ export class FormScheda extends vrs implements OnInit {
     //nel caso qualche campo non sia stato valorizzato tipo prima girone seconda ecc
     let is_da_valorizzare = lista.some((i: { valore: string }) => !i.valore)
 
-    if(is_da_valorizzare) return
+    if (is_da_valorizzare) return
 
-  
-      let tmp: any[] = []
-      let sigle = "";
-      let sep = "";
-      for (let ele of lista) {
-        if (ele.valore && !tmp.some((i) => i == ele.valore)) {
-          tmp.push(ele.valore)
-          let sigla = this.combo.squadre_girone[record.girone].find((i: { descrizione: string }) => i.descrizione==ele.valore).sigla
-          sigle = sigle + sep + sigla
-          sep = "-"
-        }
-      }
 
-      //nel caso tutto sia andato a buon fine
-      if (lista.length == tmp.length) {
-        completo.valore = sigle
+    let tmp: any[] = []
+    let sigle = "";
+    let sep = "";
+    for (let ele of lista) {
+      if (ele.valore && !tmp.some((i) => i == ele.valore)) {
+        tmp.push(ele.valore)
+        let sigla = this.combo.squadre_girone[record.girone].find((i: { descrizione: string }) => i.descrizione == ele.valore).sigla
+        sigle = sigle + sep + sigla
+        sep = "-"
       }
-    
+    }
+
+    //nel caso tutto sia andato a buon fine
+    if (lista.length == tmp.length) {
+      completo.valore = sigle
+    }
+
   }
 
   onChangeTabellone(event: any, record: any) {
 
     let ele = event.target.value['0']
 
- //lista di quarti ottavi eccc
- let lista = this.scheda_master.filter((i: { categoria: number }) => i.categoria == this.CATEGORIA.ELIMINATORIE)
+    //lista di quarti ottavi eccc
+    let lista = this.scheda_master.filter((i: { categoria: number }) => i.categoria == this.CATEGORIA.ELIMINATORIE)
 
- let is_da_valorizzare = lista.some((i: { valore: string }) => !i.valore)
+    let is_da_valorizzare = lista.some((i: { valore: string }) => !i.valore)
 
- let sigle = "";
+    let sigle = "";
 
- if(is_da_valorizzare) return
+    if (is_da_valorizzare) return
 
- let completo = this.scheda_master.find((i: { gruppo: number }) =>  i.gruppo == this.GRUPPO_PUNTI.TABELLONE_COMPLETO)
- if (!completo) return
+    let completo = this.scheda_master.find((i: { gruppo: number }) => i.gruppo == this.GRUPPO_PUNTI.TABELLONE_COMPLETO)
+    if (!completo) return
 
- completo.valore = "";
+    completo.valore = "";
 
- for (let item of this.combo.tabellone) {
+    for (let item of this.combo.tabellone) {
 
-   let eventi  = lista.filter((i: { valore: string }) => i.valore == item.descrizione);
+      let eventi = lista.filter((i: { valore: string }) => i.valore == item.descrizione);
 
-if(eventi&&eventi.length>item.max){
-  return
-}
-console.log("eventi",eventi)
+      if (eventi && eventi.length > item.max) {
+        return
+      }
 
-  }
 
-  for (let ele of lista) {
-      let sigla = this.combo.tabellone.find((i: { descrizione: string }) => i.descrizione==ele.valore).sigla
+    }
+
+    for (let ele of lista) {
+      let sigla = this.combo.tabellone.find((i: { descrizione: string }) => i.descrizione == ele.valore).sigla
       sigle += sigla
-  }
+    }
 
-  completo.valore = sigle;
-  
-  console.log("record",record)
-  console.log("combo.tabellone",this.combo.tabellone)
-  console.log("lista",lista)
-  console.log("sigle",sigle)
+    completo.valore = sigle;
+
 
   }
 
@@ -120,9 +116,9 @@ console.log("eventi",eventi)
 
     this.loading_btn = true
 
-    if(this.scheda_selezionata>0){
+    if (this.scheda_selezionata > 0) {
       this.updDettaglioScheda(input)
-    }else{
+    } else {
       this.setDettaglioScheda(input)
     }
 

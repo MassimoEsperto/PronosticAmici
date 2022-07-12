@@ -116,6 +116,8 @@ export class CalendarioComponent extends vrs implements OnInit {
   }
 
 
+
+
   setRisultatoPartita(payload: any) {
 
     this.admin.setRisultatoPartita(payload)
@@ -198,6 +200,7 @@ export class CalendarioComponent extends vrs implements OnInit {
 
         next: (result: any) => {
           this.scheda_risultati = result
+
           this.loading_btn = false;
         },
         error: (error: any) => {
@@ -217,6 +220,7 @@ export class CalendarioComponent extends vrs implements OnInit {
 
         next: (result: any) => {
           this.comboScheda = result
+
         },
         error: (error: any) => {
           this.alert.error(error);
