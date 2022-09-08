@@ -15,6 +15,7 @@ import { ConfirmDialogService } from 'src/app/servizi/applicazione/confirm-dialo
 export class AssSquadreCompComponent extends vrs implements OnInit {
 
   @Input() comp!: Competizione;
+  @Input() combo: any;
   disponibili: any =[]
   compresi: any=[]
 

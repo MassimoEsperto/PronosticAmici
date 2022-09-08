@@ -8,6 +8,6 @@ export class EventoScheda {
     punti?: string; //da verificare se serve qua o nel valore.. secondo me nel valore
     valore: string = "";//ValoreEvento=new ValoreEvento(0,'')
     id_dettaglio?: string;
-
+    data_partita?: string;
 
 }

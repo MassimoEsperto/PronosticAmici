@@ -62,7 +62,8 @@ export class SchedaMasterComponent extends vrs implements OnInit {
       categoria: this.step_view,
       view: e.antepost.descrizione,
       gruppo_evento: e.antepost.id_gruppo_punti,
-      girone: ""
+      girone: "",
+      data_partita:""
     }
 
 
@@ -79,7 +80,8 @@ export class SchedaMasterComponent extends vrs implements OnInit {
       categoria: this.step_view,
       view: partita,
       gruppo_evento: 0,
-      girone: girone
+      girone: girone,
+      data_partita:e.data_partita+" "+e.ora_partita
     }
 
     this.setEventMaster(payload)
@@ -102,7 +104,8 @@ export class SchedaMasterComponent extends vrs implements OnInit {
       categoria: this.step_view,
       view: e.evento_girone.descrizione + " " + e.girone,
       gruppo_evento: e.evento_girone.id_gruppo_punti,
-      girone: e.girone
+      girone: e.girone,
+      data_partita:""
     }
     this.setEventMaster(payload)
   }
@@ -114,7 +117,8 @@ export class SchedaMasterComponent extends vrs implements OnInit {
       categoria: this.step_view,
       view: e.squadra.descrizione,
       gruppo_evento: 0,
-      girone: ""
+      girone: "",
+      data_partita:""
     }
 
     this.setEventMaster(payload)

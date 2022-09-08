@@ -23,8 +23,8 @@
                                 <tbody>
                                     <tr *ngFor="let item of scheda_master">
                                         <td *ngIf="item.girone&&item.categoria!=CATEGORIA.GIRONE">{{item.girone}})
-                                            {{item.view}}</td>
-                                        <td *ngIf="!item.girone||item.categoria==CATEGORIA.GIRONE">{{item.view}}</td>
+                                            {{item.view}} <span *ngIf="item.categoria==CATEGORIA.PARTITA"><br>{{item.data_partita}}</span></td>
+                                        <td *ngIf="!item.girone||item.categoria==CATEGORIA.GIRONE">{{item.view}} </td>
 
                                         <!-- OPZIONI RISULTATI SCHEDA-->
                                         <td *ngIf="item.categoria==CATEGORIA.PARTITA">
