@@ -47,6 +47,12 @@ export class ClassificheComponent extends vrs implements OnInit {
 
   }
 
- 
+  goToLink(url: string) {
+    let id_comp=this.player.getCompetizioneHeader();
+    let sigla=this.player.getCompetizione().sigla;
+   
+    window.open(url+"?id_comp="+id_comp+"&sigla="+sigla, "_blank");
+  }
+
 
 }

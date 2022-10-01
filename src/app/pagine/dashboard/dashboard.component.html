@@ -6,16 +6,16 @@
 
 
 
-<div *ngIf="play_comp" class="titolo">
+<div *ngIf="play_comp" class="titolo-page">
   <h1>{{play_comp.sigla}}</h1>
 </div>
-<div *ngIf="!play_comp" class="titolo">
+<div *ngIf="!play_comp" class="titolo-page">
   <h1>NESSUNA COMPETIIONE SELEZIONATA</h1>
 </div>
 
 
 <div class="d-grid gap-2">
-    <button class="btn btn-danger btn-lg" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
+    <button class="btn btn-primary btn-lg" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
         <i class="bi bi-hand-index-fill"></i> Seleziona competizione</button>
   </div>
 
@@ -101,13 +101,13 @@
 </div>
 
 
-<div *ngIf="play_comp" class="card text-white bg-secondary">
+<div *ngIf="play_comp" class="card-trasparent">
   <div class="card-header">DETTAGLIO COMPETIZIONE</div>
   <div class="card-body">
     <h5 class="card-title">Competizione: {{play_comp.nome}}</h5>
     <h5 class="card-title">Scadenza: {{play_comp.scadenza}}</h5>
     <div>
-      <table class="table table-borderless" style="color: white;">
+      <table class="table table-borderless" style="color: gainsboro;">
         <thead>
           <tr>
             <th scope="col">Pronostico</th>

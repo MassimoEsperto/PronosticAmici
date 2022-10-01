@@ -10,23 +10,27 @@ import { AuthService } from 'src/app/servizi/autenticazione/auth.service';
 })
 export class MyFooter extends vrs implements OnInit {
 
-  versione= VERSION;
-  isAdmin:boolean=false
+  versione = VERSION;
+  isAdmin: boolean = false
 
   constructor(
     private auth: AuthService) {
     super();
   }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.isAdmin = this.auth.isAdmin();
   }
 
-  onChangeCompetizione() {}
+  onChangeCompetizione() { }
 
 
   logOut() {
     this.auth.logout();
+  }
+
+  goToLink(url: string) {
+    window.open(url, "_blank");
   }
 
 
