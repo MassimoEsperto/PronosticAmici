@@ -36,6 +36,7 @@ import { RegisterComponent } from '../pagine/login/register/register.component';
 import { RecPassComponent } from '../pagine/login/rec-pass/rec-pass.component';
 import { CalendarioComponent } from '../pagine/administration/risultati/calendario/calendario.component';
 import { ViewScheda } from '../componenti/my-form-modal/view-scheda/view-scheda.component';
+import { EventiModificabiliComponent } from '../pagine/administration/risultati/eventi-modificabili/eventi-modificabili.component';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { ViewScheda } from '../componenti/my-form-modal/view-scheda/view-scheda.
     ViewScheda,
     SignInComponent,
     RegisterComponent,
-    RecPassComponent
+    RecPassComponent,
+    EventiModificabiliComponent
   ],
   imports: [
     BrowserModule,

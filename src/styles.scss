@@ -7,11 +7,16 @@
 .page{
     min-height: 100vh;
     padding: 8px;
+    background-image: linear-gradient(to right, #2a6838ec, #2e8b56ef);
+    //background-image: linear-gradient(to right, #317f43ec, #2e8b56ef);
+
     //background-image: radial-gradient(rgb(171, 110, 228), #912dd2);
     //background-image: radial-gradient(circle, rgba(47,37,196,0.4738270308123249) 0%, rgba(67,67,173,1) 78%, rgba(58,52,157,1) 100%);
     //background-image: linear-gradient(to right, #0e813c, #2e8b56);
-    background-image: linear-gradient(to right, #317f43ec, #2e8b56ef);
     //background-image: linear-gradient(to right, #2E8B57, #4c9141);
+    //background-image: linear-gradient(to right, #29524A, #9e807c);
+
+
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -117,6 +122,11 @@
     background-color: #6c757d;
     border-color: #565e64;
     color: aliceblue;
+}
+
+.page-item.active .page-link {
+    background-color: #344858;
+    border-color: #425a6e;
 }
 
 //scrollbar

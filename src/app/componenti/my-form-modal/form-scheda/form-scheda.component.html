@@ -23,13 +23,17 @@
                                 <tbody>
                                     <tr *ngFor="let item of scheda_master">
                                         <td *ngIf="item.girone&&item.categoria!=CATEGORIA.GIRONE">{{item.girone}})
-                                            {{item.view}} <span *ngIf="item.categoria==CATEGORIA.PARTITA"><br>{{item.data_partita}}</span></td>
+                                            {{item.view}} <span
+                                                *ngIf="item.categoria==CATEGORIA.PARTITA"><br>{{item.data_partita}}</span>
+                                        </td>
                                         <td *ngIf="!item.girone||item.categoria==CATEGORIA.GIRONE">{{item.view}} </td>
+
 
                                         <!-- OPZIONI RISULTATI SCHEDA-->
                                         <td *ngIf="item.categoria==CATEGORIA.PARTITA">
                                             <select [disabled]="loading_btn" class="form-select" aria-label="select"
-                                                name="{{item.id}}" [(ngModel)]="item.valore" required>
+                                                name="{{item.id}}" [(ngModel)]="item.valore" required
+                                                [disabled]="item.modificabile ==  SI_NO.NO_S">
                                                 <option *ngFor="let opzione of combo.partite"
                                                     [ngValue]="opzione.descrizione">
                                                     {{opzione.descrizione}}
@@ -40,7 +44,8 @@
                                         <td
                                             *ngIf="item.categoria==CATEGORIA.ANTEPOST&&item.gruppo!=GRUPPO_PUNTI.CAPOCANNONIERE&&item.gruppo!=GRUPPO_PUNTI.TABELLONE_COMPLETO">
                                             <select [disabled]="loading_btn" class="form-select" aria-label="select"
-                                                name="{{item.id}}" [(ngModel)]="item.valore" required>
+                                                name="{{item.id}}" [(ngModel)]="item.valore" required
+                                                [disabled]="item.modificabile ==  SI_NO.NO_S">
                                                 <option *ngFor="let opzione of combo.squadre"
                                                     [ngValue]="opzione.descrizione">
                                                     {{opzione.descrizione}}
@@ -50,7 +55,8 @@
                                         <td
                                             *ngIf="item.categoria==CATEGORIA.ANTEPOST&&item.gruppo==GRUPPO_PUNTI.CAPOCANNONIERE">
                                             <select [disabled]="loading_btn" class="form-select" aria-label="select"
-                                                name="{{item.id}}" [(ngModel)]="item.valore" required>
+                                                name="{{item.id}}" [(ngModel)]="item.valore" required
+                                                [disabled]="item.modificabile ==  SI_NO.NO_S">
                                                 <option *ngFor="let opzione of combo.cannonieri"
                                                     [ngValue]="opzione.descrizione">
                                                     {{opzione.descrizione}}
@@ -61,7 +67,8 @@
                                             *ngIf="item.categoria==CATEGORIA.GIRONE&&item.gruppo!=GRUPPO_PUNTI.GIRONE_COMPLETO">
                                             <select [disabled]="loading_btn" class="form-select" aria-label="select"
                                                 name="{{item.id}}" [(ngModel)]="item.valore"
-                                                (change)="onChangeGruppo($event,item)" required>
+                                                (change)="onChangeGruppo($event,item)" required
+                                                [disabled]="item.modificabile ==  SI_NO.NO_S">
                                                 <option *ngFor="let opzione of combo.squadre_girone[item.girone]"
                                                     [ngValue]="opzione.descrizione">{{opzione.descrizione}}
                                                 </option>
@@ -74,9 +81,11 @@
                                                 [(ngModel)]="item.valore" required readonly>
                                         </td>
 
-                                        <td *ngIf="item.categoria==CATEGORIA.ELIMINATORIE">
+                                        <td
+                                            *ngIf="item.categoria==CATEGORIA.ELIMINATORIE&&item.modificabile==SI_NO.SI_S">
                                             <select [disabled]="loading_btn" class="form-select" aria-label="select"
-                                                name="{{item.id}}" [(ngModel)]="item.valore" (change)="onChangeTabellone($event,item)" required>
+                                                name="{{item.id}}" [(ngModel)]="item.valore"
+                                                (change)="onChangeTabellone($event,item)" required>
                                                 <option *ngFor="let opzione of combo.tabellone"
                                                     [ngValue]="opzione.descrizione">
                                                     {{opzione.descrizione}}
@@ -84,7 +93,8 @@
                                             </select>
                                         </td>
 
-                                        <td *ngIf="item.gruppo==GRUPPO_PUNTI.TABELLONE_COMPLETO">
+                                        <td
+                                            *ngIf="item.gruppo==GRUPPO_PUNTI.TABELLONE_COMPLETO&&item.modificabile ==  SI_NO.SI_S">
                                             <input name="{{item.id}}" type="text" class="form-control"
                                                 [(ngModel)]="item.valore" required readonly>
                                         </td>

@@ -95,5 +95,24 @@ export class AdminRisultatiService extends HttpSenderService {
   }
 
 
+  //modificabile
+  getEventiMod(input: string) {
+    const params = new HttpParams().set('id_comp', input);
+
+    return this.http.get(`${this.buildURL("get_eventi_mod")}`, { params: params })
+      .pipe(map((res: any) => {
+        return res['data'];
+      }),
+        catchError(this.handleError));
+  }
+
+  updEventiMod(payload: any) {
+
+    return this.http.post(`${this.buildURL("upd_eventi_mod")}`, { data: payload })
+      .pipe(map((res: any) => {
+        return RETURN_OK;
+      }),
+        catchError(this.handleError));
+  }
 
 }

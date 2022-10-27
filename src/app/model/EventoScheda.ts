@@ -9,5 +9,5 @@ export class EventoScheda {
     valore: string = "";//ValoreEvento=new ValoreEvento(0,'')
     id_dettaglio?: string;
     data_partita?: string;
-
+    modificabile?: string;
 }

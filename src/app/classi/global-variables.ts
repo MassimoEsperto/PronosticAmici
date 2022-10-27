@@ -73,7 +73,8 @@ export abstract class vrs {
     EVENTI_CANNONIERI: 7,
     EVENTI_PRONOSTICI: 8,
     EVENTI_SCHEDE: 9,
-    RISULTATI: 10
+    RISULTATI: 10,
+    MODIFICABILI: 11
   }
 
   LOGIN = {

@@ -26,6 +26,7 @@
           <a class="nav-link dropdown-toggle bg-dark" [ngClass]="{'disabled': !competizione||competizione.is_open==STATO_COMP.APERTA}" role="button" data-bs-toggle="dropdown">RIS</a>
           <ul class="dropdown-menu">
             <li (click)="tabSelected(TAB_ASS.RISULTATI)"><a class="dropdown-item cursore">CALENDARIO</a></li>
+            <li (click)="tabSelected(TAB_ASS.MODIFICABILI)"><a class="dropdown-item cursore">MODIFICABILI</a></li>
           </ul>
         </li>
     </ul>
@@ -61,6 +62,7 @@
 
       <!-- RISULTATI-->
       <calendario *ngSwitchCase="TAB_ASS.RISULTATI" [comp]="competizione"></calendario>
+      <eventi-modificabili *ngSwitchCase="TAB_ASS.MODIFICABILI" [comp]="competizione"></eventi-modificabili>
 
      
 

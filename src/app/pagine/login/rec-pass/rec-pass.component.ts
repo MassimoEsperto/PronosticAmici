@@ -27,7 +27,7 @@ export class RecPassComponent extends vrs implements OnInit {
 
     this.loading_btn = true
 
-    this.auth.recPass(payload.utente)
+    this.auth.recPass(payload.utente.id)
       .pipe(finalize(() =>
         this.loading_btn = false
       ))

@@ -98,11 +98,17 @@ export class AuthService extends HttpSenderService {
    * @param email 
    */
 
-   recPass(payload: any) {
+ 
 
-    return this.http.post(`${this.buildURL("recupera_password")}`, { data: payload })
-      .pipe(map((res:any) => {
+  recPass(id: string) {
+
+    const params = new HttpParams().set('id_utente', id);
+
+    return this.http.get<any>(`${this.buildURL("recupera_password")}`, { params: params })
+      .pipe(map((res) => {
+
         return 'OK';
+
       }),
         catchError(this.handleError));
   }
