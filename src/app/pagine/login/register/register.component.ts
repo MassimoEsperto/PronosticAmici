@@ -36,7 +36,7 @@ export class RegisterComponent extends vrs implements OnInit {
         next: (result: any) => {
           this.alert.success(SUCCESS_OK);
           this.submitto.emit(this.LOGIN.SIGN_IN)
-
+          this.goToLink(payload)
         },
         error: (error: any) => {
           this.alert.error(error);
@@ -44,5 +44,17 @@ export class RegisterComponent extends vrs implements OnInit {
       })
 
   }
+
+
+  goToLink(payload: any) {
+
+    let tel=393661746386; 
+    let testo="Ciao sono "+payload.nome+" "+payload.cognome +
+    " con username:"+payload.username +" e mi sono appena iscritto"
+    let wa="https://wa.me/"+tel+"?text="+testo
+    window.open(wa, "_blank");
+    
+  }
+
 
 }

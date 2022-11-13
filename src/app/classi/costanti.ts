@@ -3,7 +3,7 @@
 // Versione applicazione
 export const VERSION = "2.1"
 
-export const WS_BASE_URL = `http://marescafantaeuropeo.altervista.org/servizi`
+export const WS_BASE_URL = `https://marescafantaeuropeo.altervista.org/servizi`
 
 // Timeout richieste POST
 export const REQUEST_TIMEOUT = 2 * 60 * 1000 // 2 minuti
