@@ -15,8 +15,11 @@
 
 
 <div class="d-grid gap-2">
-    <button class="btn btn-verde btn-lg" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
-        <i class="bi bi-hand-index-fill"></i> Seleziona competizione</button>
+    <button class="btn btn-secondary btn-lg" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
+        <i class="bi bi-hand-index-fill"></i> 
+        <span *ngIf="!play_comp"> Seleziona competizione</span> 
+        <span *ngIf="play_comp"> Cambia competizione</span> 
+      </button>
   </div>
 
 
