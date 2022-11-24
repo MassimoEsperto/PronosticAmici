@@ -19,7 +19,11 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let item of scheda_master">
-                                <td>{{item.view}}</td>
+                                <td>
+                                    {{item.view}}
+                                <br>
+                                {{item.risultato}}
+                                </td>
                                 <td>{{item.valore}}</td>
                                 <td>{{item.punti}}</td>
                             </tr>

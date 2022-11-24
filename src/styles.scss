@@ -147,5 +147,16 @@ body{
   ::-webkit-scrollbar-thumb:hover {
     background: #425a6e; 
   }
+
+  .modal-fullscreen .modal-header {
+    background: #215eb7; 
+    color:gainsboro;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+}
+
+.modal-fullscreen .modal-footer {
+    background: #215eb7; 
+    color:gainsboro;
+}
   
  

@@ -10,4 +10,5 @@ export class EventoScheda {
     id_dettaglio?: string;
     data_partita?: string;
     modificabile?: string;
+    risultato?: string;
 }
