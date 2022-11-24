@@ -9,7 +9,7 @@
             <div class="modal-body pa-0">
 
                 <div class="table-responsive">
-                    <table class="table table-striped ">
+                    <table class="table table-striped table-borderless testo-light">
                         <thead>
                             <tr>
                                 <th scope="col">EVENTO</th>
@@ -19,18 +19,18 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let item of scheda_master">
-                                <td>
+                                <td class="testo-light">
                                     {{item.view}}
                                 <br>
                                 {{item.risultato}}
                                 </td>
-                                <td>{{item.valore}}</td>
-                                <td>{{item.punti}}</td>
+                                <td class="testo-light">{{item.valore}}</td>
+                                <td class="testo-light">{{item.punti}}</td>
                             </tr>
 
                         </tbody>
                     </table>
-                    <div style="text-align: right;" class="pb-8">
+                    <div style="text-align: right;" class="pb-8 testo-light">
                         <span>Punti totali : </span>
                         <span *ngIf="record" class="testo-bold">{{record.punti}}</span>
                     </div>
