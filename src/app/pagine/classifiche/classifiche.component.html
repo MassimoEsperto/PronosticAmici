@@ -25,6 +25,7 @@
                     <tr>
                         <th scope="col"></th>
                         <th scope="col">PT</th>
+                        <th scope="col"></th>
                         <th scope="col">UTENTE</th>
                         <th scope="col">DATA INSERIMENTO</th>
                         <th scope="col"></th>
@@ -32,14 +33,14 @@
                 </thead>
                 <tbody *ngIf="!loading_table">
                     <tr *ngFor="let item of schede.table[idxTable]">
-                        <td class="testo-light">
-                            <i *ngIf="item.pos>item.ex" class="bi bi-arrow-up-circle-fill"></i>
-                            <i *ngIf="item.pos==item.ex" class="bi bi-arrow-right-circle-fill"></i>
-                            <i *ngIf="item.pos<item.ex" class="bi bi-arrow-down-circle-fill"></i>
-                            {{ item.pos}}°
-                        </td>
+                        <td class="testo-light">{{item.pos}}°</td>
                         <td class="testo-light testo-bold">{{item.punti}}</td>
-                        <td class="testo-light">{{item.utente}}_{{item.id}}</td>
+                        <td class="testo-light">
+                            <i *ngIf="item.pos<item.ex" class="bi bi-arrow-up-circle-fill"></i>
+                            <i *ngIf="item.pos==item.ex" class="bi bi-arrow-right-circle-fill"></i>
+                            <i *ngIf="item.pos>item.ex" class="bi bi-arrow-down-circle-fill"></i>
+                        </td>
+                        <td class="testo-light">{{item.utente}} {{item.id}}</td>
                         <td class="testo-light">{{item.tempo}}</td>
                         <td class="testo-light"><i class="bi bi-eye-fill cursore" (click)="onViewItem(item)"
                                 data-bs-toggle="modal" data-bs-target="#formScheda"></i></td>
