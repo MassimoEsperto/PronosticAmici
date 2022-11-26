@@ -47,4 +47,11 @@ export class ViewScheda extends vrs {
 
   }
 
+  goToLink(url: string) {
+    let id_scheda=this.record.id;
+    let utente=this.record.utente;
+   
+    window.open(url+"?id_scheda="+id_scheda+"&utente="+utente, "_blank");
+  }
+
 }

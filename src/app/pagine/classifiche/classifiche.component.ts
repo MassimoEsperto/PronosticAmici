@@ -54,5 +54,6 @@ export class ClassificheComponent extends vrs implements OnInit {
     window.open(url+"?id_comp="+id_comp+"&sigla="+sigla, "_blank");
   }
 
+  
 
 }
