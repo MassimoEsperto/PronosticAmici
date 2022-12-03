@@ -37,6 +37,7 @@ import { RecPassComponent } from '../pagine/login/rec-pass/rec-pass.component';
 import { CalendarioComponent } from '../pagine/administration/risultati/calendario/calendario.component';
 import { ViewScheda } from '../componenti/my-form-modal/view-scheda/view-scheda.component';
 import { EventiModificabiliComponent } from '../pagine/administration/risultati/eventi-modificabili/eventi-modificabili.component';
+import { SchedeConcluseComponent } from '../pagine/administration/risultati/schede-concluse/schede-concluse.component';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import { EventiModificabiliComponent } from '../pagine/administration/risultati/
     SignInComponent,
     RegisterComponent,
     RecPassComponent,
-    EventiModificabiliComponent
+    EventiModificabiliComponent,
+    SchedeConcluseComponent
   ],
   imports: [
     BrowserModule,

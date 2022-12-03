@@ -74,7 +74,8 @@ export abstract class vrs {
     EVENTI_PRONOSTICI: 8,
     EVENTI_SCHEDE: 9,
     RISULTATI: 10,
-    MODIFICABILI: 11
+    MODIFICABILI: 11,
+    CONCLUSE: 12
   }
 
   LOGIN = {

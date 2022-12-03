@@ -27,6 +27,7 @@
           <ul class="dropdown-menu">
             <li (click)="tabSelected(TAB_ASS.RISULTATI)"><a class="dropdown-item cursore">CALENDARIO</a></li>
             <li (click)="tabSelected(TAB_ASS.MODIFICABILI)"><a class="dropdown-item cursore">MODIFICABILI</a></li>
+            <li (click)="tabSelected(TAB_ASS.CONCLUSE)"><a class="dropdown-item cursore">CONCLUSE</a></li>
           </ul>
         </li>
     </ul>
@@ -63,7 +64,7 @@
       <!-- RISULTATI-->
       <calendario *ngSwitchCase="TAB_ASS.RISULTATI" [comp]="competizione"></calendario>
       <eventi-modificabili *ngSwitchCase="TAB_ASS.MODIFICABILI" [comp]="competizione"></eventi-modificabili>
-
+      <schede-concluse *ngSwitchCase="TAB_ASS.CONCLUSE" [comp]="competizione"></schede-concluse>
      
 
       <div *ngSwitchDefault class="testo-light">
