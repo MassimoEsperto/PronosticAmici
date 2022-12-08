@@ -34,7 +34,9 @@
                 <tbody *ngIf="!loading_table">
                     <tr *ngFor="let item of schede.table[idxTable]">
                         <td class="testo-light">{{item.pos}}°</td>
-                        <td class="testo-light testo-bold">{{item.punti}}</td>
+                        <td>
+                            <span class="testo-bold" [ngClass]="[item.stato_scheda!=STATO_SCHEDA.CONCLUSA ? 'testo-light' : 'testo-red']">{{item.punti}}</span>
+                        </td>
                         <td class="testo-light">
                             <i *ngIf="item.pos<item.ex" class="bi bi-arrow-up-circle-fill"></i>
                             <i *ngIf="item.pos==item.ex" class="bi bi-arrow-right-circle-fill"></i>

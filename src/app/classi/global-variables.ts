@@ -84,4 +84,9 @@ export abstract class vrs {
     REC_PASS: 3
   }
 
+  STATO_SCHEDA = {
+    APERTA: "1",
+    CONCLUSA: "5"
+  }
+
 }

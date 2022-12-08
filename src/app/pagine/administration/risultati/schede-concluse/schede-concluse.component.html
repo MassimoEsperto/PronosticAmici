@@ -1,1 +1,74 @@
-<p>schede-concluse works!</p>
+<h2 class="annuncio">GESTIONE CONCLUSE</h2>
+
+<div *ngIf="loading_page">
+
+</div>
+<div *ngIf="!loading_page" class="pt-32 pb-64">
+    <div class="card-table">
+        <form #antepostUpdate="ngForm" (ngSubmit)="loading_btn=true;onSchedeConcluse(antepostUpdate.form.value)">
+            <div class="table-responsive">
+                <table class="table table-striped ">
+                    <thead>
+                        <tr>
+                            <th scope="col">VIEW</th>
+                            <th scope="col">RISULTATO</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{cannonieri[0].view}}</td>
+                            <td>
+                                <div class="collapse" id="id{{cannonieri[0].evento}}">
+                                    <div class="pt-8">
+                                        <div class="display-column">
+                                            <div style="min-width: 160px;">
+                                                <select class="form-select form-select" multiple name="cannoniere"
+                                                    ngModel required>
+                                                    <option *ngFor="let item of cannonieri"
+                                                        [ngValue]="item">
+                                                        {{item.valore}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><i class="bi bi-pencil cursore" data-bs-toggle="collapse"
+                                [attr.data-bs-target]="'#id'+cannonieri[0].evento" aria-expanded="false"></i></td>
+                        </tr>
+                        <tr>
+                            <td>{{squadre[0].view}}</td>
+                            <td>
+                                <div class="collapse" id="id{{squadre[0].evento}}">
+                                    <div class="pt-8">
+                                        <div class="display-column">
+
+                                            <div style="min-width: 160px;">
+                                                <select class="form-select form-select" multiple name="squadra"
+                                                    ngModel required>
+                                                    <option *ngFor="let item of squadre" [ngValue]="item">
+                                                        {{item.valore}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><i class="bi bi-pencil cursore" data-bs-toggle="collapse"
+                                [attr.data-bs-target]="'#id'+squadre[0].evento" aria-expanded="false"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pt-8">
+                <my-button [disabled]="!antepostUpdate.form.valid" [block]="false" [color]="'btn-dark btn-sm'"
+                    [loading]="loading_btn" [submit]="true" [label]="'CONFERMA'">
+                </my-button>
+            </div>
+        </form>
+    </div>
+
+</div>

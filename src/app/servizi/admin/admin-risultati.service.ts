@@ -37,6 +37,18 @@ export class AdminRisultatiService extends HttpSenderService {
         catchError(this.handleError));
   }
 
+  getSchedeConcluse(input: string) {
+
+    const params = new HttpParams().set('id_comp', input);
+
+    return this.http.get(`${this.buildURL("get_schede_concluse")}`, { params: params })
+      .pipe(map((res: any) => {
+        return res['data'];
+      }),
+        catchError(this.handleError));
+  }
+
+
 
   //set risultati
   setRisultatoPartita(payload: any): Observable<any> {
@@ -111,6 +123,19 @@ export class AdminRisultatiService extends HttpSenderService {
     return this.http.post(`${this.buildURL("upd_eventi_mod")}`, { data: payload })
       .pipe(map((res: any) => {
         return RETURN_OK;
+      }),
+        catchError(this.handleError));
+  }
+
+
+  //set risultati
+  setSchedeConcluse(payload: any): Observable<any> {
+
+    return this.http.post(`${this.buildURL("set_schede_concluse")}`,
+      { data: payload }, this.myheaders)
+      .pipe(map((res: any) => {
+
+        return RETURN_OK
       }),
         catchError(this.handleError));
   }
