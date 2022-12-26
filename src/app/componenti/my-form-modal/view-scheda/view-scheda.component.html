@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="formScheda" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="formSchedaLabel" aria-hidden="true">
+    aria-labelledby="formSchedaLabel" aria-hidden="true" role="dialog">
     <div class="modal-dialog modal-fullscreen">
         <div *ngIf="!loading_page" class="modal-content">
             <div class="modal-header">
@@ -42,7 +42,7 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" (click)="goToLink('http://marescafantaeuropeo.altervista.org/servizi/pdf/get_dettaglio_scheda.php')">
                     <i class="bi bi-download"></i> Formato pdf</button>
-                <button type="button" #closeModal class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
             </div>
         </div>
     </div>

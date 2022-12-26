@@ -165,7 +165,11 @@ export class FormScheda extends vrs implements OnInit {
 
   }
 
+  ngOnDestroy() {
 
+    document.body.removeAttribute("style");
+
+  }
 
 
 }

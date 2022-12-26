@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { vrs } from 'src/app/classi/global-variables';
 import { EventoScheda } from 'src/app/model/EventoScheda';
 import { AlertService } from 'src/app/servizi/applicazione/alert.service';
@@ -25,8 +25,8 @@ export class ViewScheda extends vrs {
   ngOnChanges() {
     this.scheda_master = []
     this.loading_page = true
-    if(this.record)
-    this.getDettaglioScheda(this.record.id)
+    if (this.record)
+      this.getDettaglioScheda(this.record.id)
   }
 
   getDettaglioScheda(input: string) {
@@ -48,10 +48,17 @@ export class ViewScheda extends vrs {
   }
 
   goToLink(url: string) {
-    let id_scheda=this.record.id;
-    let utente=this.record.utente;
-   
-    window.open(url+"?id_scheda="+id_scheda+"&utente="+utente, "_blank");
+    let id_scheda = this.record.id;
+    let utente = this.record.utente;
+
+    window.open(url + "?id_scheda=" + id_scheda + "&utente=" + utente, "_blank");
+  }
+
+
+  ngOnDestroy() {
+
+    document.body.removeAttribute("style");
+
   }
 
 }

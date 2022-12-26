@@ -45,4 +45,10 @@ export class FormUtente extends vrs implements OnInit {
       })
 
   }
+
+  ngOnDestroy() {
+
+    document.body.removeAttribute("style");
+
+  }
 }

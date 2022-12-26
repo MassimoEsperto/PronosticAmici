@@ -71,4 +71,10 @@ export class FormCompetizioni extends vrs implements OnInit {
 
   }
 
+  ngOnDestroy() {
+
+    document.body.removeAttribute("style");
+
+  }
+
 }

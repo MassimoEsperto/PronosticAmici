@@ -63,4 +63,10 @@ export class DashboardComponent extends vrs implements OnInit {
       })
 
   }
+
+  ngOnDestroy() {
+
+    document.body.removeAttribute("style");
+
+  }
 }
